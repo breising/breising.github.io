@@ -1,55 +1,317 @@
-.container-fluid {
-    background-image: url("images/jumbotron1.jpg");
-    background-size: 280%;
-    /*Dont' change*/
-    background-repeat: no-repeat;
-    background-position: -220px -30px;
+.container {
     width: 100vw;
 }
 
-.navbar {
-    background-color: hsl(5, 1%, 80%);
-    height: 300vh;
-    background-position: -30px;
+#container {
+    width: 100%;
+    z-index: 1;
+    opacity: 1;
+    display: flex;
+    background: hsl(200, 10%, 70%);
 }
 
 canvas {
-    position: relative;
-    top: 0;
-    left: 0;
+    display: block;
 }
 
-body {
-    float: right;
+.head {
+    display: flex;
+    height: 40px;
+    position: relative;
+    top: 70px;
+    left: 150px;
+
+}
+
+.logo {
+    height: 30px;
+    position: relative;
+    top: 5px;
+    left: 30px;
+}
+
+.head-text {
+
+    padding-top: 5%;
+    width: 100%;
+}
+
+.mid {
+    background-image: url("/images/jumbotron1.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+}
+
+.mid-text {
+    background: rgba(0, 50, 100, 0.3);
+    display: block;
+    width: 60%;
+    height: 100%;
+    position: relative;
+    right: 10%;
+    left: 40%;
+    top: 0%;
+}
+
+.nav-menu {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background-color: hsl(200, 50%, 20%);
+    position: fixed;
+    top: 0;
+    bottom: auto;
+}
+
+.icon1Contain,
+.icon2Contain {
+    display: block;
+    width: 16%;
+}
+.icon3Contain,
+.icon4Contain,
+.icon5Contain {
+    display: block;
+    width: 23%;
+}
+
+.icon1,
+.icon2,
+.icon3,
+.icon4,
+.icon5 {
+    display: block;
+    margin: auto;
+    width: 32px;
+    padding-top: 0px;
+}
+
+.i1,
+.i2,
+.i3,
+.i4,
+.i5 {
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.icon5 {
+   max-height: 33px;
+}
+.icon4 {
+   max-height: 29px;
+   padding-top: 7px;
+}
+.icon5 {
+   max-height: 33px;
+}
+.i4 {
+   padding-top: 2px;
+}
+p {
+    /*position: relative;
+    top: 10px;
+    left: 6px;
+    margin: 0px;
+    color: hsl(200, 20%, 30%);*/
+}
+
+.subtitle {
+    color: #FFFFFF;
+    font-size: 1em;
+    text-align: center;
+    margin-right: 5%;
+    font-weight: 300;
+    text-shadow: 0.5px 0.5px #000000;
+    opacity: 1.0;
+}
+.mid-main {
+    color: #FFFFFF;
+    font-weight: 300;
+    font-size: 2.0em;
+    text-align: center;
+    margin-right: 5%;
+    opacity: 1.0;
+    margin-top: 40px;
+}
+
+.nuFormContain {
+    position: relative;
+    color: hsl(200, 100%, 40%);
+    background: hsl(1, 0%, 90%);
+    height: 100vh;
+    width: 100vw;
+}
+
+.nuForm {
+    display: block;
+    opacity: 1;
+    margin-left: 30px;
+    width: 80%;
+}
+
+.form-head {
+    display: flex;
+    height: 40px;
+    margin-left: 20px;
+    width: 80%;
+}
+
+.log-form-head {
+    margin-left: 20px;
+    width: 80%;
+}
+
+.main-contain {
+    width: 100vw;
+}
+
+.form-logo {
+    height: 30px;
+    position: relative;
+    top: 8px;
+    left: 8px;
+}
+
+.form-text {
+    width: 100%;
+}
+
+.ORTHO {
+    color: hsl(200, 100%, 40%);
+    font-size: 1.5em;
+    font-weight: 200;
+    padding-right: 0;
+    position: absolute;
+    top: 4px;
+    left: 60px;
+    margin: 0;
+    margin-top: 8px;
+}
+
+.CURE {
+    color: hsl(200, 100%, 20%);
+    font-size: 1.5em;
+    font-weight: 200;
+    padding-left: 0;
+    padding-right: 0;
+    position: absolute;
+    top: 4px;
+    left: 133px;
+    margin: 0;
+    margin-top: 8px;
+}
+
+.logInFormContain {
+    color: hsl(200, 100%, 20%);
+    background: hsl(190, 10%, 70%);
+    height: 100vh;
+    width: 100vw;
+}
+
+.legend-log {
+    margin-bottom: 0px;
+    max-width: 10%;
+}
+
+legend {
+    margin-bottom: 0px;
+    padding-top: 15px;
+}
+
+.legend-sub {
+    font-size: 1em;
+    color: hsl(190, 50%, 80%);
+}
+
+.spacer {
+    height: 10px;
+}
+
+.logInButton,
+.nuButton {
+    margin-bottom: 8px;
+    background: hsl(200, 50%, 60%);
+    color: white;
+    border-radius: 10px;
+}
+
+
+
+.link-upload {
+    width: 25%;
+    color: white;
+    background: hsl(200, 80%, 20%);
+    border-left: solid;
+    border-left-color: white;
+    border-left-width: 1px;
+    height: 50px;
+    padding-top: 13px;
+    padding-left: 12px;
+    font-size: 1.5em;
+    font-weight: 100
+}
+
+.pat-list-contain {
+    background: hsl(200, 80%, 60%);
+    height: 100vh;
+    width: 100vw;
+    color: white;
+}
+
+.pat-list-title {
+    font-size: 1.5em;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.pat-list-item-box {
+    margin-left: 20px;
+    width: 90%;
+    height: 45px;
+
+}
+
+.pat-list-item {
+    font-size: 1em;
+    color: white;
+    padding-top: 10px;
+    height: 40px;
+    background: hsl(200, 50%, 40%);
+    padding-left: 10px;
+}
+.pat-list-text {
+color: white;
+font-size: 1em;
+margin-left: 10px;
+}
+
+.patUser {
+    font-size: 1.3em;
+    color: hsl(200, 10%, 90%);
+    font-weight: 200;
+    padding-left: 20px;
+}
+
+.must-select {
+    font-size: 1em;
+    color: white;
+    margin-left: 10px;
+    font-weight: 200;
+}
+
+.row-file-pick {
+    position: relative;
 }
 
 .bottom {
     min-height: 150px;
 }
 
-.model-row {
-    display: flex;
-    display: block;
-}
-
-h1 {
-    color: #FFFFFF;
-    font-size: 2.4em;
-    text-align: left;
-    margin-left: 30%;
-    margin-right: 5%;
-    margin-top: 30%;
-}
-
-.mid-text {
-    display: block;
-}
-
-.subtitle {
-    color: #FFFFFF;
-    font-size: .8em;
-    text-align: left;
-    margin-left: 30%;
+.fp__btn {
+    margin-left: 10px;
+    margin-bottom: 20px;
 }
 
 .btn-primary {
@@ -57,46 +319,29 @@ h1 {
     margin-left: 30%;
 }
 
-.top {
-    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0));
-    max-height: 80px;
-    opacity: 0.7;
-}
-
-.logo {
-    margin-left: 20px;
-}
-
-img {
-    max-height: 40px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 h2 {
     color: hsl(200, 100%, 40%);
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: 200;
-    padding-left: 10px;
     padding-right: 0;
     position: absolute;
-    top: 5px;
-    left: 50px;
+    top: 7px;
+    left: 63px;
     margin: 0;
-    margin-top: 8px;
+    margin-top: 0px;
 }
 
 h3 {
     color: hsl(200, 100%, 20%);
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: 200;
     padding-left: 0;
     padding-right: 0;
     position: absolute;
-    top: 5px;
-    left: 130px;
+    top: 7px;
+    left: 150px;
     margin: 0;
-    margin-top: 8px;
+    margin-top: 0px;
 }
 
 h6 {
@@ -104,9 +349,9 @@ h6 {
     top: 25px;
     left: 62px;
     margin: 0;
-    margin-top: 18px;
+    margin-top: 14px;
     font-size: 0.8em;
-    font-weight: 200;
+    font-weight: 300;
     color: hsl(200, 100%, 20%);
 }
 
@@ -115,24 +360,14 @@ h6 {
     font-family: helvetica;
 }
 
-.col-xs-6 {
-    padding: 0;
-}
-
-.mid {
-    margin-top: 5%;
-    /*height: 120vw;*/
-}
-
 h5 {
-    position: absolute;
-    top: 70%;
-    left: 5%;
     font-weight: 100;
     font-size: 1.3em;
     color: hsl(180, 100%, 100%);
     z-index: 2;
     text-shadow: 1px 1px #000000;
+    display: block;
+    margin: auto;
 }
 
 .icon-bar {
@@ -145,38 +380,281 @@ sup {
     font-weight: 200;
 }
 
-@media screen and (min-width: 450px) {
-    .container-fluid {
-        background-image: url("images/jumbotron1.jpg");
-        background-size: cover;
-        /*Dont' change*/
-        background-repeat: no-repeat;
-        background-position: -200px -30px;
+
+
+
+.rx-text {
+    width: 100%;
+}
+
+
+
+.nuPat {
+    width: 90%;
+    padding-left: 20px;
+    color: white;
+}
+
+.upload-head {
+    background: hsl(205,60%,40%);
+    height: 100vh;
+    width: 100vw;
+    display: block;
+    color: white;
+}
+.patFirstName,
+.patLastName,
+.patDob,
+.patRx {
+    background: hsl(205,60%, 50%);
+}
+
+
+.nuPatInfo {
+    width: 120px;
+    background: hsl(75,100%, 30%);
+    border-radius: 10px;
+
+}
+
+.patSelect {
+    top: 0;
+    left: 0;
+    margin-left: 30px;
+    font-size: 1.2em;
+    font-color: hsl(200, 80%, 80%);
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    margin-bottom: 0px;
+}
+
+.files-contain {
+    background: hsl(200, 80%, 50%);
+    color: white;
+    font-size: 1em;
+    height: 100vh;
+    width: 100vw;
+}
+
+.files-head {
+    width: 100%;
+    color: white;
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: 1.4em;
+}
+
+.pat-info-name {
+    font-size: .8em;
+    color: white;
+    margin-left: 20px;
+}
+
+.pat-info-title {
+    font-size: 1.2em;
+    margin-left: 20px;
+    line-height: 1;
+}
+.files-sub {
+    font-size: 0.8em;
+    color: hsl(200,100%,20%);
+    padding-left: 20px;
+}
+
+.upload-here {
+    margin-left: 20px;
+}
+.pat-dob {
+    font-size: 0.8em;
+    color: white;
+    margin-left: 20px;
+}
+
+.pat-info-files {
+    font-size: 1em;
+    color: white;
+    margin-left: 20px;
+}
+
+.upload-contain {
+    display: flex;
+    height: 200px;
+}
+
+.upload-success {
+    width: 75%;
+    padding-left: 30px;
+}
+
+.pat-upload-for {
+    font-size: 1.3em;
+    color: red;
+    margin-left: 20px;
+}
+
+.pat-name {
+    font-size: 1em;
+}
+
+.patDOB {
+    font-size: 1em;
+}
+
+.fp__btn {
+    display: none;
+    margin-left: 30px;
+}
+
+#select-file-name {
+    margin-left: 20px;
+    font-size: 1em;
+    width: 200px;
+    height: 50px;
+}
+
+#select-file-name option {
+    font-size: 50px;
+    height: 50px;
+}
+
+.file-item {
+    margin-left: 10px;
+    font-size: 1em;
+    color: white;
+    background: hsl(200, 50%, 30%);
+    width: 80%;
+    margin-bottom: 5px;
+}
+
+.pat-files {
+    font-size: 1em;
+    margin-left: 15px;
+}
+
+option {
+    height: 50px;
+}
+
+canvas {
+    margin: auto;
+}
+
+
+/*  scroll arrow stuff here
+
+
+
+*/
+
+.arrow-wrap {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 380px;
+    margin-left: -5em;
+    background: #111;
+    width: 10em;
+    height: 10em;
+    padding: 4em 2em;
+    border-radius: 50%;
+    font-size: 0.5em;
+    display: block;
+    box-shadow: 0px 0px 5px 0px #333;
+}
+
+.arrow {
+    float: left;
+    position: relative;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 3em 3em 0 3em;
+    border-color: #ffffff transparent transparent transparent;
+    -webkit-transform: rotate(360deg)
+}
+
+.arrow:after {
+    content: '';
+    position: absolute;
+    top: -3.2em;
+    left: -3em;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 3em 3em 0 3em;
+    border-color: #111 transparent transparent transparent;
+    -webkit-transform: rotate(360deg)
+}
+
+.hint {
+    position: absolute;
+    top: 0.6em;
+    width: 100%;
+    left: 0;
+    font-size: 2em;
+    font-style: italic;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+}
+
+img {
+    vertical-align: center;
+    horizontal-align: center;
+}
+
+.arrow-wrap:hover .hint {
+    opacity: 1;
+}
+
+@-webkit-keyframes arrows {
+    0% {
+        top: 0;
     }
-    h1 {
-        margin-left: 30%;
-        margin-top: 30%;
+    10% {
+        top: 12%;
+    }
+    20% {
+        top: 0;
+    }
+    30% {
+        top: 12%;
+    }
+    40% {
+        top: -12%;
+    }
+    50% {
+        top: 12%;
+    }
+    60% {
+        top: 0;
+    }
+    70% {
+        top: 12%;
+    }
+    80% {
+        top: -12%;
+    }
+    90% {
+        top: 12%;
+    }
+    100% {
+        top: 0;
     }
 }
 
-@media screen and (min-width: 550px) {
-    h1 {
-        margin-right: 10%;
-        text-align: center;
-        margin-left: 10%;
-    }
-    h5 {
-        left: 3%;
-        font-size: 1.5em;
-    }
+.arrow-wrap .arrow {
+    -webkit-animation: arrows 2.8s 0.4s;
+    -webkit-animation-delay: 3s;
 }
 
-@media screen and (min-width: 650px) {
-    h1 {
-        margin-top: 30%;
-    }
-}
 
+/*
 @media screen and (min-width: 768px) {
     h1 {
         margin-left: 10%;
@@ -185,9 +663,7 @@ sup {
         float: left;
         margin-left: 35%;
     }
-    .mid {
-        margin-top: 0%;
-    }
+
     .top {
         background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0));
         max-height: 140px;
@@ -240,33 +716,4 @@ sup {
         font-size: 1.5em;
     }
 }
-
-@media screen and (min-width: 950px) {
-    h1 {
-        font-size: 3.2em;
-        margin-left: 5%;
-        margin-top: 20%;
-    }
-    .subtitle {
-        font-size: 1em;
-    }
-}
-
-@media screen and (min-width: 1050px) {
-    .container-fluid {
-        background-size: 120vw;
-        background-position: -200px -30px;
-    }
-    h5 {
-        left: 9%;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    h5 {
-        left: 8%;
-    }
-    canvas {
-        margin-left: 2%;
-    }
-}
+*/
