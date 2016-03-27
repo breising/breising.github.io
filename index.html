@@ -30,7 +30,7 @@
                 </div>
                 <div class="icon3Contain">
                     <img class="icon3" src="/images/user.svg">
-                    <p class="i3" style="color: white">Dr.Account</P>
+                    <p class="i3" style="color: white">DoctorAcct</P>
                 </div>
                 <div class="icon4Contain">
                     <img class="icon4" src="/images/list.svg">
@@ -38,189 +38,193 @@
                 </div>
                 <div class="icon5Contain">
                     <img class="icon5" src="/images/medical.svg">
-                    <p class="i5" style="color: white">Add patient</P>
+                    <p class="i5" style="color: white">AddPatient</P>
                 </div>
             </div>
-            <div class="head">
-                <img class="logo" src="/images/orthocure_symbol.svg" alt="OrthoCure Logo">
-                <div class='head-text'>
-                    <h2>ORTHO</h2>
-                    <h3>CURE<!--sup>TM</sup--></h3>
-                    <br>
-                    <!--h6>The Secret Behind the Smile</h6-->
+            <div style="display: flex" class="contain-loggedIn">
+                <div class="contain-half">
+                    <div class="loggedInAs">Login</div>
+                    <div class="selectedPat"></div>
                 </div>
+                <div class="account" onclick="view.editUserAcct()">Account</div>
+                <div class="logout" onclick="view.logout()">Logout</div>
             </div>
             <div class="mid">
                 <div class="mid-text" id="userMain">
                     <br>
                     <br>
                     <br>
-                    <h1 class="mid-main">The Secret Behind the Smile</h1>
-                    <p class="subtitle">Invisible<br>Comfortable<br>No Compromises</p>
                     <br>
-                    <!--p><a class="btn btn-primary btn-lg" href="#" role="button">Coming Soon!</a></p-->
+                    <div class="head">
+                        <img class="logo" src="/images/orthocure_symbol.svg" alt="OrthoCure Logo">
+                        <h2>ORTHO</h2>
+                        <h3>CURE</h3>
+                        <br>
+                    </div>
+                    <h1 class="mid-main">The Secret Behind the Smile</h1>
+                    <p class="subtitle">Invisible
+                        <br>Comfortable
+                        <br>No Compromises</p>
+                    <br>
                 </div>
-                <!--contains transparent box -->
             </div>
-            <!-- contains background image -->
-            <div class="model-row" id="container">
-            </div>
+            <div id="image-contain"></div>
         </div>
         <div class="nuFormContain">
             <div class="nuForm">
-                <form name="nudrform" method="post" accept-charset="UTF-8" autocomplete="on" novalidate>
+                <form name="nudrform" id="nu-form" method="post" accept-charset="UTF-8" autocomplete="on" novalidate>
                     <fieldset>
-                        <legend style="color: hsl(200, 100%, 40%)">Create Doctor's Account</legend>
-                        <div class="spacer"></div>
-                        First name
-                        <input required type="text" id="firstName">
-                        <div class="spacer"></div>
-                        Last name
-                        <input required id="lastName" type="text">
-                        <div class="spacer"></div>
-                        Office address
-                        <input required id="address" type="text">
-                        <div class="spacer"></div>
-                        City
-                        <input required id="city" type="text">
-                        <div class="spacer"></div>
-                        State
-                        <input required id="state" type="text">
-                        <div class="spacer"></div>
-                        zip
-                        <input required id="zip" type="text">
-                        <div class="spacer"></div>
-                        Office phone
-                        <input required id="officePhone" type="text">
-                        <div class="spacer"></div>
-                        Mobile phone
-                        <input required id="mobilePhone" type="text">
-                        <div class="spacer"></div>
-                        email
-                        <input required value="z@z.com" id="nuemail" type="email">
-                        <div class="spacer"></div>
-                        Create password:
-                        <input required value="z" id="nupassword" type="password">
-                        <div class="spacer"></div>
+                        <legend class="nu-title" style="color: hsl(200, 100%, 40%)">Create Doctor's Account</legend>
+                        <div class="nu-box-contain">
+                        <input class="nu-text-box" value="first name" required type="text" id="firstName">
+                        <input class="nu-text-box" value="last name" required id="lastName" type="text">
+                        <input class="nu-text-box" value="office address" required id="address" type="text">
+                        <input class="nu-text-box" value="city" required id="city" type="text">
+                        <input class="nu-text-box" value="state" required id="state" type="text">
+                        <input class="nu-text-box" value="zip" required id="zip" type="text">
+                        <input class="nu-text-box" id="phone" name="phone" value="office phone" required type="text" maxlength="14" placeholder="(XXX) XXX-XXXX">
+                        <input class="nu-text-box" id="phone2" name="phone" value="mobile phone" required type="text" maxlength="14" placeholder="(XXX) XXX-XXXX">
+                        <input class="nu-text-box" value="email" required value="z@z.com" id="nuemail" type="email">
+                        <input class="nu-text-box" value="password" required value="z" id="nupassword" type="password">
                         <button class="nuButton" onclick="view.newUserFx()" type="button">Create my account</button>
-                        <div class="spacer"></div>
+                    </div>
                     </fieldset>
                 </form>
             </div>
-            <div class="logInFormContain">
-                <div class="nav-menu">
-                    <div class="icon1Contain">
-                        <img class="icon1" src="/images/key.svg">
-                        <p class="i1" style="color: white">Login</P>
-                    </div>
-                    <div class="icon2Contain">
-                        <img class="icon2" src="/images/upload-icon.svg">
-                        <p class="i2" style="color: white">Files</P>
-                    </div>
-                    <div class="icon3Contain">
-                        <img class="icon3" src="/images/user.svg">
-                        <p class="i3" style="color: white">Dr.Account</P>
-                    </div>
-                    <div class="icon4Contain">
-                        <img class="icon4" src="/images/list.svg">
-                        <p class="i4" style="color: white">PatientList</P>
-                    </div>
-                    <div class="icon5Contain">
-                        <img class="icon5" src="/images/medical.svg">
-                        <p class="i5" style="color: white">Add patient</P>
-                    </div>
-                </div>
-                <div class="log-form-head">
-                    <form name="loginform" action="slkdjfljksdf.php" method="post" accept-charset="UTF-8" autocomplete="on" novalidate>
-                        <fieldset class="login">
-                            <legend class="legend-log" style="color: hsl(200, 100%, 20%)">Login: </legend>
-                            <div>email:
-                                <input id="loginEmail" required type="email">
-                            </div>
-                            <div class="spacer"></div>
-                            <div>password:
-                                <input required id="loginPassword" type="password">
-                            </div>
-                            <div class="spacer"></div>
-                            <button class="logInButton" id="logInButton" type="button" onclick="view.logInUserFx()">Log me in</button>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-            <div class="pat-list-contain">
-                <div class="pat-list-title">My Patients</div>
-                <div class="pat-list-welcome"></div>
-                <ul style="font-size: 1em" class="pat-list-item-box">
-                    <li style="font-size: 1em" class="pat-list-item">Patient list appears after login</li>
-                </ul>
-            </div>
-            <div class="upload-head">
-                <form data-bind="with: view.nuPat" class="nuPat" name="nuPat" action="slkdjfljksdf.php" method="post" accept-charset="UTF-8" autocomplete="on" novalidate>
-                    <fieldset>
-                        <legend style="color: white;">Submit Patient Info:</legend>
-                        <div class="legend-sub">Please submit info before uploading files:</div>
-                        <br>First name:
-                        <input required id="patFirstName" class="patFirstName" type="text" data-bind="textInput: patFirstName">
-                        <br>
-                        <br>Last name:
-                        <input required id="patLastName" class="patLastName" type="text" data-bind="textInput: patLastName">
-                        <br>
-                        <br> DOB:
-                        <input required id="patDob" class="patDob" type="date" data-bind="textInput: patDob">
-                        <br>
-                        <br>
-                        <div class="rx-text">Prescription and notes:</div>
-                        <textarea style="width: 90%" rows="3" required form="nuPat" id="patRx" class="patRx" type="text" value="asdfadsfa" data-bind="textInput: patRx"></textarea>
-                        <br>
-                        <br>
-                        <button type="button" class="nuPatInfo" id="nuPatInfo" type="button" onclick="view.savePatientInfo()">Create patient</button>
-                        <br>
-                        <br>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="files-contain">
-                <div class="files-head">
-                    <div class="pat-info-title">Files:</div>
-                    <div class="files-sub">You must first select a patient</div>
-                    <div class="pat-info-name"></div>
-                    <div class="pat-dob"></div>
-                    <br>
-                    <div class="pat-files"></div>
-
-                    <div class="upload-here">Upload patient files:</div>
-                    <select id="select-file-name" required>
-                        <option id="option" value="none" selected>select file name</option>
-                        <option id="option" value="uscan1">upper-scan1</option>
-                        <option id="option" value="uscan2">upper-scan2</option>
-                        <option id="option" value="lscan1">lower-scan1</option>
-                        <option id="option" value="lscan2">lower-scan2</option>
-                        <option id="option" value="pano1">panoramic1</option>
-                        <option id="option" value="pano2">panoramic2</option>
-                        <option id="option" value="ceph1">ceph1</option>
-                        <option id="option" value="ceph2">ceph2</option>
-                    </select>
-                    <br>
-                    <br>
-                    <input style="margin-left: 10px" type="filepicker" data-fp-apikey="AhTgLagciQByzXpFGRI0Az" data-fp-mimetypes="*/*" data-fp-container="modal" data-fp-multiple="true" onchange="out='';for(var i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url;out+=' '};alert(out); ; view.uploadedFile(out); view.evalUpload(); view.clearField();">
-                    <div class="upload-success"></div>
-                </div>
-            </div>
-            <div style="height: 500px" class="3dModelView">3dModelView</div>
         </div>
-        <!-- container -->
-        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.css">
-        <script src="js/knockout-3.4.0.js" rel="script"></script>
-        <script src="js/jquery-2.2.0.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/bootstrap.js"></script>
-        <script src="js/three.min.js"></script>
-        <script src="js/STLLoader.js"></script>
-        <script src="js/THREEx.WindowResize.js"></script>
-        <script src="js/OrbitControls.js"></script>
-        <script src="js/OrbitAndPanControls.js"></script>
-        <script src="js/stats.min.js"></script>
-        <script src="js/scripts.js"></script>
-        <link rel="stylesheet" href="css/main.css">
-</body>
+        <div class="logInFormContain" id="login">
+            <div class="log-form-head">
+                <form name="loginform" action="slkdjfljksdf.php" method="post" accept-charset="UTF-8" autocomplete="on" novalidate>
+                    <fieldset class="login">
+                        <div class="legend-log" style="color: hsl(200, 100%, 20%)">Login: </div>
+                        <div class="legend-log-sub"><a href="#new-password">Forgot my password</a></div>
+                        <div class="legend-log-sub"><a href="#new-userEmail" >Change my email address</a></div>
 
-</html>
+                        <div>
+                            <input id="loginEmail" value="email" required type="email">
+                        </div>
+                        <div class="spacer"></div>
+                        <div>
+                            <input required value="password" id="loginPassword" type="password">
+                        </div>
+                        <div class="spacer"></div>
+                        <button class="logInButton" id="logInButton" type="button" onclick="view.logInUserFx()">Log me in</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="pat-list-contain" id="patient-list">
+            <div class="pat-list-title">Patient List</div>
+            <div class="pat-list-welcome"></div>
+            <ul style="font-size: 1em" class="pat-list-item-box">
+                <li style="font-size: 1em" class="pat-list-item">Please login to see your patient list.</li>
+            </ul>
+        </div>
+        <div class="upload-head">
+            <form data-bind="with: view.nuPat" class="nuPat" name="nuPat" action="slkdjfljksdf.php" method="post" accept-charset="UTF-8" autocomplete="on" novalidate>
+                <fieldset>
+                    <legend style="color: white;">Submit Patient Info:</legend>
+                    <div class="legend-sub">Please submit info before uploading files:</div>
+                    <br>First name:
+                    <input required id="patFirstName" class="patFirstName" type="text">
+                    <br>
+                    <br>Last name:
+                    <input required id="patLastName" class="patLastName" type="text">
+                    <br>
+                    <br> DOB:
+                    <input required id="patDob" class="patDob" type="date">
+                    <br>
+                    <br>
+                    <br>
+                    <button type="button" class="nuPatInfo" id="nuPatInfo" type="button" onclick="view.savePatientInfov2()">Create patient</button>
+                    <br>
+                    <br>
+                </fieldset>
+            </form>
+        </div>
+        <div class="files-contain" id="patient-chart">
+            <div class="files-head">
+                <div class="pat-info-title">Patient Chart:</div>
+            </div>
+            <div class="chart" style="display: none">
+            <div style="display: block" class="pat-item-contain">
+                <div class="pat-info-name"></div>
+                <div class="pat-dob"></div>
+            </div>
+            <br>
+            <button style="font-size: 0.8em" type="button" class="showUpload" id="upload-scroll" type="button" onclick="view.showUpload()">Upload File</button>
+            <button style="font-size: 0.8em" type="button" class="tx-note-show-but" type="button" onclick="view.showNote()">Add Rx/Note</button>
+
+             <div class="upload-here" id="upload">Upload file and rename it:
+            <div class="warn-select-file"><a href="#patient-chart">Before uploading you must select a file name:</a></div>
+                <select id="select-file-name" required>
+                    <option id="option" value="none" selected>select file name</option>
+                    <option id="option" value="uscan1">upper-scan1</option>
+                    <option id="option" value="uscan2">upper-scan2</option>
+                    <option id="option" value="lscan1">lower-scan1</option>
+                    <option id="option" value="lscan2">lower-scan2</option>
+                    <option id="option" value="pano1">panoramic1</option>
+                    <option id="option" value="pano2">panoramic2</option>
+                    <option id="option" value="ceph1">ceph1</option>
+                    <option id="option" value="ceph2">ceph2</option>
+                </select>
+                <br>
+                <br>
+                <input style="margin-left: 10px" type="filepicker" data-fp-apikey="AhTgLagciQByzXpFGRI0Az" data-fp-mimetypes="*/*" data-fp-container="modal" data-fp-multiple="true" onchange="out='';for(var i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url;out+=' '};alert(out); ; view.uploadedFile(out); view.alertTypeRx(); view.evalUpload(); view.clearField();">
+                <div class="upload-success"></div>
+        </div>
+
+        <div class="note-contain">
+            <div class="tx-notes">Add prescription or notes:
+            <textarea id="tx-notes" name="tx-notes" style="width:80%; margin-left: 15px; margin-top: 5px;background: hsl(200, 30%,70%)" rows="3"></textarea>
+            <br>
+            <div class="warn-note">After you click 'Record' you may NOT edit notes</div>
+            <button style="margin-left: 15px; margin-top: 8px; font-size: 0.9em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="tx-notes-but" type="button">Record notes</button>
+            </div>
+        </div>
+                <br>
+                <div class="pat-events-title">Click on an event below to view a file</div>
+                <div class="pat-events"></div>
+                <br>
+                <br>
+                <div class="canvas-text">Canvas Text</div>
+                <div class="canvas-text2">Mousedown and drag to view</div>
+                <div id="d-contain"></div>
+                <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="approve-but" type="button">Approve Setup</button>
+                <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="toggle-status" type="button">Status toggle</button>
+                <br>
+        </div>
+</div>
+
+        <div class="admin-contain">
+            <div class="doc-list-title">Admin: Doctor List</div>
+            <div class="doctor-list">Doctor List</div>
+        </div>
+        <div class="user-acct-contain">
+            <div class="user-acct-title">Edit Doctor Account</div>
+            <div class="doc-list-title">Admin: Doctor List</div>
+            <button style="margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="user-acct-edit-contact" type="button">Edit Contact Info</button>
+            <button style="margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="user-acct-change-email" type="button">Change Email</button>
+            <button style="margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="user-acct-change-password" type="button">Change Password</button>
+            <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="user-acct-confirm-contact" type="button">Confirm Contact Info</button>
+            <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="user-acct-confirm-email" type="button">Confirm Email</button>
+        </div>
+        <div id="new-password" class="legend-log-sub">Forgot my password</div>
+        <div id="new-userEmail" class="legend-log-sub">Change email address</div>
+
+    </div>
+    <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="./utils.js"></script>
+    <script src="js/knockout-3.4.0.js" rel="script"></script>
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/STLLoader.js"></script>
+    <script src="js/THREEx.WindowResize.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/OrbitAndPanControls.js"></script>
+    <script src="js/stats.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+</body>

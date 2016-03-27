@@ -8,39 +8,88 @@
     opacity: 1;
     display: flex;
     background: hsl(200, 10%, 70%);
+    position: relative;
+    top: 90px;
+}
+.warn-note {
+    font-size: 0.8em;
+    color: hsl(200,90%, 20%);
+    padding-left: 15px;
+}
+
+#image-contain {
+    width: 100%;
+    z-index: 1;
+    opacity: 1;
+    display: flex;
+    background: hsl(200, 10%, 70%);
+    position: relative;
+    top: 80px;
+}
+
+#d-contain {
+    width: 90%;
+    margin: auto;
+    z-index: 1;
+    opacity: 1;
+    display: flex;
+    background: hsl(200, 10%, 70%);
 }
 
 canvas {
     display: block;
+    margin: auto;
 }
 
 .head {
     display: flex;
     height: 40px;
+    width: 90%;
+    justify-content: center;
+}
+h1 {
+    font-size: 1.7em;
+}
+h2 {
+    color: hsl(200, 100%, 40%);
+    font-size: 1.9em;
+    font-weight: 300;
+    margin: 0;
     position: relative;
-    top: 70px;
-    left: 150px;
+    padding-top: 5px;
 
+}
+
+h3 {
+    color: hsl(200, 100%, 20%);
+    font-size: 1.9em;
+    font-weight: 300;
+    margin: 0;
+    padding-top: 5px;
+}
+
+.mid-main {
+    color: #FFFFFF;
+    font-weight: 300;
+    font-size: 1.7em;
+    text-align: center;
+    padding-right: 5%;
+    opacity: 1.0;
 }
 
 .logo {
     height: 30px;
-    position: relative;
-    top: 5px;
-    left: 30px;
+    padding-top: 5px;
 }
 
-.head-text {
-
-    padding-top: 5%;
-    width: 100%;
-}
 
 .mid {
     background-image: url("/images/jumbotron1.jpg");
     background-size: cover;
     background-position: center;
     height: 50vh;
+    position: relative;
+    top: 80px;
 }
 
 .mid-text {
@@ -54,6 +103,97 @@ canvas {
     top: 0%;
 }
 
+.contain-loggedIn {
+    width: 100%;
+    min-height: 30px;
+    background-color: hsl(200, 50%, 95%);
+    position: fixed;
+    top: 50px;
+    bottom: auto;
+    z-index: 2;
+    color: hsl(200, 50%, 20%);
+    font-weight: 200;
+    font-size: 0.9em;
+}
+
+.contain-half {
+    height: 100%;
+    width: 85%;
+    display: flex;
+    position: relative
+    left: 20px;
+    padding-top: 5px;
+}
+
+.selectedPat {
+    text-align: left;
+    color: red;
+}
+
+.loggedInAs
+ {
+    text-align: left;
+    padding-left: 7px;
+}
+
+.logout {
+width: 15%;
+padding-top: 5px;
+padding-right: 10px;
+}
+
+.account {
+    width: 15%;
+    padding-top: 5px;
+    margin-right: 15px;
+}
+
+
+.canvas-text {
+    width: 90%;
+    margin: auto;
+    z-index: 2;
+    opacity: 1;
+    display: flex;
+    background: hsl(200, 10%, 70%);
+    margin-top: 50px;
+    font-weight: 200;
+    padding-left: 20px;
+}
+
+.canvas-text2 {
+    color: hsl(200, 80%, 20%);
+    width: 90%;
+    margin: auto;
+    z-index: 2;
+    opacity: 1;
+    display: flex;
+    background: hsl(200, 10%, 70%);
+    font-weight: 200;
+    padding-left: 20px;
+}
+
+.tx-notes-but {
+    margin-bottom: 10px;
+}
+
+.pat-events-title {
+    color: hsl(200, 80%, 20%);
+    font-size: 0.9em;
+    margin-left: 25px;
+
+}
+
+.pat-events {
+    width: 90vw;
+    color: hsl(200, 80%, 20%);
+    font-size: 0.8em;
+    padding-left: 15px;
+}
+.selectedPat {
+padding-left: 15px;
+}
+
 .nav-menu {
     display: flex;
     width: 100%;
@@ -62,6 +202,7 @@ canvas {
     position: fixed;
     top: 0;
     bottom: auto;
+    z-index: 2;
 }
 
 .icon1Contain,
@@ -69,6 +210,7 @@ canvas {
     display: block;
     width: 16%;
 }
+
 .icon3Contain,
 .icon4Contain,
 .icon5Contain {
@@ -83,7 +225,7 @@ canvas {
 .icon5 {
     display: block;
     margin: auto;
-    width: 32px;
+
     padding-top: 0px;
 }
 
@@ -93,22 +235,35 @@ canvas {
 .i4,
 .i5 {
     text-align: center;
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 .icon5 {
-   max-height: 33px;
+    max-height: 30px;
+    padding-top: 5px;
 }
+
 .icon4 {
-   max-height: 29px;
-   padding-top: 7px;
+    max-height: 30px;
+    padding-top: 10px;
 }
-.icon5 {
-   max-height: 33px;
+.icon2 {
+    max-height: 30px;
+    padding-top: 5px;
 }
+.icon3 {
+    max-height: 30px;
+    padding-top: 5px;
+}
+.icon1 {
+    max-width: 25px;
+    padding-top: 5px;
+}
+
 .i4 {
-   padding-top: 2px;
+
 }
+
 p {
     /*position: relative;
     top: 10px;
@@ -126,29 +281,45 @@ p {
     text-shadow: 0.5px 0.5px #000000;
     opacity: 1.0;
 }
-.mid-main {
-    color: #FFFFFF;
-    font-weight: 300;
-    font-size: 2.0em;
-    text-align: center;
-    margin-right: 5%;
-    opacity: 1.0;
-    margin-top: 40px;
-}
+
+
 
 .nuFormContain {
     position: relative;
     color: hsl(200, 100%, 40%);
     background: hsl(1, 0%, 90%);
-    height: 100vh;
+    top: 80px;
     width: 100vw;
 }
 
 .nuForm {
     display: block;
     opacity: 1;
-    margin-left: 30px;
     width: 80%;
+    margin: auto;
+}
+
+.nu-title {
+    width: 95%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.nu-text-box {
+    width: 100%;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    color: hsl(200,0%,75%);
+    text-align: center;
+    background: hsl(200,0%,95%);
+    margin-bottom: 7px;
+}
+
+.nu-box-contain {
+width: 70%;
+margin: auto;
 }
 
 .form-head {
@@ -159,12 +330,15 @@ p {
 }
 
 .log-form-head {
-    margin-left: 20px;
-    width: 80%;
+    padding-left: 20px;
+    width: 60%;
+    margin: auto;
+    height: 100vh;
 }
 
 .main-contain {
     width: 100vw;
+
 }
 
 .form-logo {
@@ -205,14 +379,20 @@ p {
 
 .logInFormContain {
     color: hsl(200, 100%, 20%);
-    background: hsl(190, 10%, 70%);
-    height: 100vh;
+    position: relative;
+    top: 80px;
     width: 100vw;
 }
 
 .legend-log {
     margin-bottom: 0px;
-    max-width: 10%;
+   padding-bottom: 30px;
+    padding-top: 40px;
+    font-size: 1.5em;
+}
+.legend-log-sub {
+    padding-bottom: 30px;
+    font-size: 0.9em;
 }
 
 legend {
@@ -229,15 +409,21 @@ legend {
     height: 10px;
 }
 
+.login {
+    display: block;
+}
 .logInButton,
 .nuButton {
-    margin-bottom: 8px;
-    background: hsl(200, 50%, 60%);
-    color: white;
-    border-radius: 10px;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    color: hsl(1,0%,100%);
+    text-align: center;
+    background: hsl(200,100%,30%);
+    margin-bottom: 30px;
+    width: 90%;
 }
-
-
 
 .link-upload {
     width: 25%;
@@ -258,6 +444,7 @@ legend {
     height: 100vh;
     width: 100vw;
     color: white;
+    overflow: auto;
 }
 
 .pat-list-title {
@@ -267,31 +454,104 @@ legend {
 }
 
 .pat-list-item-box {
-    margin-left: 20px;
+    margin-left: 0px;
     width: 90%;
     height: 45px;
-
+    padding-left: 20px;
+    padding-top: 10px;
 }
 
 .pat-list-item {
-    font-size: 1em;
+    font-size: 0.8em;
     color: white;
     padding-top: 10px;
-    height: 40px;
+    height: 35px;
+    width: 100%;
     background: hsl(200, 50%, 40%);
     padding-left: 10px;
+
 }
+
 .pat-list-text {
-color: white;
-font-size: 1em;
-margin-left: 10px;
+    color: white;
+    font-size: 1em;
+    padding-left: 10px;
 }
 
 .patUser {
-    font-size: 1.3em;
-    color: hsl(200, 10%, 90%);
+    font-size: 0.8;
+    color: hsl(200,70%,15%);
     font-weight: 200;
     padding-left: 20px;
+}
+
+.showUpload {
+    margin-left: 20%;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    background: hsl(205, 90%, 70%);
+    height: 30px;
+}
+.email {
+    margin-left: 20%;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    background: hsl(205, 90%, 70%);
+    height: 30px;
+}
+.tx-note-show-but {
+    margin-left: 10px;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    background: hsl(195, 90%, 60%);
+    height: 30px;
+}
+.pat-list-welcom {
+
+}
+
+.admin-contain {
+    background: hsl(1,50%,50%);
+    width: 100%;
+    color: white;
+    min-height: 100vh
+    }
+
+.doctor-list {
+    width: 100%;
+    color: white;
+    padding-left: 20px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-size: 1em;
+}
+
+.doc-list-item {
+    background: hsl(1,70%, 20%);
+    color: white;
+     margin: auto;
+    margin-bottom: 10px;
+    width: 90%;
+    padding: 5px;
+}
+
+.doc-pat-list-item {
+    color: hsl(200,90%,80%);
+}
+.doc-list-title {
+    color: white;
+    font-size: 1.3em;
+    padding-top: 30px;
+    padding-left: 20px;
+    font-weight: 200;
+}
+
+.setup-dr-notes {
+    width: 80%;
+    background: hsl(197,30%,50%);
 }
 
 .must-select {
@@ -319,30 +579,7 @@ margin-left: 10px;
     margin-left: 30%;
 }
 
-h2 {
-    color: hsl(200, 100%, 40%);
-    font-size: 1.8em;
-    font-weight: 200;
-    padding-right: 0;
-    position: absolute;
-    top: 7px;
-    left: 63px;
-    margin: 0;
-    margin-top: 0px;
-}
 
-h3 {
-    color: hsl(200, 100%, 20%);
-    font-size: 1.8em;
-    font-weight: 200;
-    padding-left: 0;
-    padding-right: 0;
-    position: absolute;
-    top: 7px;
-    left: 150px;
-    margin: 0;
-    margin-top: 0px;
-}
 
 h6 {
     position: absolute;
@@ -380,14 +617,9 @@ sup {
     font-weight: 200;
 }
 
-
-
-
 .rx-text {
     width: 100%;
 }
-
-
 
 .nuPat {
     width: 90%;
@@ -396,25 +628,25 @@ sup {
 }
 
 .upload-head {
-    background: hsl(205,60%,40%);
-    height: 100vh;
+    background: hsl(205, 60%, 40%);
+    min-height: 400px;
     width: 100vw;
+    height: 100vh;
     display: block;
     color: white;
 }
+
 .patFirstName,
 .patLastName,
 .patDob,
 .patRx {
-    background: hsl(205,60%, 50%);
+    background: hsl(205, 60%, 50%);
 }
-
 
 .nuPatInfo {
     width: 120px;
-    background: hsl(75,100%, 30%);
+    background: hsl(75, 100%, 30%);
     border-radius: 10px;
-
 }
 
 .patSelect {
@@ -437,48 +669,124 @@ ul {
     background: hsl(200, 80%, 50%);
     color: white;
     font-size: 1em;
-    height: 100vh;
     width: 100vw;
+    min-height: 100vh;
+    padding-bottom: 50px;
 }
 
 .files-head {
     width: 100%;
     color: white;
-    padding-left: 20px;
+    padding-left: 0px;
     padding-top: 10px;
     font-size: 1.4em;
+    display: flex;
 }
 
-.pat-info-name {
-    font-size: .8em;
-    color: white;
-    margin-left: 20px;
-}
+
 
 .pat-info-title {
     font-size: 1.2em;
-    margin-left: 20px;
+    padding-left: 15px;
     line-height: 1;
+    padding-top: 28px;
 }
+
 .files-sub {
-    font-size: 0.8em;
-    color: hsl(200,100%,20%);
-    padding-left: 20px;
+    font-size: 0.7em;
+    color: hsl(200, 100%, 20%);
+    padding-left: 15px;
+}
+
+.warn-select-file a {
+    font-size: 0.7em;
+    color: hsl(1, 80%, 40%);
+    padding: 10px;
 }
 
 .upload-here {
+    background: hsl(200, 80%, 80%);
+    padding-top: 15px;
+    padding-left: 20px;
     margin-left: 20px;
+    margin-top: 20px;
+    color: hsl(200,100%, 20%);
+    font-size: 1.1em;
+    display: none;
+    width: 80%;
 }
+
+.note-contain {
+    background: hsl(190, 80%, 80%);
+    padding-top: 15px;
+    padding-left: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    color: hsl(200,100%, 20%);
+    font-size: 1.1em;
+    display: none;
+    width: 80%;
+}
+
+#loginEmail {
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    color: hsl(1,0%,80%);
+    text-align: center;
+    background: hsl(1,0%,95%);
+    margin-bottom: 30px;
+    width: 90%;
+}
+
+#loginPassword {
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    color: hsl(1,0%,80%);
+    text-align: center;
+    background: hsl(1,0%,95%);
+    margin-bottom: 30px;
+    width: 90%;
+}
+
+
+
+#loginPassword:focus {
+    outline: none !important;
+    background: hsla(54, 74%, 94%, 1);
+    border-style: solid;
+    border-color: hsl(1,0%,60%);
+    border-width: 0.5px;
+}
+#loginEmail:focus {
+    outline: none !important;
+    background: hsla(54, 74%, 94%, 1);
+    border-style: solid;
+    border-color: hsl(1,0%,60%);
+    border-width: 0.5px;
+}
+
+
+.pat-info-name {
+    font-size: 0.9em;
+    margin-left: 15px;
+    color: hsl(200,70%,15%);
+}
+
 .pat-dob {
     font-size: 0.8em;
-    color: white;
-    margin-left: 20px;
+    color: hsl(200,70%,15%);
+    margin-left: 15px;
+    width: 69%;
 }
 
 .pat-info-files {
     font-size: 1em;
     color: white;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .upload-contain {
@@ -501,9 +809,7 @@ ul {
     font-size: 1em;
 }
 
-.patDOB {
-    font-size: 1em;
-}
+
 
 .fp__btn {
     display: none;
@@ -522,18 +828,79 @@ ul {
     height: 50px;
 }
 
-.file-item {
-    margin-left: 10px;
+.event-item {
     font-size: 1em;
     color: white;
     background: hsl(200, 50%, 30%);
     width: 80%;
-    margin-bottom: 5px;
+    margin: auto;
+    padding: 5px;
+}
+
+.pat-event-data {
+   padding-left: 12px;
+   color: hsl(200, 100%, 60%);
+}
+.pat-event {
+     padding-left: 12px;
+}
+.pat-event-status {
+    padding-left: 12px;
+}
+.pat-event-name {
+    padding-left: 12px;
+    color: white;
+}
+.pat-event-data {
+    padding-left: 12px;
+    color: white;
+}
+
+.pat-event-date {
+    padding-left: 12px;
+    color: white;
+}
+
+.event-box {
+    cursor: pointer;
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-right: 20px;
+    font-size: 0.9em;
+    display: flex;
+    margin-left: 8px;
+    padding-left: 8px;
+    background: hsl(200,70%, 30%);
+}
+
+.file-item-note {
+    font-size: 0.7em;
+    width: 95%;
+
+}
+
+.file-notes {
+    margin-left: 15px;
+}
+
+label {
+    font-size: 0.9em;
+    font-weight: 200;
+}
+.file-item-date {
+    font-size: 0.7em;
+    width: 95%;
+}
+.pat-Note {
+    font-size: 0.8em;
+    width: 65%;
 }
 
 .pat-files {
-    font-size: 1em;
-    margin-left: 15px;
+    display: block;
+    font-size: 0.7em;
 }
 
 option {
