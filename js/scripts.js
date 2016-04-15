@@ -1,118 +1,3 @@
-//TODOS add close button to the 3D canvas, prettify submit patient,
-
-var GcurrEvents = {};
-
-$(document).ready(function() {
-    //$('#loginEmail').val('email');
-    //$('#loginPassword').val('password');
-
-    $('.canvas-text').hide(); // hide the text label on the 3D canvas
-    $('.canvas-text2').hide();
-
-    $('canvas').on('mousedown', function() {
-        console.log('start onload');
-        view.render();
-    })
-    $('canvas').on('mouseup', function() {
-        view.stopAnimate();
-        $('.d-contain').append('<div style="z-index: 2; color: white; padding-left: 40px" class="canvas-text">Canvas Text</div>');
-        $('.d-contain').append('<div style="z-index: 2; padding-left: 40px" class="canvas-text2">Mousedown and drag to view</div>');
-    })
-
-    //handle input from all text inputs:
-    var tempText = '';
-    $('input').on('focus', function() {
-        tempText = $(this).val();
-        $(this).val('');
-    });
-
-    $('input').on('blur', function() {
-        if ($(this).val() === '') {
-            $(this).val(tempText);
-            tempText = '';
-        }
-
-    });
-
-
-    view.render();
-
-    setTimeout(function() {
-        $(window).scrollTop($(".main-contain").offset().top - 90);
-        console.log('stopped by onload');
-        view.stopAnimate();
-    }, 800);
-
-    $('.toggle-status').click(function() {
-        view.toggleStatus();
-    });
-
-    $('.approve-but').click(function() {
-        view.approve();
-    });
-    $('.tx-notes-but').click(function() {
-        view.addEventNote();
-    })
-
-
-    $(function() { //When the document loads
-        $(".icon4Contain").bind("click", function() {
-            $(window).scrollTop($(".pat-list-contain").offset().top - 80); //scroll to div with container as ID.
-            return false; //Prevent Default and event bubbling.
-        });
-    });
-    $(function() { //When the document loads
-        $(".icon3Contain").bind("click", function() {
-            $(window).scrollTop($(".nuFormContain").offset().top - 80); //scroll to div with container as ID.
-            return false; //Prevent Default and event bubbling.
-        });
-    });
-    $(function() { //When the document loads
-        $(".icon2Contain").bind("click", function() {
-            $(window).scrollTop($(".files-contain").offset().top - 80); //scroll to div with container as ID.
-            return false; //Prevent Default and event bubbling.
-        });
-    });
-    $(function() { //When the document loads
-        $(".icon1Contain").bind("click", function() {
-            $(window).scrollTop($(".logInFormContain").offset().top - 80); //scroll to div with container as ID.
-            return false; //Prevent Default and event bubbling.
-        });
-    });
-    $(function() { //When the document loads
-        $(".link-login").bind("click", function() {
-            $(window).scrollTop($(".logInFormContain").offset().top - 80); //scroll to div with container as ID.
-            return false; //Prevent Default and event bubbling.
-        });
-    });
-    $(function() { //When the document loads
-        $(".link-upload").bind("click", function() {
-            $(window).scrollTop($(".upload-head").offset().top - 80); //scroll to div with container as ID.
-            return false; //Prevent Default and event bubbling.
-        });
-    });
-    $(function() { //When the document loads
-        $(".nuButton").bind("click", function() {
-            $(window).scrollTop($(".upload-head").offset().top - 80); //scroll to div with container as ID.
-            return false; //Prevent Default and event bubbling.
-        });
-    });
-    $(function() { //When the document loads
-        $(".icon5Contain").bind("click", function() {
-            $(window).scrollTop($(".upload-head").offset().top - 80); //scroll to div with container as ID.
-            return false; //Prevent Default and event bubbling.
-        });
-    });
-    $(function() { //When the document loads
-        $(".loggedInAs").bind("click", function() {
-            $(window).scrollTop($(".logInFormContain").offset().top - 80); //scroll to div with container as ID.
-            return false; //Prevent Default and event bubbling.
-        });
-    });
-
-})
-
-
 /*
   $(function() { //When the document loads
     $(".fp__button").bind("click", function() {
@@ -124,6 +9,10 @@ $(document).ready(function() {
   });
 */
 
+//TODO: finish edit account
+//      : shipping vs. billing address
+//      : payment info
+//      : Show and Send Invoice
 
 var data = {}
 
@@ -137,6 +26,9 @@ data.viewSize = 50;
 
 
 var view = {};
+view.panLR = 0;
+view.panUD = 0;
+view.zoom = 1;
 view.startstop = true;
 view.renderr = 0;
 view.renderr2 = 0;
@@ -145,19 +37,14 @@ view.diff2 = 0;
 view.killAnim = '';
 view.killAnim2 = '';
 view.dataRef = new Firebase('https://shining-inferno-9786.firebaseio.com');
-view.uid = ko.observable('');
-
-
-
-
-
-
+view.object1 = '';
+view.focusY = 0;
+view.focusX = 0;
+view.focusZ = 100;
+view.stl = '';
 
 view.init = function() {
-
-    $('canvas').remove();
-
-
+    view.renderer = '';
     view.renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true
@@ -166,22 +53,26 @@ view.init = function() {
     view.renderer.gammaOutput = true;
     view.renderer.setSize(data.cwidth, data.cheight);
     view.renderer.setClearColor(0x000000, 0);
+    view.viewSize = 30;
 
-
-    if (view.currPatId !== null) {
-        view.viewSize = 100; // it was originally set at 40
+    /* if (view.currPatId !== null || view.currPatId !== undefined || view.currPatId !== '') {
+        view.viewSize = 45; // it was originally set at 40
         $('#d-contain').append(view.renderer.domElement);
     } else {
-        view.viewSize = 36; // it was originally set at 40
+        view.viewSize = 35; // it was originally set at 40
         $('#image-contain').append(view.renderer.domElement);
     }
-
+*/
     //view.viewSize = 36; // it was originally set at 40
     view.camera = new THREE.OrthographicCamera((-data.canvasRatio * view.viewSize / 2), (data.canvasRatio * view.viewSize / 2), view.viewSize / 2, -view.viewSize / 2, 1, 1000);
-    view.camera.position.set(0, 0, 100);
+    //view.camera = new THREE.PerspectiveCamera(50, 0.7, 1, 1000);
+    view.camera.position.set(view.focusX, view.focusY, view.focusZ); //originally set at z=100
 
     view.cameraControls = new THREE.OrbitControls(view.camera, view.renderer.domElement);
-    view.cameraControls.target.set(0, 0, 0);
+    //view.cameraControls.target.set(100, 1000, 0); //this does nothing.
+
+    //view.camera.translateX(100); //sets the initial orientation of the model i.e. slightly rotated
+    //view.camera.translateY(-100);
 
     view.scene = new THREE.Scene();
     view.ambientLight = new THREE.AmbientLight(0xb3b3b3);
@@ -198,11 +89,12 @@ view.init = function() {
 
     view.clock = new THREE.Clock();
     view.renderer.render(view.scene, view.camera);
+
 }
 
 view.loadStlTeeth = function() {
     var oStlLoader = new THREE.STLLoader();
-    oStlLoader.load('models/Teeth 2.stl', function(geometry) {
+    oStlLoader.load('models/Teeth2.stl', function(geometry) {
         var material = new THREE.MeshPhongMaterial({
             transparent: true,
             opacity: 1,
@@ -259,12 +151,14 @@ view.loadStlMounds = function() {
     });
 }
 
+
+
 view.render = function() {
 
     if (document.documentElement.clientWidth < 450) {
 
-        data.cwidth = 300;
-        data.cheight = 300;
+        data.cwidth = 275;
+        data.cheight = 275;
     }
     if (document.documentElement.clientWidth > 450) {
         data.cwidth = 300;
@@ -283,6 +177,12 @@ view.render = function() {
         data.cheight = 500;
     }
 
+    //view.cameraControls.target.set(0, 0, 0); //this changes the axis of rotation!!
+
+    //view.camera.translateX(0.1, 0, 0);
+    //view.camera.translateY(view.focusX, view.focusY, 0);
+    view.camera.zoom = view.zoom / 2;
+    view.camera.updateProjectionMatrix();
     view.renderer.setSize(data.cwidth, data.cheight);
     view.renderer.setClearColor(0x000000, 0);
 
@@ -292,26 +192,27 @@ view.render = function() {
         $('#d-contain').remove('canvas');
         $('#d-contain').append(view.renderer.domElement);
     } else {
-        var container = document.getElementById('container');
-        var child = document.getElementsByTagName('CANVAS');
-        $('#container').remove('canvas'); //container.removeChild(child[0]);
-        $('#container').append(view.renderer.domElement);
+        var container = document.getElementById('#image-contain');
+        var child = document.getElementsByTagName('canvas');
+        $('#image-contain').remove('canvas');
+        $('#image-contain').append(view.renderer.domElement);
     }
 
 
     var delta = view.clock.getDelta();
     view.cameraControls.update(delta);
-    view.cameraControls.noZoom = false;
+    //view.cameraControls.noZoom = false;
     view.renderer.render(view.scene, view.camera);
     view.diff = view.diff + delta;
 
 
     view.renderer.render(view.scene, view.camera);
     view.renderr = view.renderr + 1;
-    console.log('render' + view.renderr);
+    //console.log('render' + view.renderr);
 
     view.killAnim = window.requestAnimationFrame(view.render);
-
+    //$('#image-contain').show();
+    //$('canvas').show();
 }
 
 view.stopAnimate = function() {
@@ -322,6 +223,24 @@ view.stopAnimate = function() {
 view.startAnimation = function() {
     console.log('start');
     view.render();
+}
+
+view.setFocalPoint = function(e) {
+    $('canvas').click(function(e) { //Default mouse Position
+        alert(e.pageX + ' , ' + e.pageY);
+    });
+
+    $('#B').click(function(e) { //Offset mouse Position
+        var posX = $(this).offset().left,
+            posY = $(this).offset().top;
+        alert((e.pageX - posX) + ' , ' + (e.pageY - posY));
+    });
+
+    $('#C').click(function(e) { //Relative ( to its parent) mouse position
+        var posX = $(this).position().left,
+            posY = $(this).position().top;
+        alert((e.pageX - posX) + ' , ' + (e.pageY - posY));
+    });
 }
 
 
@@ -344,65 +263,10 @@ view.startAnimation = function() {
   }
 */
 
-var ViewModel = function() {
-    var self = this;
 
-    view.logInUser = ko.observable({
-        email: '',
-        password: ''
-    });
-
-    view.nuPat = ko.observable({
-        patFirstName: '',
-        patLastName: '',
-        patDob: '',
-        patId: '',
-        patNote: ''
-    });
-    view.patData = ko.observable();
-    view.uploadedFile = ko.observable();
-    view.patId2 = ko.observableArray();
-
-    view.patListID = ko.observableArray([]);
-    view.patList = ko.observableArray();
-    view.fileName = '';
-
-
-    view.patId = null;
-    view.currUserId = null;
-
-};
-
-var Patient = function(data) {
-    this.firstName = ko.observable(data.firstName);
-    this.lastName = ko.observable(data.lastName);
-    this.Dob = ko.observable(data.patDob);
-    this.Rx = ko.observable(data.patRx);
-}
-
-var User = function() {
-    //Below adds data properly DO NOT DELETE ********************
-    this.lastName = ko.observable('vv');
-    this.firsName = ko.observable('bbb');
-    this.email = ko.observable();
-    this.suffix = ko.observable();
-    this.userType = ko.observable();
-    this.address = ko.observable();
-    this.city = ko.observable();
-    this.state = ko.observable();
-    this.zip = ko.observable();
-    this.phoneOffice = ko.observable();
-    this.phoneMobile = ko.observable();
-    this.email = ko.observable();
-    this.staffContact = ko.observable();
-    this.patList = ko.observable();
-}
-
-//this.currUser = ko.observable(new User());
-//this.currUser(new User());
-//console.log(this.currUser());
-
-
+view.fileName = '';
+view.patId = null;
+view.currUserId = null;
 view.patId = null;
 view.currUserId = null;
 view.currPatId = null;
@@ -411,6 +275,23 @@ view.fileName = null;
 view.currFileUrl = null;
 view.currUserEmail = null;
 
+view.hideAll = function() {
+    $('.main-contain').hide();
+    $('#image-contain').hide();
+    $('.nuFormContain').hide();
+    $('.logInFormContain').hide();
+    $('#resetPassword').hide();
+    $('#changePass').hide();
+    $('#changeEmail').hide();
+    $('.np-head').hide();
+    $('.chart').hide();
+    $('.frame').hide();
+    $('.admin-contain').hide();
+    $('.user-account-contain').hide();
+    $('.pat-chart-subtitle').hide();
+    $('.pat-list-contain').hide();
+    $('.editAccount').hide();
+}
 
 view.test = function() {
     //document.getElementById('fileType').selectedIndex = "-1";
@@ -420,7 +301,9 @@ view.test = function() {
     ///alert("Index: " + y[x].index + " is " + y[x].text);
 }
 
-view.evalUpload = function() {
+view.evalUpload = function(url) {
+    console.log(url);
+    var fileUrl = url;
     var fileName = '';
     var fileIndex = document.getElementById('select-file-name').selectedIndex;
     switch (fileIndex) {
@@ -452,20 +335,22 @@ view.evalUpload = function() {
             fileName = 'Ceph-2';
             break;
     }
-    if (fileName === null) {
-        document.getElementById('no-pat-sel').innerHTML = 'You must select a patient first before uploading a file';
+    if (fileName === '' || fileName === null || fileName === undefined) {
+        console.log(fileName);
+        return $('#no-pat-sel').text('You must select a name before uploading a file');
     } else {
-
+        console.log(fileUrl);
         view.fileName = fileName;
-        view.addEventFile(fileName);
+        view.addEventFile(fileName, fileUrl);
     }
 }
 
-view.addEventFile = function(fileName) {
+
+view.addEventFile = function(fileName, fileUrl) {
     var uid = view.currUserId;
     var patid = view.currPatId;
     var date = view.getTime();
-    var url = view.uploadedFile(); // this is a ko.observable !!
+    var url = fileUrl; // this is a ko.observable !!
     // next create an event called 'Date Submitted" for the patient
     var ref = view.dataRef.child('patients').child(patid).child('events');
     var subject = 'OrthoCure: file uploaded successfully';
@@ -480,10 +365,12 @@ view.addEventFile = function(fileName) {
         status: 'Waiting for setup'
     }, function(error) {
         if (error) {
-            alert("Data could not be saved." + error);
+            alert("File could not be saved." + error);
+            $('.upload-here').hide();
         } else {
             view.sendEmail(view.currUserEmail, email2, subject, content);
-            alert("Data saved successfully.");
+            alert("File uploaded successfully.");
+            $('.upload-here').hide();
         }
     })
 
@@ -495,7 +382,6 @@ view.getTime = function() {
     return d.toJSON();
 }
 
-
 view.savePatientInfov2 = function() {
     view.currPatName = null; // delete the current patient
     view.currPatId = null;
@@ -505,11 +391,25 @@ view.savePatientInfov2 = function() {
     var dob = document.getElementById("patDob").value;
     var date = view.getTime();
 
+    console.log(first + last + dob);
     view.currPatName = first + ' ' + last;
 
     if (view.currUserId === null || view.currUserId === '') {
         view.clearField();
         return alert("You must first create an account and login before adding a patient.");
+    }
+
+    if (first === '' || first === null || first === undefined || first === 'firstName') {
+        view.resetAllForms();
+        return alert('You must enter a first name');
+    }
+    if (last === '' || last === null || last === undefined || last === 'lastName') {
+        view.resetAllForms();
+        return alert('You must enter a last name');
+    }
+    if (dob === '' || dob === null || dob === undefined || dob === 'DOB') {
+        view.resetAllForms();
+        return alert('You must enter a DOB');
     }
     //TODO:  add doctor's name/id to the patient
     var ref = view.dataRef.child('patients');
@@ -523,10 +423,10 @@ view.savePatientInfov2 = function() {
         events: ''
     }, function(error) {
         if (error) {
-            alert("Data could not be saved." + error);
+            //alert("Data could not be saved." + error);
         } else {
             //view.currPatId = patPush.key(); // this doesn't work bc out of scope....not sure why
-            alert("Data saved successfully.");
+            //alert("Data saved successfully.");
         }
     })
 
@@ -544,10 +444,10 @@ view.savePatientInfov2 = function() {
         status: ''
     }, function(error) {
         if (error) {
-            alert("Data could not be saved." + error);
+            //alert("Data could not be saved." + error);
         } else {
             //view.currPatId = patPush.key(); // this doesn't work bc out of scope....not sure why
-            alert("Data saved successfully.");
+            //alert("Data saved successfully.");
         }
     })
     view.currPatId = patID.key(); // do not move this inside the success function bc out of scope..
@@ -564,10 +464,25 @@ view.savePatientInfov2 = function() {
     }, function(error) {
         //save the patId to Firebase/users/uid/patList
         if (error) {
-            alert("Data could not be saved." + error);
+            //alert("Data could not be saved." + error);
+            $('.np-success').append('<div style="color: red; font-size: 1em">Data could not be saved. Please try again.</div>');
+            setTimeout(function() {
+                $('.np-success').empty();
+            }, 3000);
+            view.resetAllForms();
         } else {
-            alert("Data saved successfully.");
-            view.clearField(); // clear and reset the form
+            //console.log('testing success');
+            //alert("Data saved successfully.");
+            $('.np-success').text('New patient created successfully: ' + first + ' ' + last + ' ' + 'DOB: ' + dob);
+            $('.np-success').append('<div class="np-success2>Click on Patients to view your updated patient list</div>');
+            setTimeout(function() {
+                $('.np-success').empty();
+                $('.np-success').text('');
+            }, 3000);
+            view.hideAll();
+            $('.pat-list-contain').show();
+            $(window).scrollTop($('.pat-list-contain').offset().top - 100);
+            view.resetAllForms();
         }
     })
 
@@ -580,7 +495,7 @@ view.savePatientInfov2 = function() {
 
     $('.patient').empty(); // delete everything on the patient list page so you don't add doubles.. start fresh
     $('.selectedPat').empty(); // delete the currpatient displayed on the header
-    $('.selectedPat').text('Pat: ' + view.currPatName);
+    $('.selectedPat').text(view.currPatName);
 
     view.userMainFx();
 }
@@ -588,6 +503,52 @@ view.savePatientInfov2 = function() {
 view.currUserPass = null;
 // create a new user by requesting their email and a password.
 view.newUserFx = function() {
+    /* setTimeout(function() { // create a pause then erase success message
+            view.hideAll();
+            $('.nuButton').css('background-color', 'hsl(200,100%,30%)');
+            $('.logInFormContain').show();
+        }, 100);
+        */
+    var first = document.getElementById("firstName").value;
+    if (first === '' || first === null || first === undefined || first === 'first name') {
+        return alert('You must enter a first name.');
+    }
+    var last = document.getElementById("lastName").value;
+    if (last === '' || last === null || last === undefined || last === 'last name') {
+        return alert('You must enter a last name.');
+    }
+    var add = document.getElementById("billAddress").value;
+    if (add === '' || add === null || add === undefined || add === 'billing address') {
+        return alert('You must enter an office address.');
+    }
+    var city = document.getElementById("billCity").value;
+    if (city === '' || city === null || city === undefined || city === 'bill City') {
+        return alert('You must enter a city.');
+    }
+    var st = document.getElementById("billState").value;
+    if (st === '' || st === null || st === undefined || st === 'billState') {
+        return alert('You must enter a state.');
+    }
+    var zip = document.getElementById("billZip").value;
+    if (zip === '' || zip === null || zip === undefined || zip === 'billZip') {
+        return alert('You must enter a zip code.');
+    }
+    var op = document.getElementById("phone").value;
+    if (op === '' || op === null || op === undefined || op === 'office phone') {
+        return alert('You must enter a office phone number.');
+    }
+    var mp = document.getElementById("phone2").value;
+    if (mp === '' || mp === null || mp === undefined || mp === 'mobile phone') {
+        return alert('You must enter a mobile phone number.');
+    }
+    var email = document.getElementById("nuemail").value;
+    if (email === '' || email === null || email === undefined || email === 'email') {
+        return alert('You must enter a email.');
+    }
+    var pass = document.getElementById("nupassword").value;
+    if (pass === '' || pass === null || pass === undefined || pass === 'password') {
+        return alert('You must enter a password.');
+    }
 
     view.currUserEmail = document.getElementById("nuemail").value;
     view.currUserPass = document.getElementById("nupassword").value;
@@ -599,31 +560,54 @@ view.newUserFx = function() {
         password: document.getElementById("nupassword").value
     }, function(error, userData) {
         if (error) {
-            alert('Error creating user:', error);
-            console.log(error);
+            $('.new-user-fail').append('<div class="nuFail" style="color: red">Error creating new user. Please try again.</div>');
+            setTimeout(function() { // create a pause then erase success message
+                $('.new-user-fail').empty();
+            }, 5000);
             view.currUserEmail = null;
             view.currUserPass = null;
             view.currUserId = null;
+
         } else {
-            console.log('Successfully created user account with uid:', userData.uid);
-            console.log(userData);
             // create email response for the new patient event
             var subject = 'Welcome to OrthoCure!';
             var content = 'Thank you for registering as an OrthoCure provider. We look forward to working with you. Your accoutn information: username = ' + view.currUserEmail + ' Password = ' + view.currUserPass;
             view.sendEmail(userEmail, email2, subject, content);
-
-            //view.currUserId = userData.uid;
-            //view.currUserEmail = document.getElementById("nuemail").value;
-
             view.addInitialData(userData.uid);
         }
     })
 }
 
-view.addInitialData = function(uid) {
+view.resetAllForms = function() {
+    firstName.value = firstName.defaultValue;
+    lastName.value = lastName.defaultValue;
+    billAddress.value = billAddress.defaultValue;
+    billCity.value = billCity.defaultValue;
+    billState.value = billState.defaultValue;
+    billZip.value = billZip.defaultValue;
+    shipAddress.value = shipAddress.defaultValue;
+    shipCity.value = shipCity.defaultValue;
+    shipState.value = shipState.defaultValue;
+    shipZip.value = shipZip.defaultValue;
+    phone.value = phone.defaultValue;
+    phone2.value = phone2.defaultValue;
+    nuemail.value = nuemail.defaultValue;
+    nupassword.value = nupassword.defaultValue;
 
-    console.log(uid);
-    view.currUserId = uid;
+    patFirstName.value = patFirstName.defaultValue;
+    patLastName.value = patLastName.defaultValue;
+    patDob.value = patDob.defaultValue;
+
+    changeEmailPassword.value = changeEmailPassword.defaultValue;
+    changeEmailEmailNew.value = changeEmailEmailNew.defaultValue;
+    changeEmailEmailOld.value = changeEmailEmailOld.defaultValue;
+    changePassEmail.value = changePassEmail.defaultValue;
+    changePassNewPass.value = changePassNewPass.defaultValue;
+    changePassOldPass.value = changePassOldPass.defaultValue;
+    resetPasswordEmail.value = resetPasswordEmail.defaultValue;
+}
+
+view.addInitialData = function(uid) {
 
     var ref = view.dataRef.child('users').child(uid);
 
@@ -631,31 +615,359 @@ view.addInitialData = function(uid) {
     ref.set({
         firstName: document.getElementById("firstName").value,
         lastName: document.getElementById("lastName").value,
-        address: document.getElementById("address").value,
-        city: document.getElementById("city").value,
-        state: document.getElementById("state").value,
-        zip: document.getElementById("zip").value,
-        officePhone: document.getElementById("officePhone").value,
-        mobilePhone: document.getElementById("mobilePhone").value,
+        billAddress: document.getElementById("billAddress").value,
+        billCity: document.getElementById("billCity").value,
+        billState: document.getElementById("billState").value,
+        billZip: document.getElementById("billZip").value,
+        shipAddress: document.getElementById("shipAddress").value,
+        shipCity: document.getElementById("shipCity").value,
+        shipState: document.getElementById("shipState").value,
+        shipZip: document.getElementById("shipZip").value,
+        officePhone: document.getElementById("phone").value,
+        mobilePhone: document.getElementById("phone2").value,
         email: document.getElementById("nuemail").value,
         password: document.getElementById("nupassword").value,
         patList: {
             Message: {
-                message: 'Doctor / User has zero patients'
+                message: 'Doctor has zero patients'
             }
         }
     }, function(error) {
         if (error) {
-            alert("Data could not be saved." + error);
-            console.log(error);
+            var ref = view.dataRef;
+            ref.removeUser({
+                email: view.currUserEmail,
+                password: view.currUserPass
+            }, function(error) {
+                if (error === null) {
+                    console.log("User removed successfully");
+                } else {
+                    console.log("Error removing user:", error);
+                }
+            });
+            alert('Sorry...failed to create new user. Please try again or contact support via support@orthocure.biz');
+            $('.new-user-fail').append('<div class="nuFail" style="color: red">Error creating new user. Please try again.</div>');
+            setTimeout(function() { // create a pause then erase success message
+                $('.new-user-fail').empty();
+            }, 5000);
             view.currUserEmail = null;
             view.currUserPass = null;
             view.currUserId = null;
         } else {
-            alert("Data saved successfully.");
+            alert('Success creating new user!');
+            $('.new-user-fail').append('<div class="nuSuccess" style="color: green">Success. Confirmation email sent.</div>');
+            // create email response for the new patient event
+            setTimeout(function() { // create a pause then erase success message
+                $('.new-user-fail').empty();
+            }, 5000);
+            view.resetAllForms();
         }
     })
 
+}
+
+view.content = 'Please confirm the accuracy of your updated contact information:  ';
+
+view.updateContact = function(item) {
+    if (item === true) {
+        alert('Please check your email to verify the accuracy of your contact information. Or, logout and then log back in to verify the information is updated correctly.');
+        setTimeout(function() { // create a pause then erase success message
+            var userEmail = view.currUserEmail;
+            var email2 = 'info@orthocure.biz';
+            var subject = 'OrthoCure: updated contact information';
+            console.log(view.content);
+            var stuff = view.content;
+            console.log(stuff);
+            view.sendEmail(userEmail, email2, subject, stuff);
+        }, 4000);
+    } else {
+        view.content += item;
+        console.log(view.content);
+    }
+}
+
+view.addupdatedData = function() {
+
+
+    if (view.currUserId === null || view.currUserId === '' || view.currUserId === undefined) {
+        return alert('You must login before updating your account information.');
+    } else {
+        var uid = view.currUserId;
+    }
+
+    var ref = view.dataRef.child('users').child(uid);
+
+    var ebillAdd = document.getElementById("ebillAddress").value;
+    var deFault = document.getElementById("ebillAddress").defaultValue;
+
+    if (ebillAdd !== '' || ebillAdd !== null || ebillAdd !== undefined || ebillAdd !== deFault) {
+        ref.update({
+            billAddress: ebillAdd
+        }, function(error) {
+            if (error) {
+                var item = '- billing address: update FAILED -';
+                view.updateContact(item);
+
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - billing address: ' + ebillAdd;
+                view.updateContact(item);
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Billing address updated.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+    }
+
+    var ebillCity = document.getElementById("ebillCity").value;
+    var deFault = document.getElementById("ebillCity").defaultValue;
+
+    if (ebillCity !== '' || ebillCity !== null || ebillCity !== undefined || ebillCity === deFault) {
+        ref.update({
+            billCity: ebillCity
+        }, function(error) {
+            if (error) {
+
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - billing city: ' + ebillCity;
+                view.updateContact(item);
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+    }
+
+    var ebillState = document.getElementById("ebillState").value;
+    var deFault = document.getElementById("ebillState").defaultValue;
+
+    if (ebillState !== '' || ebillState !== null || ebillState !== undefined || ebillState === deFault) {
+        ref.update({
+            billState: ebillState
+        }, function(error) {
+            if (error) {
+                //content = content + '- billing state:  update FAILED';
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - billing state: ' + ebillState;
+                view.updateContact(item);
+
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+    }
+
+    var ebillZip = document.getElementById("ebillZip").value;
+    var deFault = document.getElementById("ebillZip").defaultValue;
+
+    if (ebillZip !== '' || ebillZip !== null || ebillZip !== undefined || ebillZip === deFault) {
+        ref.update({
+            billZip: ebillZip
+        }, function(error) {
+            if (error) {
+                //content = content + '- billing zip:  update FAILED';
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - billing zip: ' + ebillZip;
+                view.updateContact(item);
+
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+    }
+
+    var eshipAdd = document.getElementById("eshipAddress").value;
+    var deFault = document.getElementById("ebillAddress").defaultValue;
+
+    if (eshipAdd !== '' || eshipAdd !== null || eshipAdd !== undefined || eshipAdd !== deFault) {
+        ref.update({
+            shipAddress: eshipAdd
+        }, function(error) {
+            if (error) {
+                //content = content + '- shipping address: update FAILED';
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - shipping address: ' + eshipAdd;
+                view.updateContact(item);
+
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+    }
+
+    var eshipCity = document.getElementById("eshipCity").value;
+    var deFault = document.getElementById("eshipCity").defaultValue;
+
+    if (eshipCity !== '' || eshipCity !== null || eshipCity !== undefined || eshipCity === deFault) {
+        ref.update({
+            shipCity: eshipCity
+        }, function(error) {
+            if (error) {
+                //content = content + '- shipping city: update FAILED';
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - shipping city: ' + eshipCity;
+                view.updateContact(item);
+
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+    }
+
+    var eshipState = document.getElementById("eshipState").value;
+    var deFault = document.getElementById("eshipState").defaultValue;
+
+    if (eshipState !== '' || eshipState !== null || eshipState !== undefined || eshipState === deFault) {
+        ref.update({
+            shipState: eshipState
+        }, function(error) {
+            if (error) {
+                //content = content + '- shipping state:  update FAILED';
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - shipping state: ' + eshipState;
+                view.updateContact(item);
+
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+    }
+
+    var eshipZip = document.getElementById("eshipZip").value;
+    var deFault = document.getElementById("eshipZip").defaultValue;
+
+    if (eshipZip !== '' || eshipZip !== null || eshipZip !== undefined || eshipZip === deFault) {
+        ref.update({
+            shipZip: eshipZip
+        }, function(error) {
+            if (error) {
+                //content = content + '- shipping zip:  update FAILED';
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - shipping zip: ' + eshipZip;
+                view.updateContact(item);
+
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+    }
+
+    var ephone = document.getElementById("ephone").value;
+    var deFault = document.getElementById("ephone").defaultValue;
+
+    if (ephone !== '' || ephone !== null || ephone !== undefined || ephone !== deFault) {
+        ref.update({
+            officePhone: ephone
+        }, function(error) {
+            if (error) {
+                //content = content + '- office phone:  update FAILED';
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - office phone: ' + ephone;
+                view.updateContact(item);
+
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+    }
+
+    var ephone2 = document.getElementById("ephone2").value;
+    var deFault = document.getElementById("ephone2").defaultValue;
+
+    if (ephone2 !== '' || ephone2 !== null || ephone2 !== undefined || ephone2 !== deFault) {
+        ref.update({
+            mobilePhone: ephone2
+        }, function(error) {
+            if (error) {
+                //content = content + '- mobile phone:  update FAILED';
+                $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+            } else {
+                var item = ' - mobile phone: ' + ephone2;
+                view.updateContact(item);
+
+                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                // create email response for the new patient event
+                setTimeout(function() { // create a pause then erase success message
+                    $('.update-user-fail').empty();
+                }, 3000);
+
+            }
+        })
+        var finished = true;
+        view.updateContact(finished);
+    }
 }
 
 view.authData = '';
@@ -668,38 +980,52 @@ view.logInUserFx = function(uid) {
 
     //TODO  clear all inputs, hide button prn, reset pulldowns, reset header selectedPat and loggedInAs
     view.currUserPass = document.getElementById("loginPassword").value;
-    view.currUserEmail = document.getElementById("loginEmail").value;
+    view.currUserEmail = 'breising1@mac.com'; //document.getElementById("loginEmail").value;
 
     $('.patient').empty();
     $('.patient').append('<p class="patListItem"><a class="patListText0"> Your patients will appear here</a></p>');
 
     var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
     ref.authWithPassword({
-        email: view.currUserEmail,
-        password: view.currUserPass
+        email: 'breising1@mac.com', //view.currUserEmail,
+        password: 'bcr0072' //view.currUserPass
     }, function(error, authData) {
         if (error) {
+            $('.login-fail').text('Login attempt failed. Please try again.');
+            loginEmail.value = loginEmail.defaultValue;
+            loginPassword.value = loginPassword.defaultValue;
             console.log("Login Failed!", error);
             view.currUserEmail = null;
             view.currUserPass = null;
             view.currUserId = null;
+            setTimeout(function() { // create a pause then erase success message
+                $('.login-fail').text('');
+            }, 4000);
+
         } else {
             //console.log("Authenticated successfully with payload:", authData);
-
-            $('.loggedInAs').text('Doctor: ' + view.currUserEmail + ' ');
-
+            view.hideAll();
+            $('.login-fail').text('');
+            $('.contain-half').empty();
+            $('.contain-half').css('padding-top', '0px');
+            $('.contain-half').append('<div class="loggedInAs">' + view.currUserEmail + '</div>');
+            $('.logout').empty();
+            $('.logout').text('Logout');
+            $('.pat-list-contain').show();
+            $(window).scrollTop($(".pat-list-contain").offset().top - 100);
             view.currUserId = authData.uid; //use this to have global access to the logged in user's id.
+            console.log(authData.uid);
             view.authData = authData; // use this global to access email property for the $prepend "You are logged in as"
             view.userMainFx(authData);
             if (view.currUserId === '8dd3ae31-ba59-4423-a0e4-4e593df89482') {
                 view.doctorList(view.currUserId);
             }
         }
+        console.log(view.currUserId);
     });
 
-    $(window).scrollTop($(".pat-list-contain").offset().top - 90);
+    //$(window).scrollTop($(".pat-list-contain").offset().top - 90);
     $('.fp__btn').hide();
-    view.clearField();
 
 }
 
@@ -709,32 +1035,36 @@ view.userMainFx = function(Data) {
     // Create the list of patients
     // read the Doctor's patient list and render to DOM
     $('.pat-list-item-box').empty(); // delete pre-existing data
+    view.stopAnimate();
     $('.pat-list-welcome').empty();
     var uid = view.currUserId; // use this bc "." does not work inside the .child( ) method
     var ref = view.dataRef.child('users').child(uid).child('patList');
     var temp = '';
     ref.once("value", function(snapshot) {
             var patData = snapshot.val();
+            console.log(patData);
             var counter = 0;
             for (var w in patData) {
                 console.log(w);
                 counter = counter + 1;
+                console.log(counter);
 
                 var ref = view.dataRef.child('users').child(uid).child('patList').child(w);
                 var temp = patData[w];
-                if (w === 'Message') {
-                    $('.pat-list-item-box').prepend('<li class="pat-list-item"><a class="pat-list-text">You have no patients</a></li>');
-                } else {
-                    $('.pat-list-item-box').prepend('<li class="pat-list-item"><a id="' + temp.patId + '" class="pat-list-text" onClick="view.selectFileNameFirst(this.id)">' + temp.patFirstName + ' ' + temp.patLastName + '  ' + temp.patId + '</a></li>');
-                }
+                $('.pat-list-item-box').prepend('<li class="pat-list-item" onClick="view.selectFileNameFirst(this.id)" id="' + temp.patId + '">' + temp.patFirstName + ' ' + temp.patLastName + '</li>');
+                $('#' + temp.patId).append('<div class="pat-list-id">' + temp.patId + '</div>');
             }
-            $('.pat-list-welcome').prepend('<p class="patUser">Welcome back ' + view.authData.password.email + '</p>');
+            if (counter === 0) {
+                $('.pat-list-item-box').prepend('<li class="pat-list-item"><a class="pat-list-text">You have no patients</a></li>');
+            }
+            $('.pat-list-welcome').prepend('<p class="patUser">' + view.authData.password.email + '</p>');
         },
         function(errorObject) {
             console.log("The read failed: " + errorObject.code);
         }
     )
 };
+
 
 view.createAdminInterface = function() {
     console.log('createAdminInterface');
@@ -776,14 +1106,12 @@ view.selectFileNameFirst = function(id) { //before uploading the pick button is 
     // this function gets patient info from the database for the Patient Chart view.
     // it also updates the seletedPatient field in the header
     //housekeeping
+    $('.pat-list-contain').hide(); // do not delete bc view.hideAll takes too long to work.
+    view.hideAll();
     $('.chart').show();
-    $(window).scrollTop($(".files-contain").offset().top - 90);
-    $('.model-row').empty();
     $('#d-contain').empty();
-    $('.canvas-text2').hide();
-    $('.canvas-text').hide(); // hide 3D canvas text
-    $('.approve-but').hide(); // hides these buttons when the canvas is not visible.
-    $('.toggle-status').hide();
+    $('#image-contain').empty();
+
     view.currEvents = {};
 
     view.currPatId = id; // id really is the patient id
@@ -795,15 +1123,10 @@ view.selectFileNameFirst = function(id) { //before uploading the pick button is 
     ref.once('value', function(snapshot) {
             temp2 = snapshot.val();
             view.currPatName = temp2.patFirstName + ' ' + temp2.patLastName;
-            $('.selectedPat').empty();
-            $('.selectedPat').text('Pat: ' + view.currPatName);
+            $('.selectedPat').remove();
+            $('.contain-half').css('display', 'block');
+            $('.contain-half').append('<div class="selectedPat">' + view.currPatName + '</div>');
 
-            $('.pat-info-name').empty();
-            $('.pat-info-name').append('<div>Patient name: ' + temp2.patFirstName + ' ' + temp2.patLastName + '</div>');
-            $('.patNameUpload').text('');
-            $('.patNameUpload').text('Patient name:_' + view.currPatName);
-            $('.pat-dob').empty();
-            $('.pat-dob').append('<div>DOB: ' + temp2.patDob + '</div>');
             $('.pat-events').empty();
 
             ref2.once('value', function(snapshot) { // iterate through events and display each event
@@ -819,28 +1142,16 @@ view.selectFileNameFirst = function(id) { //before uploading the pick button is 
 
                         $('#' + w).append('<div class="pat-event-date">' + dateFormatted + '</div>');
 
-                        $('#' + w).append('<div style="color: hsl(185, 100%, 69%)" class="pat-event-name">' + eventIDs[w].name + '</div>');
+                        $('#' + w).append('<div class="pat-event-name">' + eventIDs[w].name + '</div>');
 
                         if (eventIDs[w].status === 'Waiting for setup') {
-                            $('#' + w).append('<div style="color: hsl(55,100%, 50%)" class="pat-event-status">' + eventIDs[w].status + '</div>'); // style only the element with the correct event id as the id
+                            $('#' + w).append('<div style="color: hsl(230, 100%, 30%)" class="pat-event-status">' + eventIDs[w].status + '</div>'); // style only the element with the correct event id as the id
                         } else if (eventIDs[w].status === 'Needs your approval') {
-                            $('#' + w).append('<div style="color: hsl(1,100%,60%)" class="pat-event-status">' + eventIDs[w].status + '</div>');
+                            $('#' + w).append('<div style="color: hsl(1,100%,40%)" class="pat-event-status">' + eventIDs[w].status + '</div>');
                         } else if (eventIDs[w].status === 'Setup approved') {
-                            $('#' + w).append('<div style="color: hsl(130,100%,50%)" class="pat-event-status">' + eventIDs[w].status + '</div>');
+                            $('#' + w).append('<div style="color: hsl(130,90%,40%)" class="pat-event-status">' + eventIDs[w].status + '</div>');
                         }
-
-                        /*if (eventIDs[w].status === '' || eventIDs[w].status === null || eventIDs[w].status === undefined) {
-                            $('#' + w).append('<div style="padding-left: 0px; color: white" class="pat-event-name">' + eventIDs[w].name + '</div>');
-                        } else {
-                            $('#' + w).append('<div class="pat-event-name">' + eventIDs[w].name + '</div>');
-                        }
-
-                        if (eventIDs[w].name === 'note' || eventIDs[w].name === 'setup' || eventIDs[w].name === 'approved' || eventIDs[w].name === 'email') {
-                            $('#' + w).append('<div class="pat-event-data">' + eventIDs[w].data + '</div>');
-                        }
-                        */
-
-                        $('#' + w).append('<div style="color: hsl(200,0%,70%)" class="pat-event-data">' + eventIDs[w].data + '</div>');
+                        $('#' + w).append('<div class="pat-event-data">' + eventIDs[w].data + '</div>');
                     }
                     view.escScope(view.currEvents);
                 },
@@ -848,18 +1159,11 @@ view.selectFileNameFirst = function(id) { //before uploading the pick button is 
                     console.log("The read failed: " + errorObject.code);
                 }
             )
-
-
-            //view.downloadPatFileName(temp); // prior to creating patient chart
         },
         function(errorObject) {
             console.log("The read failed: " + errorObject.code);
         }
     )
-
-    //view.downLoadEvents(); // new version
-    $('#d-contain').empty(); // empty this again to be sure
-    $('.model-row').empty();
 }
 
 view.escScope = function(escapee1, escapee2, escapee3) {
@@ -868,15 +1172,18 @@ view.escScope = function(escapee1, escapee2, escapee3) {
 }
 /*
     view.openPatFile = function() {
-        var temp = '';
-        //$('.pat-dob').append('<div class="pat-dob">DOB: ' + view.temp.patDob);
-        var ref = view.dataRef.child('patients').child(id).child('files');
+        var temp = '
+        ';
+        //$('.pat - dob ').append(' < div class = "pat-dob" > DOB: ' + view.temp.patDob);
+        var ref = view.dataRef.child('
+        patients ').child(id).child('
+        files ');
       },
       function(errorObject) {
         console.log("The read failed: " + errorObject.code);
       }
 
-    //$('.pat-info-name').append('<div class="must-select"> Select a file name from to list below</div>');
+    //$('.pat - info - name ').append(' < div class = "must-select" > Select a file name from to list below < /div>');
 
     */
 
@@ -884,15 +1191,6 @@ view.currEventId = '';
 
 
 view.evalEvent = function(eventId, name) {
-
-    // First, check the name of the event - if its a file then open the file and check the status
-
-    view.currEvents = {};
-    $('#d-contain').empty();
-    $('.canvas-text').hide();
-    $('.canvas-text2').hide();
-    $('.toggle-status').hide();
-    $('.approve-but').hide();
 
     var patId = view.currPatId;
     var id = eventId;
@@ -907,13 +1205,10 @@ view.evalEvent = function(eventId, name) {
             status = myEvent.status;
 
             if (name === 'Upper-scan-1' || name === 'Upper-scan-2' || name === 'Lower-scan-1' || name === 'Lower-scan-2' || name === 'Panoramic-1' || name === 'Panoramic-2' || name === 'Ceph-1' || name === 'Ceph-2') {
-                $(window).scrollTop($("#d-contain").offset().top - 250);
                 view.renderFile(name, id);
-                $('.canvas-text').text(name + '...' + status);
-                $('.canvas-text').show();
-                $('.canvas-text2').show();
-                $('.toggle-status').show(); // for the admin
 
+            } else {
+                return console.log('do nothing');
             }
             if (status === 'Needs your approval') {
                 $('.approve-but').show();
@@ -924,17 +1219,20 @@ view.evalEvent = function(eventId, name) {
             console.log("The read failed: " + errorObject.code);
         }
     )
-
-
+    /*setTimeout(function() { // create a pause then erase success message
+        $(window).scrollTop($(".frame").offset().top - 100);
+    }, 300);
+*/
 }
 
 
 
 view.renderFile = function(fileName, eventId) {
-
-    //$(window).scrollTop($(".d-contain").offset().top - 100);
-
-    console.log('renderFile');
+    $('#d-contain').empty();
+    $('.chart').hide();
+    $('.canvas-text').text(name + ': ' + status);
+    $('.toggle-status').show(); // for the admin
+    $('.frame').show();
     view.init();
 
     var patId = view.currPatId; // confirmed that this is the string patId
@@ -948,7 +1246,6 @@ view.renderFile = function(fileName, eventId) {
 
         view.downloadStl(patId, url);
 
-        console.log(url);
     }, function(errorObject) {
         console.log("The read failed: " + errorObject.code);
     })
@@ -957,6 +1254,7 @@ view.renderFile = function(fileName, eventId) {
 view.downloadStl = function(patId, url) {
     //var url = view.currFileUrl;
     //console.log(url);
+    view.stl = new THREE.Object3D();
     var oStlLoader = new THREE.STLLoader();
     oStlLoader.load(url, function(geometry) {
         var material = new THREE.MeshPhongMaterial({
@@ -968,11 +1266,12 @@ view.downloadStl = function(patId, url) {
         });
         var mesh = new THREE.Mesh(geometry, material);
         mesh.position.y = 50;
-        //mesh.rotate.x = 90 * Math.PI / 180;
-        view.stl = new THREE.Object3D();
+
+        //view.stl = new THREE.Object3D();
         view.stl.add(mesh);
-        view.stl.rotation.x = -90 * Math.PI / 180;
+        view.stl.rotation.x = -60 * Math.PI / 180;
         view.scene.add(view.stl);
+        console.log('downloadStl');
     });
 
     //document.getElementById('#select-file-name').value(null); // clear the name choice and reset to blank
@@ -1050,6 +1349,9 @@ view.toggleStatus = function() {
 }
 
 view.approve = function() {
+
+    confirm('Are you sure you want to approve this setup?');
+
     var patId = view.currPatId;
     var eventId = view.currEventId;
     $('.canvas-text').hide(); // hide the text label on the 3D canvas
@@ -1143,7 +1445,7 @@ view.addEventNote = function() {
         if (error) {
             alert("Data could not be saved." + error);
         } else {
-            //alert("Data saved successfully.");
+            alert("Data saved successfully.");
         }
     })
 
@@ -1154,6 +1456,79 @@ view.addEventNote = function() {
     }, 500);
 
 }
+
+view.resetPassword = function(email) {
+    var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
+    ref.resetPassword({
+        email: email
+    }, function(error) {
+        if (error) {
+            switch (error.code) {
+                case "INVALID_USER":
+                    alert("The specified user account does not exist.");
+                    break;
+                default:
+                    alert("Error resetting password:", error);
+            }
+        } else {
+            alert("Password reset email sent successfully!");
+            view.resetAllForms();
+        }
+    });
+}
+
+view.changeEmail = function(emailOld, password, emailNew) {
+    console.log(emailOld, password, emailNew);
+    var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
+    ref.changeEmail({
+        oldEmail: emailOld,
+        newEmail: emailNew,
+        password: password
+    }, function(error) {
+        if (error) {
+            switch (error.code) {
+                case "INVALID_PASSWORD":
+                    alert("The specified user account password is incorrect.");
+                    break;
+                case "INVALID_USER":
+                    alert("The specified user account does not exist.");
+                    break;
+                default:
+                    alert("Error creating user:", error);
+            }
+        } else {
+            alert("User email changed successfully!");
+            view.resetAllForms();
+        }
+    });
+}
+
+view.changePassword = function(email, oldP, newP) {
+    console.log(email, oldP, newP);
+    var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
+    ref.changePassword({
+        email: email,
+        oldPassword: oldP,
+        newPassword: newP
+    }, function(error) {
+        if (error) {
+            switch (error.code) {
+                case "INVALID_PASSWORD":
+                    alert("The specified user account password is incorrect.");
+                    break;
+                case "INVALID_USER":
+                    alert("The specified user account does not exist.");
+                    break;
+                default:
+                    alert("Error changing password:", error);
+            }
+        } else {
+            alert("User password changed successfully!");
+            view.resetAllForms();
+        }
+    });
+}
+
 
 view.sendEmail = function(email, email2, subject, content) {
 
@@ -1197,13 +1572,13 @@ view.sendEmail = function(email, email2, subject, content) {
 
 view.startNewAnimate = function() {
     view.render();
-
+    /*
     $('canvas').on('mousedown', function() {
         console.log('start downlow');
         view.render();
     })
     $('canvas').on('mouseup', function() {
-        console.log('stop');
+        console.log('stop: downlow');
         view.stopAnimate();
         $('.d-contain').append('<div style="z-index: 2; color: white; padding-left: 40px" class="canvas-text">Canvas Text</div>');
         $('.d-contain').append('<div style="z-index: 2; padding-left: 40px" class="canvas-text">Mousedown and drag to view</div>');
@@ -1212,9 +1587,13 @@ view.startNewAnimate = function() {
     setTimeout(function() {
         view.stopAnimate();
     }, 3000);
+    */
 }
 
 view.showNote = function() {
+    if (view.currPatId === null || view.currPatId === undefined || view.currPatId === '') {
+        return null;
+    }
     if ($('.upload-here:visible').length > 0) {
         $('.upload-here').hide();
     }
@@ -1226,6 +1605,9 @@ view.showNote = function() {
 }
 
 view.showUpload = function() {
+    if (view.currPatId === null || view.currPatId === undefined || view.currPatId === '') {
+        return null;
+    }
     if ($('.note-contain:visible').length > 0) {
         $('.note-contain').hide();
     }
@@ -1245,7 +1627,7 @@ view.showUpload = function() {
         }
         setTimeout(function() {
             $('.fp__btn').hide();
-            $('#select-file-name').val('none');
+            //$('#select-file-name').val('none');
             $('.warn-select-file').show();
         }, 5000);
     })
@@ -1256,86 +1638,403 @@ view.alertTypeRx = function() {
 
 }
 
-view.logout = function() {
-    var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
-    ref.unauth();
+view.listenBill = function() {
 
-    $(window).scrollTop($(".main-contain").offset().top - 90);
+    $('#billAddress').blur(function() {
+        if ($('#shipAddressCheck').is(':checked')) {
+            $('#shipAddress').val($('#billAddress').val());
+        }
+    })
+    $('#billCity').blur(function() {
+        if ($('#shipAddressCheck').is(':checked')) {
+            $('#shipCity').val($('#billCity').val());
+        }
+    })
+    $('#billState').blur(function() {
+        if ($('#shipAddressCheck').is(':checked')) {
+            $('#shipState').val($('#billState').val());
+        }
+    })
+    $('#billZip').blur(function() {
+        if ($('#shipAddressCheck').is(':checked')) {
+            $('#shipZip').val($('#billZip').val());
+        }
+    })
 
-    firstName.value = '';
-    lastName.value = '';
-    address.value = '';
-    city.value = '';
-    state.value = '';
-    zip.value = '';
-    officePhone.value = '';
-    mobilePhone.value = '';
-    nuemail.value = '';
-    nupassword.value = '';
-    loginEmail.value = '';
-    loginPassword.value = '';
-    patFirstName.value = '';
-    patLastName.value = '';
-    patDob.value = '';
-    view.currPatId = null;
-    view.currUser = null;
-    view.currFileUrl = null;
-
-    //reset everything
-    $('.pat-info-name').empty();
-    $('.pat-dob').empty();
-    $('.pat-note').empty();
-    $('.pat-event').empty();
-    $('#d-contain').empty();
-    $('.setup-dr-notes').value = '';
-    $('.pat-list-welcome').empty();
-    $('.pat-list-item-box').empty();
-    $('#select-file-name').value = 'none';
-    $('.loggedInAs').text('');
-    $('.selectedPat').text('');
-    $('.patNameUpload').text('Please login and select a patient');
-    $('.pat-events').empty();
-    $('.fp__btn').hide();
-    $('.canvas-text').hide();
-    $('.canvas-text2').hide();
-    $('.note-contain').hide();
-    $('.chart').hide();
-    $('.upload-here').hide();
-    $('.note-contain').hide();
-    view.stopAnimate();
+    $('#shipAddressCheck').change(function() {
+        if ($('#shipAddressCheck').is(':checked')) {
+            $('#shipAddress').val($('#billAddress').val());
+            $('#shipCity').val($('#billCity').val());
+            $('#shipState').val($('#billState').val());
+            $('#shipZip').val($('#billZip').val());
+        }
+        if (!($('#shipAddressCheck').is(':checked'))) {
+            shipAddress.value = shipAddress.defaultValue;
+            shipCity.value = shipCity.defaultValue;
+            shipState.value = shipState.defaultValue;
+            shipZip.value = shipZip.defaultValue;
+        }
+    })
 }
+
+view.editListenBill = function() {
+    var uid = view.currUserId;
+
+    var ref = view.dataRef.child('users').child(uid);
+
+    ref.once('value', function(snapshot) {
+        var eventObject = snapshot.val();
+
+        ebillAddress.value = eventObject.billAddress;
+        ebillCity.value = eventObject.billCity;
+        ebillState.value = eventObject.billState;
+        ebillZip.value = eventObject.billZip;
+        eshipAddress.value = eventObject.shipAddress;
+        eshipCity.value = eventObject.shipCity;
+        eshipState.value = eventObject.shipState;
+        eshipZip.value = eventObject.shipZip;
+        ephone2.value = eventObject.mobilePhone;
+        ephone.value = eventObject.officePhone;
+    })
+
+    $('#ebillAddress').blur(function() {
+        if ($('#eshipAddressCheck').is(':checked')) {
+            $('#eshipAddress').val($('#ebillAddress').val());
+        }
+    })
+    $('#ebillCity').blur(function() {
+        if ($('#eshipAddressCheck').is(':checked')) {
+            $('#eshipCity').val($('#ebillCity').val());
+        }
+    })
+    $('#ebillState').blur(function() {
+        if ($('#eshipAddressCheck').is(':checked')) {
+            $('#eshipState').val($('#ebillState').val());
+        }
+    })
+    $('#ebillZip').blur(function() {
+        if ($('#eshipAddressCheck').is(':checked')) {
+            $('#eshipZip').val($('#ebillZip').val());
+        }
+    })
+
+    $('#eshipAddressCheck').change(function() {
+        if ($('#eshipAddressCheck').is(':checked')) {
+            $('#eshipAddress').val($('#ebillAddress').val());
+            $('#eshipCity').val($('#ebillCity').val());
+            $('#eshipState').val($('#ebillState').val());
+            $('#eshipZip').val($('#ebillZip').val());
+        }
+        if (!($('#eshipAddressCheck').is(':checked'))) {
+            eshipAddress.value = eshipAddress.defaultValue;
+            eshipCity.value = eshipCity.defaultValue;
+            eshipState.value = eshipState.defaultValue;
+            eshipZip.value = eshipZip.defaultValue;
+        }
+    })
+}
+
+view.logout = function() {
+
+    view.currPatId = null;
+
+    if (view.currUserId === null || view.currUserId === '' || view.currUserId === undefined) {
+        view.hideAll();
+        $('.logInFormContain').show();
+    } else {
+
+        $('.contain-half').empty();
+        $('.contain-half').css('display', 'flex');
+        $('.contain-half').append('<img class="logo" src="/images/orthocure_symbol.svg" alt="OrthoCure Logo"><h2>ORTHO</h2><h2 class="cure">CURE</h2>');
+        $('.contain-half').click(function() {
+            view.stopAnimate();
+            $('#d-contain').empty();
+            view.hideAll();
+            $('.main-contain').show();
+            $('#image-contain').empty();
+            $('#image-contain').show();
+            view.currPatId = null;
+            view.init();
+            view.loadStlTeeth();
+            view.loadStlMounds();
+            view.render();
+        })
+        view.hideAll();
+        view.currPatId = null;
+        view.currUserId = null;
+        view.currFileUrl = null;
+
+        firstName.value = firstName.defaultValue;
+        lastName.value = lastName.defaultValue;
+        billAddress.value = billAddress.defaultValue;
+        billCity.value = billCity.defaultValue;
+        billState.value = billState.defaultValue;
+        billZip.value = billZip.defaultValue;
+        shipAddress.value = shipAddress.defaultValue;
+        shipCity.value = shipCity.defaultValue;
+        shipState.value = shipState.defaultValue;
+        shipZip.value = shipZip.defaultValue;
+        phone.value = phone.defaultValue;
+        phone2.value = phone2.defaultValue;
+        nuemail.value = nuemail.defaultValue;
+        nupassword.value = nupassword.defaultValue;
+        loginEmail.value = loginEmail.defaultValue;
+        loginPassword.value = loginPassword.defaultValue;
+        patFirstName.value = patFirstName.defaultValue;
+        patLastName.value = patLastName.defaultValue;
+        patDob.value = patDob.defaultValue;
+
+
+        //reset everything
+        $('.pat-info-name').empty();
+        $('.pat-dob').empty();
+        $('.pat-note').empty();
+        $('.pat-event').empty();
+        $('#d-contain').empty();
+        $('.setup-dr-notes').value = '';
+        $('.pat-list-welcome').empty();
+        $('.pat-list-item-box').empty();
+        $('.pat-list-item-box').append('<li class="pat-list-item">Please login to see your patient list</div>');
+        //$('#select-file-name').value = 'none';
+        $('.loggedInAs').text('');
+        $('.selectedPat').text('');
+        $('.loggedInAs').text('Login').show();
+        $('.pat-events').empty();
+        $('.fp__btn').hide();
+        $('.canvas-text').hide();
+        $('.canvas-text2').hide();
+        $('.note-contain').hide();
+        $('.chart').hide();
+        $('.frame').hide();
+        $('.pat-chart-subtitle').show();
+        $('.upload-here').hide();
+        $('.note-contain').hide();
+        console.log('logout');
+        $('#resetPassword').hide();
+        $('#changePass').hide();
+        $('#changeEmail').hide();
+        $('.logout').empty();
+        $('.logout').text('Login');
+
+        $('.logInFormContain').show();
+        $(window).scrollTop($('.logInFormContain').offset().top - 100);
+
+        view.stopAnimate();
+
+        var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
+        ref.unauth();
+    }
+}
+view.setFocalPoint();
+view.currPatId = null;
+view.init();
+view.startNewAnimate();
+view.loadStlTeeth();
+view.loadStlMounds();
 
 view.yourApiKey = 'AhTgLagciQByzXpFGRI0Az';
 filepicker.setKey(view.yourApiKey);
-
-
-view.listOfStlUrls = {};
 
 view.testurl = 'https://cdn.filestackcontent.com/J2mXNq2sQFCTYNlLiUig'; //'https://cdn.filestackcontent.com/F6XOaqXTR6miOAkF2hdf';
 
 view.reader = new FileReader();
 
-var octopus = {};
-
-octopus.start = function() {
-    view.init();
-    view.loadStlTeeth();
-    view.loadStlMounds();
-};
-
-/*window.onresize = function() {
-  //view.render();
-}*/
-octopus.start();
-
-ko.applyBindings(new ViewModel());
-
 view.clearField = function() {
-    nuemail.value = '';
-    nupassword.value = '';
-    loginEmail.value = '';
-    loginPassword.value = '';
     patFirstName.value = '';
     patLastName.value = '';
     patDob.value = '';
 };
+
+$(document).ready(function() {
+
+    var i = document.getElementById('slider-1'),
+        o = document.getElementById('zoomOutput');
+    i.addEventListener('input', function() {
+        view.zoom = i.value; // sets the zoom based on the slider value
+    }, false);
+});
+
+$(function() {
+    $("#sliderLR").slider({
+        orientation: "horizontal",
+        range: "min",
+        min: -40,
+        max: 40,
+        value: 0,
+        slide: function(event, ui) {
+            $("#amount2").val(ui.value);
+            view.focusX = ui.value;
+        }
+    });
+
+});
+
+
+$('.icon1Contain').click(function() {
+
+    if (view.currUserId === null || view.currUserId === '' || view.currUserId === undefined) {
+        view.logout();
+        view.hideAll();
+        view.stopAnimate();
+        $('.nuFormContain').show();
+        view.listenBill();
+    } else {
+        view.stopAnimate();
+        view.hideAll();
+        $('.editAccount').show();
+        view.editListenBill();
+    }
+});
+
+$('.icon2Contain').click(function() {
+    if (view.currUserId !== null || view.currUserId !== '' || view.currUserId !== undefined) {
+        view.hideAll();
+        view.stopAnimate();
+        $('.pat-list-contain').show();
+    } else {
+        view.stopAnimate();
+        view.hideAll();
+        $('.logInFormContain').show();
+        //$(window).scrollTop($('.logInFormContain').offset().top - 100);
+    }
+
+});
+
+$('.icon3Contain').click(function() {
+    view.hideAll();
+    view.stopAnimate();
+    console.log('chart');
+    $('.chart').show();
+});
+
+$('.logout').click(function() {
+    view.hideAll();
+    view.stopAnimate();
+    view.logout(); //show-hide logic is in the function
+})
+
+$('.logInButton').click(function() {
+    $('.logInButton').css('background-color', 'hsl(200,90%,90%)');
+    view.hideAll();
+    view.logInUserFx();
+    setTimeout(function() { // create a pause then erase success message
+        $('.logInButton').css('background-color', 'hsl(200,100%,30%)');
+    }, 100);
+})
+/*
+    $("canvas").on("touchclick", function() {
+        console.log("start touchclick");
+        setTimeout(function() {
+            view.render();
+        }, 1000);
+    })
+*/
+
+$('#resetPasswordLink').click(function() {
+    view.hideAll();
+    view.stopAnimate();
+    $('#resetPassword').show();
+    //$(window).scrollTop($('#resetPassword').offset().top - 130);
+});
+$('#resetPassBut').click(function() {
+    var email = $('#resetPasswordEmail').val();
+    console.log(email);
+    view.resetPassword(email);
+    $('#resetPassword').hide();
+    $('#changePass').show();
+    $(window).scrollTop($('#changePass').offset().top - 130);
+});
+$('#changePassLink').click(function() {
+    view.hideAll();
+    view.stopAnimate();
+    $('#changePass').show();
+    $(window).scrollTop($('#changePass').offset().top - 130);
+});
+$('#changePassBut').click(function() {
+    var email = $('#changePassEmail').val();
+    var oldPass = $('#changePassOldPass').val();
+    var newPass = $('#changePassNewPass').val();
+    view.changePassword(email, oldPass, newPass);
+});
+$('#changeEmailLink').click(function() {
+    view.hideAll();
+    $('#changeEmail').show();
+    $(window).scrollTop($('#changeEmail').offset().top - 130);
+});
+$('#changeEmailBut').click(function() {
+    var emailOld = $('#changeEmailEmailOld').val();
+    var password = $('#changeEmailPassword').val();
+    var emailNew = $('#changeEmailEmailNew').val();
+    view.changeEmail(emailOld, password, emailNew);
+});
+
+$('.nuButton').click(function() {
+    $('.nuButton').css('background-color', 'hsl(200,90%,80%)');
+    view.newUserFx();
+    setTimeout(function() {
+        $('.nuButton').css('background-color', 'hsl(200,100%,40%)');
+    }, 50);
+});
+
+$('.updateAccount').click(function() {
+    $('.updateAccount').css('background-color', 'hsl(200,90%,80%)');
+    view.addupdatedData();
+    setTimeout(function() {
+        $('.updateAccount').css('background-color', 'hsl(200,100%,40%)');
+    }, 50);
+});
+
+
+//handle input from all text inputs:
+var tempText = '';
+$('input').on('focus', function() {
+    tempText = $(this).val();
+    $(this).val('');
+});
+
+$('input').on('blur', function() {
+    if ($(this).val() === '') {
+        $(this).val(tempText);
+        tempText = '';
+    }
+});
+
+$('.add-pat').click(function() {
+    if (view.currUserId === null || view.currUserId === '' || view.currUserId === undefined) {
+        return null;
+    } else {
+        view.hideAll();
+        $('.np-head').show();
+        //$(window).scrollTop($('.np-head').offset().top - 80);
+    }
+});
+setTimeout(function() {
+    $(window).scrollTop($(".mid-contain").offset().top - 100);
+}, 200);
+
+$('.toggle-status').click(function() {
+    view.toggleStatus();
+});
+
+$('.approve-but').click(function() {
+    view.approve();
+});
+$('.tx-notes-but').click(function() {
+    console.log('add note');
+    view.addEventNote();
+})
+
+//***** working animation on mousedown ****************************
+/*
+    $('canvas').on('mousedown', function() {
+        console.log('start onload');
+        view.render();
+    });
+
+    $('canvas').on('mouseup', function() {
+        view.stopAnimate();
+        $('.d-contain').append('<div style="z-index: 2; color: white; padding-left: 40px" class="canvas-text">Canvas Text</div>');
+        $('.d-contain').append('<div style="z-index: 2; padding-left: 40px" class="canvas-text2">Mousedown and drag to view</div>');
+    });
+*/
+//***** working animation on mousedown ****************************

@@ -18,183 +18,239 @@
 
 <body>
     <div class="contain" id="contain">
+                <div class="nav-menu">
+            <div class="icon1Contain">
+
+                <p class="i1" style="color: white">Doctor</P>
+            </div>
+            <div class="icon2Contain">
+
+                <p class="i2" style="color: white">Patient</P>
+            </div>
+            <div class="icon3Contain">
+
+                <p class="i3" style="color: white">Chart</P>
+            </div>
+        </div>
+        <div style="display: flex" class="contain-loggedIn">
+            <div class="contain-half">
+                <img class="logo" src="/images/orthocure_symbol.svg" alt="OrthoCure Logo">
+                <h2>ORTHO</h2>
+                <h2 class="cure">CURE</h2>
+            </div>
+            <div class="logout">Login</div>
+        </div>
         <div class="main-contain">
-            <div class="nav-menu">
-                <div class="icon1Contain">
-                    <img class="icon1" src="/images/key.svg">
-                    <p class="i1" style="color: white">Login</P>
-                </div>
-                <div class="icon2Contain">
-                    <img class="icon2" src="/images/upload-icon.svg">
-                    <p class="i2" style="color: white">Files</P>
-                </div>
-                <div class="icon3Contain">
-                    <img class="icon3" src="/images/user.svg">
-                    <p class="i3" style="color: white">DoctorAcct</P>
-                </div>
-                <div class="icon4Contain">
-                    <img class="icon4" src="/images/list.svg">
-                    <p class="i4" style="color: white">PatientList</P>
-                </div>
-                <div class="icon5Contain">
-                    <img class="icon5" src="/images/medical.svg">
-                    <p class="i5" style="color: white">AddPatient</P>
-                </div>
-            </div>
-            <div style="display: flex" class="contain-loggedIn">
-                <div class="contain-half">
-                    <div class="loggedInAs">Login</div>
-                    <div class="selectedPat"></div>
-                </div>
-                <div class="account" onclick="view.editUserAcct()">Account</div>
-                <div class="logout" onclick="view.logout()">Logout</div>
-            </div>
-            <div class="mid">
-                <div class="mid-text" id="userMain">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="head">
-                        <img class="logo" src="/images/orthocure_symbol.svg" alt="OrthoCure Logo">
-                        <h2>ORTHO</h2>
-                        <h3>CURE</h3>
-                        <br>
-                    </div>
+            <div class="mid-contain">
+                <div class="mid-text">
                     <h1 class="mid-main">The Secret Behind the Smile</h1>
                     <p class="subtitle">Invisible
                         <br>Comfortable
                         <br>No Compromises</p>
-                    <br>
                 </div>
             </div>
             <div id="image-contain"></div>
         </div>
         <div class="nuFormContain">
             <div class="nuForm">
-                <form name="nudrform" id="nu-form" method="post" accept-charset="UTF-8" autocomplete="on" novalidate>
+                <form name="nudrform" id="nu-form" accept-charset="UTF-8" autocomplete="off">
                     <fieldset>
-                        <legend class="nu-title" style="color: hsl(200, 100%, 40%)">Create Doctor's Account</legend>
+                        <div class="nu-title">Create Doctor's Account</div>
                         <div class="nu-box-contain">
                         <input class="nu-text-box" value="first name" required type="text" id="firstName">
                         <input class="nu-text-box" value="last name" required id="lastName" type="text">
-                        <input class="nu-text-box" value="office address" required id="address" type="text">
-                        <input class="nu-text-box" value="city" required id="city" type="text">
-                        <input class="nu-text-box" value="state" required id="state" type="text">
-                        <input class="nu-text-box" value="zip" required id="zip" type="text">
-                        <input class="nu-text-box" id="phone" name="phone" value="office phone" required type="text" maxlength="14" placeholder="(XXX) XXX-XXXX">
-                        <input class="nu-text-box" id="phone2" name="phone" value="mobile phone" required type="text" maxlength="14" placeholder="(XXX) XXX-XXXX">
-                        <input class="nu-text-box" value="email" required value="z@z.com" id="nuemail" type="email">
-                        <input class="nu-text-box" value="password" required value="z" id="nupassword" type="password">
-                        <button class="nuButton" onclick="view.newUserFx()" type="button">Create my account</button>
+
+                        <input class="nu-text-box" value="billing address" required id="billAddress" type="text">
+                        <input class="nu-text-box" value="City" required id="billCity" type="text">
+                        <input class="nu-text-box" value="State" required id="billState" type="text">
+                        <input class="nu-text-box" value="Zip" required id="billZip" type="text">
+
+                         <input class="nu-text-box" id="phone" value="office phone" required type="text">
+                        <input class="nu-text-box" id="phone2" value="mobile phone" required type="text">
+
+                        <input type="checkbox" id="shipAddressCheck" value="false" unchecked>
+                        <div class="shipText">shipping address is the same</div>
+
+                        <input class="nu-text-box" value="shipping address" required id="shipAddress" type="text">
+                        <input class="nu-text-box" value="City" required id="shipCity" type="text">
+                        <input class="nu-text-box" value="State" required id="shipState" type="text">
+                        <input class="nu-text-box" value="Zip" required id="shipZip" type="text">
+
+                        <input class="nu-text-box" value="your@email.com" required id="nuemail" type="email">
+                        <input class="nu-text-box" value="password" required id="nupassword" type="text">
+                        <button class="nuButton" type="button">Create my account</button>
+                        <br>
+                        <div class="new-user-fail"></div>
                     </div>
                     </fieldset>
                 </form>
             </div>
         </div>
+        <div class="editAccount">
+            <form name="nudrform" id="nu-form" accept-charset="UTF-8" autocomplete="off">
+                    <fieldset>
+                        <div class="nu-title">Update your account</div>
+                        <div class="nu-box-contain">
+
+                        <input class="nu-text-box" value="billing address" required id="ebillAddress" type="text">
+                        <input class="nu-text-box" value="City" required id="ebillCity" type="text">
+                        <input class="nu-text-box" value="State" required id="ebillState" type="text">
+                        <input class="nu-text-box" value="Zip" required id="ebillZip" type="text">
+
+                         <input class="nu-text-box" id="ephone" value="office phone" required type="text">
+                        <input class="nu-text-box" id="ephone2" value="mobile phone" required type="text">
+
+                        <input type="checkbox" id="eshipAddressCheck" value="false" unchecked>
+                        <div class="shipText">shipping address is the same</div>
+
+                        <input class="nu-text-box" value="shipping address" required id="eshipAddress" type="text">
+                        <input class="nu-text-box" value="City" required id="eshipCity" type="text">
+                        <input class="nu-text-box" value="State" required id="eshipState" type="text">
+                        <input class="nu-text-box" value="Zip" required id="eshipZip" type="text">
+                        <div class='containUpdatButton'>
+                        <button class="updateAccount" type="button">Update</button></div>
+                        <br>
+                        <div class="update-user-fail"></div>
+                    </div>
+                    </fieldset>
+                </form>
+        </div>
         <div class="logInFormContain" id="login">
             <div class="log-form-head">
-                <form name="loginform" action="slkdjfljksdf.php" method="post" accept-charset="UTF-8" autocomplete="on" novalidate>
+                <form name="loginform" autocomplete="on">
                     <fieldset class="login">
-                        <div class="legend-log" style="color: hsl(200, 100%, 20%)">Login: </div>
-                        <div class="legend-log-sub"><a href="#new-password">Forgot my password</a></div>
-                        <div class="legend-log-sub"><a href="#new-userEmail" >Change my email address</a></div>
+                        <div class="legend-log">Login: </div>
+                        <div class="legend-log-sub"><div id="resetPasswordLink">Forgot my password</div></div>
+                         <div class="legend-log-sub"><div id="changePassLink">Change my password</div></div>
+                        <div class="legend-log-sub"><div id="changeEmailLink">Change my email address</div></div>
 
                         <div>
                             <input id="loginEmail" value="email" required type="email">
                         </div>
                         <div class="spacer"></div>
                         <div>
-                            <input required value="password" id="loginPassword" type="password">
+                            <input required value="password" id="loginPassword" type="text">
                         </div>
                         <div class="spacer"></div>
-                        <button class="logInButton" id="logInButton" type="button" onclick="view.logInUserFx()">Log me in</button>
+                        <button class="logInButton" id="logInButton" type="button">Log me in</button>
+                        <br>
+                        <div class="login-fail"></div>
                     </fieldset>
                 </form>
             </div>
         </div>
+
+
+        <div id="resetPassword">
+            <div id="resetPasswordTitle>">Please enter your current email address and an email will be sent to you containing a link to reset your password.</div>
+            <input id="resetPasswordEmail" value="account email" required type="email">
+            <br>
+            <button id="resetPassBut" type="button">Reset Password</button>
+            <div id="#resetPassSuccess"></div>
+        </div>
+        <div id="changePass">
+            <div id="changePassTitle">Please enter your current or temporary password followed by your NEW password.</div>
+            <input id="changePassEmail" value="account email" required type="email">
+            <input id="changePassOldPass" value="temp/old password" required type="text">
+            <input id="changePassNewPass" value="new password" required type="text">
+            <br>
+            <button class="but-style" id="changePassBut" type="button">Change Password</button>
+        </div>
+        <div id="changeEmail">
+            <div id="changeEmailTitle">Please enter your current email followed by your NEW email.</div>
+            <input id="changeEmailEmailOld" value="current email" required type="email">
+            <input id="changeEmailPassword" value="password" required type="text">
+            <input id="changeEmailEmailNew" value="NEW email" required type="email">
+            <br>
+            <button class="but-style" id="changeEmailBut" type="button">Change Email</button>
+        </div>
+
+
+
         <div class="pat-list-contain" id="patient-list">
-            <div class="pat-list-title">Patient List</div>
-            <div class="pat-list-welcome"></div>
-            <ul style="font-size: 1em" class="pat-list-item-box">
-                <li style="font-size: 1em" class="pat-list-item">Please login to see your patient list.</li>
+            <div class="pat-list-head">
+                <div class="pat-list-title">Patient List</div>
+                <button type="button" class="add-pat" id="add-pat" type="button">Add Patient</button>
+            </div>
+            <ul class="pat-list-item-box">
+                <li class="pat-list-item"><div class="pat-list-text">Please login to see patients.</div></li>
             </ul>
         </div>
-        <div class="upload-head">
-            <form data-bind="with: view.nuPat" class="nuPat" name="nuPat" action="slkdjfljksdf.php" method="post" accept-charset="UTF-8" autocomplete="on" novalidate>
-                <fieldset>
-                    <legend style="color: white;">Submit Patient Info:</legend>
-                    <div class="legend-sub">Please submit info before uploading files:</div>
-                    <br>First name:
-                    <input required id="patFirstName" class="patFirstName" type="text">
+
+        <div class="np-head">
+            <form class="np-form" name="nuPat" autocomplete="on">
+
+                    <div class="np-title">New Patient</div>
+                    <input required value="firstName" id="patFirstName" class="patFirstName" type="text">
                     <br>
-                    <br>Last name:
-                    <input required id="patLastName" class="patLastName" type="text">
+                    <input required value="lastName" id="patLastName" class="patLastName" type="text">
                     <br>
-                    <br> DOB:
-                    <input required id="patDob" class="patDob" type="date">
+                    <input required id="patDob" class="patDob" value="DOB" type="text">
                     <br>
-                    <br>
-                    <br>
-                    <button type="button" class="nuPatInfo" id="nuPatInfo" type="button" onclick="view.savePatientInfov2()">Create patient</button>
-                    <br>
-                    <br>
-                </fieldset>
+                    <button type="button" class="nuPatInfo" id="np-but" type="button" onclick="view.savePatientInfov2()">Create patient</button>
+                    <div class="np-success"></div>
+
             </form>
         </div>
-        <div class="files-contain" id="patient-chart">
-            <div class="files-head">
-                <div class="pat-info-title">Patient Chart:</div>
-            </div>
-            <div class="chart" style="display: none">
-            <div style="display: block" class="pat-item-contain">
-                <div class="pat-info-name"></div>
-                <div class="pat-dob"></div>
-            </div>
-            <br>
-            <button style="font-size: 0.8em" type="button" class="showUpload" id="upload-scroll" type="button" onclick="view.showUpload()">Upload File</button>
-            <button style="font-size: 0.8em" type="button" class="tx-note-show-but" type="button" onclick="view.showNote()">Add Rx/Note</button>
 
-             <div class="upload-here" id="upload">Upload file and rename it:
-            <div class="warn-select-file"><a href="#patient-chart">Before uploading you must select a file name:</a></div>
-                <select id="select-file-name" required>
-                    <option id="option" value="none" selected>select file name</option>
-                    <option id="option" value="uscan1">upper-scan1</option>
-                    <option id="option" value="uscan2">upper-scan2</option>
-                    <option id="option" value="lscan1">lower-scan1</option>
-                    <option id="option" value="lscan2">lower-scan2</option>
-                    <option id="option" value="pano1">panoramic1</option>
-                    <option id="option" value="pano2">panoramic2</option>
-                    <option id="option" value="ceph1">ceph1</option>
-                    <option id="option" value="ceph2">ceph2</option>
-                </select>
-                <br>
-                <br>
-                <input style="margin-left: 10px" type="filepicker" data-fp-apikey="AhTgLagciQByzXpFGRI0Az" data-fp-mimetypes="*/*" data-fp-container="modal" data-fp-multiple="true" onchange="out='';for(var i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url;out+=' '};alert(out); ; view.uploadedFile(out); view.alertTypeRx(); view.evalUpload(); view.clearField();">
-                <div class="upload-success"></div>
-        </div>
-
-        <div class="note-contain">
-            <div class="tx-notes">Add prescription or notes:
-            <textarea id="tx-notes" name="tx-notes" style="width:80%; margin-left: 15px; margin-top: 5px;background: hsl(200, 30%,70%)" rows="3"></textarea>
-            <br>
-            <div class="warn-note">After you click 'Record' you may NOT edit notes</div>
-            <button style="margin-left: 15px; margin-top: 8px; font-size: 0.9em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="tx-notes-but" type="button">Record notes</button>
+        <div class="chart" id="patient-chart">
+            <div class="chart-head">
+                <div class="pat-info-title">Patient Chart</div>
+                <div class="pat-chart-subtitle">Please login select a patient to view their chart</div>
             </div>
-        </div>
+                <div style="display: block" class="pat-item-contain"></div>
+                <br>
+                <div class="chart-buts">
+                    <button type="button" class="showUpload" id="upload-scroll" type="button" onclick="view.showUpload()">Upload File</button>
+                    <button type="button" class="tx-note-show-but" type="button" onclick="view.showNote()">Add Rx/Note</button>
+                </div>
+                <div class="upload-here" id="upload">Upload File:
+                    <div id="no-pat-sel"></div>
+                    <select id="select-file-name" required>
+                        <option id="option" value="none" selected>Choose a name</option>
+                        <option id="option" value="uscan1">upper-scan1</option>
+                        <option id="option" value="uscan2">upper-scan2</option>
+                        <option id="option" value="lscan1">lower-scan1</option>
+                        <option id="option" value="lscan2">lower-scan2</option>
+                        <option id="option" value="pano1">panoramic1</option>
+                        <option id="option" value="pano2">panoramic2</option>
+                        <option id="option" value="ceph1">ceph1</option>
+                        <option id="option" value="ceph2">ceph2</option>
+                    </select>
+                    <br>
+                    <br>
+                    <input style="margin-left: 10px" type="filepicker" data-fp-apikey="AhTgLagciQByzXpFGRI0Az" data-fp-mimetypes="*/*" data-fp-container="modal" data-fp-multiple="true" onchange="out='';for(var i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url;out+=' '};alert(out); view.alertTypeRx(); view.evalUpload(out)">
+                    <div class="upload-success"></div>
+                </div>
+
+                <div class="note-contain">
+                    <div class="tx-notes">Add prescription or notes:
+                        <textarea id="tx-notes" name="tx-notes"  rows="3"></textarea>
+                        <br>
+                        <div class="warn-note">After you click 'Record' you may NOT edit notes</div>
+                        <button type="button" class="tx-notes-but" type="button">Record notes</button>
+                    </div>
+                </div>
                 <br>
                 <div class="pat-events-title">Click on an event below to view a file</div>
                 <div class="pat-events"></div>
-                <br>
-                <br>
-                <div class="canvas-text">Canvas Text</div>
-                <div class="canvas-text2">Mousedown and drag to view</div>
-                <div id="d-contain"></div>
-                <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="approve-but" type="button">Approve Setup</button>
-                <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="toggle-status" type="button">Status toggle</button>
-                <br>
         </div>
-</div>
+        <div class="frame">
+                    <!--div class="canvas-text"></div-->
+
+                    <form class="zoom">zoom
+                    <input type="range" id="slider-1" value="1" min="0" max="5" step="0.05" data-highlight="true" />
+                    <div class="canvas-text2" style="color: hsl(200,50%,50%)">Three Fingers to Pan</div>
+                    <output id="zoomOutput"></output>
+                    </form>
+                    <br>
+                    <div id="d-contain"></div>
+                    <button class="approve-but" type="button">Approve</button>
+        </div>
+
+
+
+            <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="toggle-status" type="button">Status toggle</button>
 
         <div class="admin-contain">
             <div class="doc-list-title">Admin: Doctor List</div>
@@ -209,22 +265,23 @@
             <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="user-acct-confirm-contact" type="button">Confirm Contact Info</button>
             <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" type="button" class="user-acct-confirm-email" type="button">Confirm Email</button>
         </div>
-        <div id="new-password" class="legend-log-sub">Forgot my password</div>
-        <div id="new-userEmail" class="legend-log-sub">Change email address</div>
-
     </div>
+
     <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="./utils.js"></script>
-    <script src="js/knockout-3.4.0.js" rel="script"></script>
+
+
     <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="bootstrap-3.3.6-dist/js/bootstrap.js"></script>
     <script src="js/three.min.js"></script>
     <script src="js/STLLoader.js"></script>
     <script src="js/THREEx.WindowResize.js"></script>
     <script src="js/OrbitControls.js"></script>
-    <script src="js/OrbitAndPanControls.js"></script>
+    <!--script src="js/OrbitAndPanControls.js"></script-->
     <script src="js/stats.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="js/touchclick.js"></script>
+    <script async src="js/scripts.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/main.css">
 </body>

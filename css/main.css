@@ -1,3 +1,15 @@
+body {
+    background: hsl(200,0%,94%);
+}
+
+.contain {
+    position: absolute;
+    top: 100px;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    z-index: 2;
+}
 .container {
     width: 100vw;
 }
@@ -11,34 +23,69 @@
     position: relative;
     top: 90px;
 }
-.warn-note {
-    font-size: 0.8em;
-    color: hsl(200,90%, 20%);
-    padding-left: 15px;
+
+.mid-contain {
+    background-image: url("/images/jumbotron1.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: calc(100vh * 0.35);
+
+}
+
+.mid-text {
+    background: rgba(0, 50, 100, 0.0);
+    display: block;
+    width: 100%;
+    height: calc(100vh * 0.35);
+    position: relative;
+
+}
+
+.mid-main {
+    color: white;
+    padding: 10% 5% 0% 30%;
+    font-weight: 400;
+    font-size: 1.5em;
+    text-align: center;
+    text-shadow: 0.5px 0.5px #000000;
+
+}
+
+.subtitle {
+    color: white;
+    font-size: 1em;
+    text-align: left;
+    padding: 10% 5% 20% 50%;
+    font-weight: 400;
+    text-shadow: 0.5px 0.5px #000000;
 }
 
 #image-contain {
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     opacity: 1;
     display: flex;
-    background: hsl(200, 10%, 70%);
-    position: relative;
-    top: 80px;
 }
 
 #d-contain {
-    width: 90%;
-    margin: auto;
+    width: 100%;
     z-index: 1;
     opacity: 1;
-    display: flex;
-    background: hsl(200, 10%, 70%);
 }
 
 canvas {
     display: block;
     margin: auto;
+}
+
+
+.editAccount {
+    display: none;
+    color: hsl(200, 100%, 40%);
+    background: hsl(1, 0%, 100%);
+    width: 100vw;
+    min-height: 100vh;
 }
 
 .head {
@@ -48,151 +95,206 @@ canvas {
     justify-content: center;
 }
 h1 {
-    font-size: 1.7em;
+    font-size: 1.5em;
+    margin: 0px;
 }
+
 h2 {
     color: hsl(200, 100%, 40%);
-    font-size: 1.9em;
+    font-size: 1.5em;
     font-weight: 300;
     margin: 0;
     position: relative;
-    padding-top: 5px;
-
+    margin-top: 15px;
 }
 
-h3 {
+.cure {
     color: hsl(200, 100%, 20%);
-    font-size: 1.9em;
-    font-weight: 300;
-    margin: 0;
-    padding-top: 5px;
-}
-
-.mid-main {
-    color: #FFFFFF;
-    font-weight: 300;
-    font-size: 1.7em;
-    text-align: center;
-    padding-right: 5%;
-    opacity: 1.0;
+    font-size: 1.5em;
+    padding-left: 0px;
 }
 
 .logo {
-    height: 30px;
-    padding-top: 5px;
-}
-
-
-.mid {
-    background-image: url("/images/jumbotron1.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 50vh;
-    position: relative;
-    top: 80px;
-}
-
-.mid-text {
-    background: rgba(0, 50, 100, 0.3);
-    display: block;
-    width: 60%;
-    height: 100%;
-    position: relative;
-    right: 10%;
-    left: 40%;
-    top: 0%;
+    height: 40px;
+    padding-top: 7px;
+    margin-left: 1%;
 }
 
 .contain-loggedIn {
     width: 100%;
-    min-height: 30px;
+    min-height: 50px;
     background-color: hsl(200, 50%, 95%);
     position: fixed;
     top: 50px;
     bottom: auto;
-    z-index: 2;
+    z-index: 3;
     color: hsl(200, 50%, 20%);
     font-weight: 200;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 .contain-half {
-    height: 100%;
-    width: 85%;
     display: flex;
-    position: relative
-    left: 20px;
-    padding-top: 5px;
+    padding-left: 10px;
+    min-height: 50px;
+    width: 85%;
+    padding-top: 0px;
+}
+
+.login-label {
+    padding-left: 10px;
+    padding-top: 0px;
+    color: hsl(200,100%,20%);
+    font-size: 1.1em;
+    font-weight: 300;
 }
 
 .selectedPat {
+    min-height: 50%;
     text-align: left;
     color: red;
+    padding-top: 0px;
+    padding-left: 0px;
+    font-weight: 300;
+    font-size: 1.1em;
+    word-break:break-all;
 }
 
-.loggedInAs
- {
-    text-align: left;
-    padding-left: 7px;
+.loggedInAs {
+    min-height: 50%;
+    cursor: pointer;
+    padding-left: 0px;
+    padding-top: 5px;
+    font-size: 1.1em;
+    font-weight: 300;
+    word-break:break-all;
 }
 
 .logout {
-width: 15%;
-padding-top: 5px;
-padding-right: 10px;
+    text-align: right;
+    cursor: pointer;
+    width: 15%;
+    padding-top: 15px;
+    margin-right: calc((100vw * 0.7) * 0.05 + 5px);
+    font-size: 1.1em;
+    font-weight: 400;
 }
 
 .account {
+    cursor: pointer;
     width: 15%;
     padding-top: 5px;
     margin-right: 15px;
 }
+.approve-but {
+    font-size: 1.1em;
+    background: hsl(200,100%,40%);
+    color: hsl(200,0%, 100%);
+    cursor: pointer;
+    outline: none !important;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    height: 30px;
+    text-align: center;
+    display: none;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 
 .canvas-text {
-    width: 90%;
-    margin: auto;
+    width: 100%;
     z-index: 2;
     opacity: 1;
-    display: flex;
-    background: hsl(200, 10%, 70%);
-    margin-top: 50px;
-    font-weight: 200;
-    padding-left: 20px;
+    text-align: center;
+    background: hsl(200, 100%, 80%);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 400;
+    margin-left: 15px;
+    color: hsl(200, 100%, 15%);;
 }
 
 .canvas-text2 {
     color: hsl(200, 80%, 20%);
     width: 90%;
-    margin: auto;
     z-index: 2;
     opacity: 1;
-    display: flex;
-    background: hsl(200, 10%, 70%);
-    font-weight: 200;
-    padding-left: 20px;
+    text-align: center;
+     background: hsl(200, 100%, 80%);
+    font-weight: 400;
+    margin-left: 15px;
+    padding-top: 20px;
 }
 
-.tx-notes-but {
-    margin-bottom: 10px;
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: hsl(200,70%,90%);
+    width: 90%;
+    margin: auto;
+    height:20px;
+    outline: none !important;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: hsl(200,90%,30%);
+    opacity: 0.5;
+    width: 50px;
+    height: 20px;
+    outline: none !important;
+}
+/*
+#slider-1 {
+    width: 90%;
+    height: 20px;
+}
+*/
+.zoom {
+    text-align: center;
+    color: hsl(210,80%,50%);
+    font-size: 1em;
+}
+
+.slideLRContain {
+    width: 80%;
+    margin: auto;
+    padding-top: 10px;
+}
+.slideVertContain {
+    padding-left: 5px;
+}
+
+#slideVert {
+    -webkit-appearance: slider-vertical;
+    width: 20px;
+    height: 175px;
+}
+
+
+.frame {
+    display: none;
+    width: 100%;
+    background: hsl(200, 100%, 80%);
 }
 
 .pat-events-title {
-    color: hsl(200, 80%, 20%);
-    font-size: 0.9em;
+    color: hsl(200, 100%, 20%);
+    font-size: 1.1em;
     margin-left: 25px;
-
 }
 
 .pat-events {
-    width: 90vw;
+    width: 90%;
     color: hsl(200, 80%, 20%);
     font-size: 0.8em;
     padding-left: 15px;
 }
-.selectedPat {
-padding-left: 15px;
-}
+
 
 .nav-menu {
     display: flex;
@@ -200,24 +302,30 @@ padding-left: 15px;
     height: 50px;
     background-color: hsl(200, 50%, 20%);
     position: fixed;
-    top: 0;
-    bottom: auto;
-    z-index: 2;
+    top: 0px;
+    z-index: 4;
 }
 
 .icon1Contain,
+.icon2Contain,
+.icon3Contain {
+    display: block;
+    width: 33%;
+    outline: none !important;
+    cursor: pointer;
+}
+.icon1Contain {
+    margin-left: 1%;
+    text-align: left;
+}
+
 .icon2Contain {
-    display: block;
-    width: 16%;
+    text-align: left;
 }
-
-.icon3Contain,
-.icon4Contain,
-.icon5Contain {
-    display: block;
-    width: 23%;
+.icon3Contain {
+    text-align: right;
+    margin-right: 5%;
 }
-
 .icon1,
 .icon2,
 .icon3,
@@ -225,17 +333,25 @@ padding-left: 15px;
 .icon5 {
     display: block;
     margin: auto;
-
     padding-top: 0px;
 }
 
 .i1,
 .i2,
-.i3,
-.i4,
-.i5 {
+.i3 {
+    padding-top: 17px;
+    padding-left: 20px;
+    font-size: 1em;
+    text-align: left;
+    width: 100%;
+
+}
+
+.i2 {
     text-align: center;
-    font-size: 0.7em;
+}
+.i3 {
+    text-align: right;
 }
 
 .icon5 {
@@ -272,54 +388,177 @@ p {
     color: hsl(200, 20%, 30%);*/
 }
 
-.subtitle {
-    color: #FFFFFF;
-    font-size: 1em;
-    text-align: center;
-    margin-right: 5%;
-    font-weight: 300;
-    text-shadow: 0.5px 0.5px #000000;
-    opacity: 1.0;
-}
+
 
 
 
 .nuFormContain {
-    position: relative;
+    display: none;
     color: hsl(200, 100%, 40%);
-    background: hsl(1, 0%, 90%);
-    top: 80px;
-    width: 100vw;
+    background: hsl(1, 0%, 100%);
+    width: 100%;
+    min-height: 100%;
 }
 
 .nuForm {
     display: block;
     opacity: 1;
-    width: 80%;
-    margin: auto;
+    width: 100%;
+
 }
 
 .nu-title {
     width: 95%;
     margin: auto;
-    margin-bottom: 10px;
+    color: hsl(200,100%,20%);
+    padding-top: 20px;
+    font-size: 1.5em;
+    font-weight: 400;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.nu-box-contain {
+    width: 100%;
+    display: flex;
+   flex-wrap: wrap;
+   margin-left: 5px;
 }
 
 .nu-text-box {
-    width: 100%;
+    cursor: pointer;
+    outline: none !important;
+    width: 45%;
     border-radius: 6px;
     border-style: solid;
     border-color: hsl(1,0%,80%);
     border-width: 1px;
-    color: hsl(200,0%,75%);
+    font-size: 1.1em;
+    color: hsl(200,100%,20%);
     text-align: center;
     background: hsl(200,0%,95%);
-    margin-bottom: 7px;
+    height: 35px;
+    margin-left: 8px;
+    margin-bottom: 10px;
 }
 
-.nu-box-contain {
-width: 70%;
-margin: auto;
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 10px 0px 10px 20px;
+    cursor: pointer;
+}
+
+#shipAddressCheck,
+#eshipAddressCheck  {
+    height: 20px;
+}
+
+.shipText {
+    width: 70%;
+    font-size: 1em;
+    margin: 6px 0px 10px 10px;
+}
+
+#billAddress,
+#shipAddress,
+#ebillAddress,
+#eshipAddress
+{
+    width: 92%;
+}
+#billState,
+#shipState,
+#ebillState,
+#eshipState
+ {
+    width: 15%;
+}
+
+#billCity,
+#shipCity,
+#ebillCity,
+#eshipCity
+{
+    width: 51%;
+}
+
+#billZip,
+#shipZip,
+#ebillZip,
+#eshipZip
+ {
+    width: 21%;
+}
+
+#nupassword {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+#nuemail {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+input:-webkit-autofill {
+    background-color: hsl(200,0%,95%);
+}
+
+.nu-text-box:focus {
+    background: hsla(54, 74%, 94%, 1);
+    border-style: solid;
+    border-color: hsl(1,0%,60%);
+    border-width: 0.5px;
+
+}
+
+.nu-text-box:-webkit-autofill {
+    background-color: rgb(54, 74, 94);
+    border-style: solid;
+    border-color: hsl(1,0%,60%);
+    border-width: 0.5px;
+
+}
+
+.nuButton,
+.updateAccount {
+    cursor: pointer;
+    outline: none !important;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    font-size: 1.1em;
+    color: hsl(200,0%,100%);
+    text-align: center;
+    background: hsl(200,100%,40%);
+    height: 35px;
+    width: 50%;
+    margin-left: 25%;
+}
+.updateAccount {
+    width: 50%;
+    margin-left: 25%;
+}
+.containUpdatButton {
+    width: 100%;
+    margin-top: 20px;
+}
+.nuSuccess,
+.nuFail,
+.update-fail,
+.upadate-success {
+
+}
+
+.editAccount {
+    max-width: 70%;
+    margin: auto;
+}
+
+.update-user-fail {
+    margin: 70px;
 }
 
 .form-head {
@@ -327,18 +566,6 @@ margin: auto;
     height: 40px;
     margin-left: 20px;
     width: 80%;
-}
-
-.log-form-head {
-    padding-left: 20px;
-    width: 60%;
-    margin: auto;
-    height: 100vh;
-}
-
-.main-contain {
-    width: 100vw;
-
 }
 
 .form-logo {
@@ -378,26 +605,36 @@ margin: auto;
 }
 
 .logInFormContain {
+    display: none;
     color: hsl(200, 100%, 20%);
-    position: relative;
-    top: 80px;
     width: 100vw;
 }
 
 .legend-log {
-    margin-bottom: 0px;
-   padding-bottom: 30px;
-    padding-top: 40px;
-    font-size: 1.5em;
+    font-weight: 400;
+   padding-bottom: 5px;
+    margin-top: 20px;
+    font-size: 1.8em;
+    color: hsl(200,100%,20%);
 }
 .legend-log-sub {
-    padding-bottom: 30px;
-    font-size: 0.9em;
+    margin-top: 6px;
+    padding-bottom: 10px;
+    font-size: 1.1em;
+    color: hsl(200,100%,40%);
+    outline: none !important;
+    cursor: pointer;
+}
+
+.log-form-head {
+    padding-left: 20px;
+    width: 70%;
+    margin: auto;
+    height: 100vh;
 }
 
 legend {
-    margin-bottom: 0px;
-    padding-top: 15px;
+
 }
 
 .legend-sub {
@@ -412,8 +649,108 @@ legend {
 .login {
     display: block;
 }
-.logInButton,
-.nuButton {
+
+#loginEmail {
+    outline: none !important;
+    cursor: pointer;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    font-size: 1.1em;
+    color: hsl(200,100%,20%);
+    text-align: center;
+    background: hsl(1,0%,95%);
+    margin-bottom: 15px;
+    margin-top: 5px;
+    width: 90%;
+    height: 30px;
+}
+
+#loginPassword {
+    outline: none !important;
+    cursor: pointer;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    font-size: 1.1em;
+    color: hsl(200,100%,20%);
+    text-align: center;
+    background: hsl(1,0%,95%);
+    margin-bottom: 15px;
+    width: 90%;
+    height: 30px;
+}
+
+#loginPassword:focus {
+    outline: none !important;
+    background: hsla(54, 74%, 94%, 1);
+    border-style: solid;
+    border-color: hsl(1,0%,60%);
+    border-width: 0.5px;
+}
+#loginEmail:focus {
+    outline: none !important;
+    background: hsla(54, 74%, 94%, 1);
+    border-style: solid;
+    border-color: hsl(1,0%,60%);
+    border-width: 0.5px;
+}
+
+.logInButton {
+    cursor: pointer;
+    outline: none !important;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    color: hsl(1,0%,100%);
+    text-align: center;
+    background: hsl(200,100%,40%);
+    width: 90%;
+    min-height: 30px;
+    font-size: 1.1em;
+}
+
+#resetPassword{
+    display: none;
+    font-size: 1.1em;
+    font-weight: 400;
+    color: hsl(200,100%,20%);
+    width: 50%;
+    margin: auto;
+    height: calc(100vh - 200px);
+    cursor: pointer;
+    margin-top: 20px;
+}
+#resetPasswordTitle {
+    margin-bottom: 20px;
+
+}
+
+#resetPasswordEmail {
+    cursor: pointer;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    font-size: 1.1em;
+    color: hsl(200,100%,20%);
+    text-align: center;
+    background: hsl(1,0%,95%);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    min-height: 30px;
+    width: 100%;
+}
+
+.but-style,
+#resetPassBut,
+#changePassBut,
+#changeEmailBut {
+    cursor: pointer;
+    outline: none !important;
     border-radius: 6px;
     border-style: solid;
     border-color: hsl(1,0%,80%);
@@ -421,9 +758,72 @@ legend {
     color: hsl(1,0%,100%);
     text-align: center;
     background: hsl(200,100%,30%);
-    margin-bottom: 30px;
-    width: 90%;
+    width: 100%;
+    min-height: 30px;
+    font-size: 1.1em;
+    margin-top: 10px;
 }
+
+#changePass,
+#changeEmail {
+    display: none;
+    font-size: 1.1em;
+    font-weight: 400;
+    color: hsl(200,100%,20%);
+    width: 50%;
+    margin: auto;
+    height: 100vh;
+    cursor: pointer;
+}
+
+#changePassTitle,
+#changeEmailTitle {
+    margin: 10px 0px 10px 0px;
+}
+
+#changePassEmail,
+#changePassOldPass,
+#changePassNewPass,
+#changeEmailEmailOld,
+#changeEmailPassword,
+#changeEmailEmailNew {
+    cursor: pointer;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    font-size: 1.1em;
+    color: hsl(200,100%,20%);
+    text-align: center;
+    background: hsl(1,0%,95%);
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin: 10px 0px 10px 0px;
+    height: 30px;
+    width: 100%;
+}
+
+#changeEmailLink,
+#changePassLink {
+
+}
+
+#resetPassSuccess,
+#changePassSuccess,
+#changeEmailSuccess {
+    display: hide;
+    margin-top: 20px;
+    width: 90%;
+    color: green;
+}
+
+
+
+.login-fail {
+    color: red;
+}
+
+
 
 .link-upload {
     width: 25%;
@@ -439,60 +839,93 @@ legend {
     font-weight: 100
 }
 
+.add-pat {
+    cursor: pointer;
+    outline: none !important;
+    width: 40%;
+    font-size: 1.1em;
+    background: hsl(200, 100%, 40%);
+    color: hsl(200,0%,100%);
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    height: 30px;
+    margin-left: 50px;
+    position: relative;
+    top: 0px;
+    font-weight: 400;
+    text-align: center;
+}
+
 .pat-list-contain {
-    background: hsl(200, 80%, 60%);
-    height: 100vh;
-    width: 100vw;
-    color: white;
-    overflow: auto;
+    display: none;
+    background: hsl(200, 0%, 100%);
+    min-height: 100%;
+    width: 100%;
+    color: hsl(200,100%,20%);
+    font-weight: 300;
+    padding-top: 30px;
+}
+
+.pat-list-head {
+    display: flex;
+    margin-left: 15px;
 }
 
 .pat-list-title {
-    font-size: 1.5em;
-    padding-left: 20px;
-    padding-top: 20px;
+    font-size: 1.8em;
+    font-weight: 400;
 }
 
 .pat-list-item-box {
-    margin-left: 0px;
     width: 90%;
     height: 45px;
-    padding-left: 20px;
+    padding-left: 40px;
     padding-top: 10px;
+}
+.pat-list-welcome {
+    font-weight: 300;
+    font-size: 1em;
+    color: hsl(1,0%,80%);
+}
+
+.pat-list-warn {
+    font-weight: 300;
+    font-size: 1em;
+    color: hsl(1,0%,80%);
+    padding-left: 15px;
 }
 
 .pat-list-item {
-    font-size: 0.8em;
-    color: white;
-    padding-top: 10px;
-    height: 35px;
+    background: hsl(200,0%,94%);
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 400;
+    color: hsl(200,100%,20%);
+    padding-top: 3px;
+    min-height: 20px;
     width: 100%;
-    background: hsl(200, 50%, 40%);
-    padding-left: 10px;
-
+    margin-bottom: 12px;
+    padding-left: 12px;
+    border-radius: 6px;
 }
 
-.pat-list-text {
-    color: white;
-    font-size: 1em;
-    padding-left: 10px;
+.pat-list-id {
+    color: hsl(200, 0%, 70%);
+    font-size: 0.8em;
+    padding-left: 17px;
 }
 
 .patUser {
     font-size: 0.8;
-    color: hsl(200,70%,15%);
-    font-weight: 200;
-    padding-left: 20px;
+    color: hsl(190,100%,40%);
+    font-weight: 300;
+    padding-left: 15px;
 }
 
-.showUpload {
-    margin-left: 20%;
-    margin-bottom: 8px;
-    font-size: 0.9em;
-    border-radius: 5px;
-    background: hsl(205, 90%, 70%);
-    height: 30px;
-}
+
+
 .email {
     margin-left: 20%;
     margin-bottom: 8px;
@@ -501,19 +934,54 @@ legend {
     background: hsl(205, 90%, 70%);
     height: 30px;
 }
-.tx-note-show-but {
-    margin-left: 10px;
+.chart-buts {
+    width: 95%;
+    margin: auto;
     margin-bottom: 8px;
-    font-size: 0.9em;
-    border-radius: 5px;
-    background: hsl(195, 90%, 60%);
-    height: 30px;
-}
-.pat-list-welcom {
 
+}
+
+.showUpload {
+    margin-left: 8px;
+    width: 45%;
+    font-size: 1.1em;
+    background: hsl(200,100%,40%);
+    color: hsl(200,0%, 100%);
+    cursor: pointer;
+    outline: none !important;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    height: 30px;
+    text-align: center;
+    display: hidden;
+}
+
+.tx-note-show-but {
+    margin-left: 8px;
+    width: 45%;
+    font-size: 1.1em;
+    background: hsl(200,100%,40%);
+    color: hsl(200,0%, 100%);
+    cursor: pointer;
+    outline: none !important;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    height: 30px;
+    text-align: center;
+    display: hidden;
+}
+
+.pat-list-text {
+    color: hsl(200,0%,50%);
+    font-size: 0.9em;
 }
 
 .admin-contain {
+    display: none;
     background: hsl(1,50%,50%);
     width: 100%;
     color: white;
@@ -539,7 +1007,7 @@ legend {
 }
 
 .doc-pat-list-item {
-    color: hsl(200,90%,80%);
+    color: hsl(200,0%,50%);
 }
 .doc-list-title {
     color: white;
@@ -621,32 +1089,71 @@ sup {
     width: 100%;
 }
 
-.nuPat {
+.np-form {
     width: 90%;
-    padding-left: 20px;
-    color: white;
+    font-weight: 300;
+    font-size: 1.1;
+    margin: auto;
 }
 
-.upload-head {
-    background: hsl(205, 60%, 40%);
-    min-height: 400px;
+.np-head {
+    display: none;
+    padding-top: 30px;
+    background: hsl(1,0%, 100%);
+    min-height: 100vh;
     width: 100vw;
-    height: 100vh;
-    display: block;
-    color: white;
+    color: hsl(200, 100%, 20%);
+}
+
+.np-title {
+    padding-top: 30px;
+padding-bottom: 30px;
+font-size: 1.8em;
+font-weight: 400;
+margin-left: 30px;
 }
 
 .patFirstName,
 .patLastName,
 .patDob,
-.patRx {
-    background: hsl(205, 60%, 50%);
+#np-but  {
+    cursor: pointer;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    font-size: 1.1em;
+    font-weight: 400;
+    color: hsl(200,100%,20%);
+    text-align: center;
+    background: hsl(1,0%,95%);
+    position: relative;
+    width: 70%;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    height: 35px;
 }
 
-.nuPatInfo {
-    width: 120px;
-    background: hsl(75, 100%, 30%);
-    border-radius: 10px;
+.patFirstName:focus,
+.patLastName:focus,
+.patDob:focus,
+#np-but:focus  {
+    outline: none !important;
+    background: hsla(54, 74%, 94%, 1);
+    border-style: solid;
+    border-color: hsl(1,0%,60%);
+    border-width: 0.5px;
+}
+#np-but {
+    background: hsl(200,100%,40%);
+    color: hsl(200,0%,100%);
+}
+.np-success,
+.np-success2 {
+    margin-top: 20px;
+    margin-left: 20px;
+    color: green;
+    font-size: 1em;
 }
 
 .patSelect {
@@ -666,30 +1173,34 @@ ul {
 }
 
 .files-contain {
-    background: hsl(200, 80%, 50%);
-    color: white;
-    font-size: 1em;
+    background: hsl(200, 0%, 100%);
     width: 100vw;
     min-height: 100vh;
-    padding-bottom: 50px;
+    padding-bottom: 30px 10px 50px 15px;
 }
 
-.files-head {
+.chart-head {
     width: 100%;
-    color: white;
-    padding-left: 0px;
-    padding-top: 10px;
-    font-size: 1.4em;
-    display: flex;
 }
 
+.chart {
+    display: none;
+}
 
-
-.pat-info-title {
-    font-size: 1.2em;
+.pat-info-title,
+.chart-title {
+    font-size: 1.8em;
     padding-left: 15px;
-    line-height: 1;
-    padding-top: 28px;
+    padding-top: 30px;
+    font-weight: 400;
+    color: hsl(200,100%,20%);
+}
+
+.pat-chart-subtitle {
+    padding-left: 15px;
+    font-size: 1.1em;
+    color: hsl(200,0%,50%);
+    font-weight: 300;
 }
 
 .files-sub {
@@ -705,82 +1216,78 @@ ul {
 }
 
 .upload-here {
-    background: hsl(200, 80%, 80%);
+    background: hsl(200, 80%, 93%);
     padding-top: 15px;
     padding-left: 20px;
-    margin-left: 20px;
+    margin-left: 15px;
     margin-top: 20px;
     color: hsl(200,100%, 20%);
-    font-size: 1.1em;
+    font-size: 1.2em;
+    font-weight: 400;
     display: none;
-    width: 80%;
+    width: 90%;
+    border-radius: 6px;
 }
 
 .note-contain {
-    background: hsl(190, 80%, 80%);
-    padding-top: 15px;
-    padding-left: 20px;
-    margin-left: 20px;
-    margin-top: 20px;
+    background: hsl(190, 80%, 95%);
+    margin-left: 15px;
+    margin-top: 25px;
     color: hsl(200,100%, 20%);
     font-size: 1.1em;
     display: none;
-    width: 80%;
+    width: 90%;
+    border-radius: 6px;
 }
 
-#loginEmail {
+.warn-note {
+    font-size: 0.8em;
+    width: 220px;
+    color: hsl(200,100%, 20%);
+}
+
+.tx-notes {
+    padding: 15px;
+}
+
+#tx-notes {
+    width: 100%;
+    margin-top: 5px;
+    background: hsla(200, 40%,95%, 0.5);
+    border-radius: 6px;
+}
+
+.tx-notes-but {
+    margin-bottom: 10px;
+    cursor: pointer;
+    outline: none !important;
     border-radius: 6px;
     border-style: solid;
     border-color: hsl(1,0%,80%);
     border-width: 1px;
-    color: hsl(1,0%,80%);
+    color: hsl(200,0%,100%);
     text-align: center;
-    background: hsl(1,0%,95%);
-    margin-bottom: 30px;
-    width: 90%;
+    background: hsl(200,100%,40%);
+    width: 150px;
+    height: 30px;
+    font-size: 1.1em;
+    margin-top: 8px;
+    font-weight: 400;
 }
-
-#loginPassword {
-    border-radius: 6px;
-    border-style: solid;
-    border-color: hsl(1,0%,80%);
-    border-width: 1px;
-    color: hsl(1,0%,80%);
-    text-align: center;
-    background: hsl(1,0%,95%);
-    margin-bottom: 30px;
-    width: 90%;
-}
-
-
-
-#loginPassword:focus {
-    outline: none !important;
-    background: hsla(54, 74%, 94%, 1);
-    border-style: solid;
-    border-color: hsl(1,0%,60%);
-    border-width: 0.5px;
-}
-#loginEmail:focus {
-    outline: none !important;
-    background: hsla(54, 74%, 94%, 1);
-    border-style: solid;
-    border-color: hsl(1,0%,60%);
-    border-width: 0.5px;
-}
-
 
 .pat-info-name {
-    font-size: 0.9em;
+    font-size: 1.1em;
     margin-left: 15px;
-    color: hsl(200,70%,15%);
+    color: hsl(1,100%,50%);
+    font-weight: 300;
 }
 
 .pat-dob {
-    font-size: 0.8em;
-    color: hsl(200,70%,15%);
+    font-size: 1.1em;
     margin-left: 15px;
     width: 69%;
+    color: hsl(1,0%,50%);
+    font-weight: 300;
 }
 
 .pat-info-files {
@@ -817,16 +1324,15 @@ ul {
 }
 
 #select-file-name {
-    margin-left: 20px;
+    margin-left: 27px;
     font-size: 1em;
-    width: 200px;
-    height: 50px;
+    font-weight: 400;
+    width: 175px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
 }
 
-#select-file-name option {
-    font-size: 50px;
-    height: 50px;
-}
 
 .event-item {
     font-size: 1em;
@@ -837,42 +1343,51 @@ ul {
     padding: 5px;
 }
 
-.pat-event-data {
-   padding-left: 12px;
-   color: hsl(200, 100%, 60%);
-}
 .pat-event {
      padding-left: 12px;
+     padding-bottom: 4px;
 }
+
 .pat-event-status {
     padding-left: 12px;
+    padding-bottom: 4px;
 }
+
 .pat-event-name {
-    padding-left: 12px;
-    color: white;
+    padding-right: 8px;
+    padding-top: 7px;
+    margin-left: 60px;
+    padding-bottom: 4px;
+    color: hsl(185, 80%, 26%);
 }
+
 .pat-event-data {
     padding-left: 12px;
-    color: white;
+    padding-bottom: 4px;
+    color: hsl(200, 0%, 70%);
 }
 
 .pat-event-date {
     padding-left: 12px;
-    color: white;
+    padding-top: 8px;
+    color: hsl(200,0%,20%);
 }
 
 .event-box {
     cursor: pointer;
-    margin-top: 8px;
+    margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     margin-right: 20px;
-    font-size: 0.9em;
     display: flex;
     margin-left: 8px;
-    padding-left: 8px;
-    background: hsl(200,70%, 30%);
+    padding-left: 12px 8px 8px 12px;
+    background: hsl(200,0%,92%);
+    word-break:break-all;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1.1em;
 }
 
 .file-item-note {
@@ -907,56 +1422,6 @@ option {
     height: 50px;
 }
 
-canvas {
-    margin: auto;
-}
-
-
-/*  scroll arrow stuff here
-
-
-
-*/
-
-.arrow-wrap {
-    position: absolute;
-    z-index: 1;
-    left: 50%;
-    top: 380px;
-    margin-left: -5em;
-    background: #111;
-    width: 10em;
-    height: 10em;
-    padding: 4em 2em;
-    border-radius: 50%;
-    font-size: 0.5em;
-    display: block;
-    box-shadow: 0px 0px 5px 0px #333;
-}
-
-.arrow {
-    float: left;
-    position: relative;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 3em 3em 0 3em;
-    border-color: #ffffff transparent transparent transparent;
-    -webkit-transform: rotate(360deg)
-}
-
-.arrow:after {
-    content: '';
-    position: absolute;
-    top: -3.2em;
-    left: -3em;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 3em 3em 0 3em;
-    border-color: #111 transparent transparent transparent;
-    -webkit-transform: rotate(360deg)
-}
 
 .hint {
     position: absolute;
@@ -975,112 +1440,58 @@ img {
     horizontal-align: center;
 }
 
-.arrow-wrap:hover .hint {
-    opacity: 1;
+.user-acct-contain {
+    display: none;
 }
 
-@-webkit-keyframes arrows {
-    0% {
-        top: 0;
+@media screen and (min-width: 500px) {
+    .nav-menu {
+    width: 70%;
+    margin: auto;
+    right: 15%;
     }
-    10% {
-        top: 12%;
+
+    .contain {
+    max-width: 70%;
+    margin-left: auto;
+    right: 15%;
+    background: white;
     }
-    20% {
-        top: 0;
+
+    .contain-loggedIn {
+        max-width: 70%;
+        margin-left: auto;
     }
-    30% {
-        top: 12%;
+
+    .nuFormContain {
+    max-width: 500px;
+    margin: auto;
     }
-    40% {
-        top: -12%;
+
+    .logInFormContain {
+        max-width: 400px;
+        margin: auto;
     }
-    50% {
-        top: 12%;
+    .pat-list-contain {
+         max-width: 500px;
+    margin: auto;
     }
-    60% {
-        top: 0;
+    .chart {
+        max-width: 500px;
+    margin: auto;
     }
-    70% {
-        top: 12%;
+    .logout {
+    margin-right: calc((100vw * 0.7) * 0.05);
     }
-    80% {
-        top: -12%;
-    }
-    90% {
-        top: 12%;
-    }
-    100% {
-        top: 0;
+    .editAccount {
+    max-width: 500px;
+    margin: auto;
     }
 }
 
-.arrow-wrap .arrow {
-    -webkit-animation: arrows 2.8s 0.4s;
-    -webkit-animation-delay: 3s;
-}
-
-
-/*
-@media screen and (min-width: 768px) {
-    h1 {
-        margin-left: 10%;
-    }
-    .btn-primary {
-        float: left;
-        margin-left: 35%;
-    }
-
-    .top {
-        background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0));
-        max-height: 140px;
-        opacity: .8;
-        float: none;
-        margin-right: -15px;
-        margin-left: -15px;
-    }
-    img {
-        max-height: 60px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    h2 {
-        color: hsl(200, 100%, 40%);
-        font-size: 3em;
-        font-weight: 200;
-        padding-left: 10px;
-        padding-right: 0;
-        position: absolute;
-        top: 17px;
-        left: 80px;
-        margin: 0;
-        margin-top: 8px;
-    }
-    h3 {
-        color: hsl(200, 100%, 20%);
-        font-size: 3em;
-        font-weight: 200;
-        padding-left: 0;
-        padding-right: 0;
-        position: absolute;
-        top: 17px;
-        left: 195px;
-        margin: 0;
-        margin-top: 8px;
-    }
-    h6 {
-        position: absolute;
-        top: 50px;
-        left: 95px;
-        margin: 0;
-        margin-top: 18px;
-        font-size: 1em;
-        font-weight: 200;
-        color: hsl(200, 100%, 20%);
-    }
-    h5 {
-        left: 10%;
-        font-size: 1.5em;
+@media screen and (min-width: 1000px) {
+    .nu-form {
+    max-width: 600px;
+    margin: auto;
     }
 }
-*/
