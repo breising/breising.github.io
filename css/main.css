@@ -1,12 +1,13 @@
 body {
     background: hsl(200,0%,94%);
+    font-family: helvetica;
 }
 
 .contain {
     position: absolute;
     top: 100px;
     width: 100vw;
-    height: 100vh;
+    min-height: calc(100vh - 100px);
     background: white;
     z-index: 2;
 }
@@ -25,7 +26,7 @@ body {
 }
 
 .mid-contain {
-    background-image: url("/images/jumbotron1.jpg");
+    background-image: url("/images/jumbotron2.jpg");
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -36,7 +37,8 @@ body {
 .mid-text {
     background: rgba(0, 50, 100, 0.0);
     display: block;
-    width: 100%;
+    width: 60%;
+    margin-left: 40%;
     height: calc(100vh * 0.35);
     position: relative;
 
@@ -44,21 +46,37 @@ body {
 
 .mid-main {
     color: white;
-    padding: 10% 5% 0% 30%;
-    font-weight: 400;
-    font-size: 1.5em;
-    text-align: center;
+    padding: 0% 5% 0% 0%;
+    font-weight: 300;
+    font-size: 1.7em;
+    text-align: left;
     text-shadow: 0.5px 0.5px #000000;
+    position: relative;
+    top: 20%;
 
+
+}
+
+.mid-main2 {
+    color: white;
+    padding: 0% 5% 0% 0%;
+    font-weight: 300;
+    font-size: 1.7em;
+    text-align: left;
+    text-shadow: 0.5px 0.5px #000000;
+    position: relative;
+    top: 20%;
+    margin-top: 10px;
 }
 
 .subtitle {
     color: white;
     font-size: 1em;
     text-align: left;
-    padding: 10% 5% 20% 50%;
+    padding: 10% 5% 20% 30px;
     font-weight: 400;
     text-shadow: 0.5px 0.5px #000000;
+    margin-left: 30px;
 }
 
 #image-contain {
@@ -139,6 +157,7 @@ h2 {
     min-height: 50px;
     width: 85%;
     padding-top: 0px;
+    cursor: pointer;
 }
 
 .login-label {
@@ -161,7 +180,7 @@ h2 {
 }
 
 .loggedInAs {
-    min-height: 50%;
+    height: 50%;
     cursor: pointer;
     padding-left: 0px;
     padding-top: 5px;
@@ -205,35 +224,33 @@ h2 {
     margin-bottom: 10px;
 }
 
-
-.canvas-text {
+.textContain {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     z-index: 2;
     opacity: 1;
-    text-align: center;
-    background: hsl(200, 100%, 80%);
-    padding-top: 10px;
-    padding-bottom: 10px;
+    background: hsl(200, 70%, 65%);
     font-weight: 400;
-    margin-left: 15px;
-    color: hsl(200, 100%, 15%);;
+}
+.canvas-text {
+    margin-left: 10px;
+    margin-top: 10px;
+    background: hsl(200, 70%, 65%);
+
 }
 
 .canvas-text2 {
-    color: hsl(200, 80%, 20%);
-    width: 90%;
-    z-index: 2;
-    opacity: 1;
+    margin-left: 10px;
+    padding-bottom: 10px;
+    color: hsl(210,100%,40%);
     text-align: center;
-     background: hsl(200, 100%, 80%);
-    font-weight: 400;
-    margin-left: 15px;
-    padding-top: 20px;
+
 }
 
 input[type=range] {
     -webkit-appearance: none;
-    background-color: hsl(200,70%,90%);
+    background-color: hsl(210,60%,90%);
     width: 90%;
     margin: auto;
     height:20px;
@@ -242,7 +259,7 @@ input[type=range] {
 
 input[type="range"]::-webkit-slider-thumb {
      -webkit-appearance: none;
-    background-color: hsl(200,90%,30%);
+    background-color: hsl(220,100%,50%);
     opacity: 0.5;
     width: 50px;
     height: 20px;
@@ -256,8 +273,9 @@ input[type="range"]::-webkit-slider-thumb {
 */
 .zoom {
     text-align: center;
-    color: hsl(210,80%,50%);
+    color: hsl(210,100%,40%);
     font-size: 1em;
+    padding-bottom: 10px;
 }
 
 .slideLRContain {
@@ -279,7 +297,7 @@ input[type="range"]::-webkit-slider-thumb {
 .frame {
     display: none;
     width: 100%;
-    background: hsl(200, 100%, 80%);
+    background: hsl(200, 70%, 65%);
 }
 
 .pat-events-title {
@@ -397,7 +415,7 @@ p {
     color: hsl(200, 100%, 40%);
     background: hsl(1, 0%, 100%);
     width: 100%;
-    min-height: 100%;
+    /*height: calc(100vh - 100px);*/
 }
 
 .nuForm {
@@ -422,7 +440,6 @@ p {
     width: 100%;
     display: flex;
    flex-wrap: wrap;
-   margin-left: 5px;
 }
 
 .nu-text-box {
@@ -449,6 +466,14 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
+.firstLabel,
+.lastLabel  {
+    width: 45%;
+    padding-left: 20px;
+    color: hsl(210,70%,70%);
+    font-weight: 100;
+}
+
 #shipAddressCheck,
 #eshipAddressCheck  {
     height: 20px;
@@ -463,43 +488,91 @@ input[type="checkbox"] {
 #billAddress,
 #shipAddress,
 #ebillAddress,
-#eshipAddress
+#eshipAddress,
+.addressLabel
 {
     width: 92%;
 }
+
+
+.addressLabel {
+    margin-left: 20px;
+    color: hsl(210,70%,70%);
+    font-weight: 100;
+}
+
 #billState,
 #shipState,
 #ebillState,
-#eshipState
+#eshipState,
+.stateLabel
  {
     width: 15%;
+    margin-left: 8px;
 }
 
 #billCity,
 #shipCity,
 #ebillCity,
-#eshipCity
+#eshipCity,
+.cityLabel
 {
     width: 51%;
+    margin-left: 8px;
 }
 
 #billZip,
 #shipZip,
 #ebillZip,
-#eshipZip
+#eshipZip,
+.zipLabel
  {
     width: 21%;
+    margin-left: 8px;
 }
 
-#nupassword {
+.officePhoneLabel,
+.mobilePhoneLabel {
+    width: 45%;
+    color: hsl(210,70%,70%);
+    font-weight: 100;
+}
+
+.emailLabel,
+.passwordLabel {
+    width: 45%;
     margin-top: 20px;
+    padding-left: 20px;
+    color: hsl(210,70%,70%);
+    font-weight: 100;
+}
+
+#nupassword,
+#nuemail  {
     margin-bottom: 30px;
 }
 
-#nuemail {
-    margin-top: 20px;
-    margin-bottom: 30px;
+.cityLabel {
+    padding-left: 20px;
+    color: hsl(210,70%,70%);
+    font-weight: 100;
 }
+
+.officePhoneLabel,
+.mobilePhoneLabel {
+    padding-left: 20px;
+    color: hsl(210,70%,70%);
+    font-weight: 100;
+}
+
+.stateLabel,
+.zipLabel {
+    padding-left: 4px;
+    color: hsl(210,70%,70%);
+    font-weight: 100;
+}
+
+
 
 input:-webkit-autofill {
     background-color: hsl(200,0%,95%);
@@ -537,6 +610,11 @@ input:-webkit-autofill {
     width: 50%;
     margin-left: 25%;
 }
+
+.nuButton {
+    margin-bottom: 30px;
+}
+
 .updateAccount {
     width: 50%;
     margin-left: 25%;
@@ -553,8 +631,7 @@ input:-webkit-autofill {
 }
 
 .editAccount {
-    max-width: 70%;
-    margin: auto;
+    max-width: 100%;
 }
 
 .update-user-fail {
@@ -604,11 +681,7 @@ input:-webkit-autofill {
     margin-top: 8px;
 }
 
-.logInFormContain {
-    display: none;
-    color: hsl(200, 100%, 20%);
-    width: 100vw;
-}
+
 
 .legend-log {
     font-weight: 400;
@@ -630,7 +703,6 @@ input:-webkit-autofill {
     padding-left: 20px;
     width: 70%;
     margin: auto;
-    height: 100vh;
 }
 
 legend {
@@ -713,6 +785,39 @@ legend {
     font-size: 1.1em;
 }
 
+#logNewAccount {
+    cursor: pointer;
+    outline: none !important;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    color: hsl(1,0%,100%);
+    text-align: center;
+    background: hsl(180,100%,40%);
+    width: 70%;
+    min-height: 30px;
+    font-size: 1.1em;
+    margin-left: 10%;
+}
+
+#exampleBut {
+    cursor: pointer;
+    outline: none !important;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    color: hsl(1,0%,100%);
+    text-align: center;
+    background: hsl(220,50%,60%);
+    width: 70%;
+    min-height: 30px;
+    font-size: 1.1em;
+    margin-top: 30px;
+    margin-left: 10%;
+}
+
 #resetPassword{
     display: none;
     font-size: 1.1em;
@@ -724,9 +829,9 @@ legend {
     cursor: pointer;
     margin-top: 20px;
 }
+
 #resetPasswordTitle {
     margin-bottom: 20px;
-
 }
 
 #resetPasswordEmail {
@@ -880,7 +985,7 @@ legend {
 
 .pat-list-item-box {
     width: 90%;
-    height: 45px;
+
     padding-left: 40px;
     padding-top: 10px;
 }
@@ -985,7 +1090,7 @@ legend {
     background: hsl(1,50%,50%);
     width: 100%;
     color: white;
-    min-height: 100vh
+    margin-top: 50px;
     }
 
 .doctor-list {
@@ -1103,6 +1208,7 @@ sup {
     min-height: 100vh;
     width: 100vw;
     color: hsl(200, 100%, 20%);
+    width: 70%;
 }
 
 .np-title {
@@ -1110,7 +1216,7 @@ sup {
 padding-bottom: 30px;
 font-size: 1.8em;
 font-weight: 400;
-margin-left: 30px;
+margin-left: 40%;
 }
 
 .patFirstName,
@@ -1129,9 +1235,10 @@ margin-left: 30px;
     background: hsl(1,0%,95%);
     position: relative;
     width: 70%;
-    margin-left: 30px;
+    margin-left: 40%;
     margin-bottom: 20px;
     height: 35px;
+    max-width: 300px;
 }
 
 .patFirstName:focus,
@@ -1242,7 +1349,7 @@ ul {
 
 .warn-note {
     font-size: 0.8em;
-    width: 220px;
+    width: 90%;
     color: hsl(200,100%, 20%);
 }
 
@@ -1258,6 +1365,7 @@ ul {
 }
 
 .tx-notes-but {
+    display: none;
     margin-bottom: 10px;
     cursor: pointer;
     outline: none !important;
@@ -1268,7 +1376,23 @@ ul {
     color: hsl(200,0%,100%);
     text-align: center;
     background: hsl(200,100%,40%);
-    width: 150px;
+    height: 30px;
+    font-size: 1.1em;
+    margin-top: 8px;
+    font-weight: 400;
+}
+.emailDocBut {
+    display: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    outline: none !important;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: hsl(1,0%,80%);
+    border-width: 1px;
+    color: hsl(200,0%,100%);
+    text-align: center;
+    background: hsl(1,100%,40%);
     height: 30px;
     font-size: 1.1em;
     margin-top: 8px;
@@ -1444,34 +1568,43 @@ img {
     display: none;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
     .nav-menu {
+    max-width: 1000px;
     width: 70%;
-    margin: auto;
-    right: 15%;
+    right: 18%;
     }
 
     .contain {
-    max-width: 70%;
-    margin-left: auto;
-    right: 15%;
+    max-width: 1000px;
+    width: 70%;
+    right: 18%;
     background: white;
     }
 
     .contain-loggedIn {
-        max-width: 70%;
-        margin-left: auto;
+        max-width: 1000px;
+        width: 70%;
+        right: 18%;
     }
 
-    .nuFormContain {
+    .nuForm {
     max-width: 500px;
+    width: 70%;
     margin: auto;
     }
 
-    .logInFormContain {
-        max-width: 400px;
-        margin: auto;
+    .loginform {
+
     }
+    .logInFormContain {
+    display: none;
+    color: hsl(200, 100%, 20%);
+    max-width: 400px;
+    height: calc(100vh - 100px);
+    margin: auto;
+    }
+
     .pat-list-contain {
          max-width: 500px;
     margin: auto;
@@ -1479,6 +1612,8 @@ img {
     .chart {
         max-width: 500px;
     margin: auto;
+    min-height: calc(100vh - 100px);
+
     }
     .logout {
     margin-right: calc((100vw * 0.7) * 0.05);
@@ -1487,11 +1622,28 @@ img {
     max-width: 500px;
     margin: auto;
     }
-}
 
-@media screen and (min-width: 1000px) {
+    .mid-main,
+    .mid-main2 {
+        padding-left: 30px;
+    font-weight: 100;
+    font-size: 2em;
+    }
+
+
+    .subtitle {
+
+    }
+
+@media screen and (min-width: 800px) {
     .nu-form {
     max-width: 600px;
     margin: auto;
+    }
+    .mid-main,
+    .mid-main2 {
+        padding-left: 30px;
+    font-weight: 100;
+    font-size: 2.5em;
     }
 }

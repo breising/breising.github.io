@@ -42,6 +42,10 @@ view.focusY = 0;
 view.focusX = 0;
 view.focusZ = 100;
 view.stl = '';
+view.isAdmin = null;
+view.currEventId = null;
+view.isExample = false;
+
 
 view.init = function() {
     view.renderer = '';
@@ -112,25 +116,25 @@ view.loadStlTeeth = function() {
     });
 }
 /*
-    view.loadStlBrackets = function() {
-      var oStlLoader = new THREE.STLLoader();
-      oStlLoader.load('models/Brackets.stl', function(geometry) {
-        var material = new THREE.MeshPhongMaterial({
-          transparent: true,
-          opacity: 1.0,
-          color: 0xFFFFFF,
-          specular: 0xFFFFFF,
-          shininess: 10
-        });
-        var mesh = new THREE.Mesh(geometry, material);
-        mesh.position.y = 50;
-         var object2 = new THREE.Object3D();
-        object2.add(mesh);
-        object2.rotation.x = -90 * Math.PI/180;
-        view.scene.add(object2);
-      });
-    }
-    */
+            view.loadStlBrackets = function() {
+              var oStlLoader = new THREE.STLLoader();
+              oStlLoader.load('models/Brackets.stl', function(geometry) {
+                var material = new THREE.MeshPhongMaterial({
+                  transparent: true,
+                  opacity: 1.0,
+                  color: 0xFFFFFF,
+                  specular: 0xFFFFFF,
+                  shininess: 10
+                });
+                var mesh = new THREE.Mesh(geometry, material);
+                mesh.position.y = 50;
+                 var object2 = new THREE.Object3D();
+                object2.add(mesh);
+                object2.rotation.x = -90 * Math.PI/180;
+                view.scene.add(object2);
+              });
+            }
+            */
 view.loadStlMounds = function() {
     var oStlLoader = new THREE.STLLoader();
     oStlLoader.load('models/Mounds.stl', function(geometry) {
@@ -286,7 +290,7 @@ view.hideAll = function() {
     $('.np-head').hide();
     $('.chart').hide();
     $('.frame').hide();
-    $('.admin-contain').hide();
+    //$('.admin-contain').hide();
     $('.user-account-contain').hide();
     $('.pat-chart-subtitle').hide();
     $('.pat-list-contain').hide();
@@ -334,6 +338,21 @@ view.evalUpload = function(url) {
         case 8:
             fileName = 'Ceph-2';
             break;
+        case 9:
+            fileName = 'Setup-1-upper';
+            break;
+        case 10:
+            fileName = 'Setup-1-lower';
+            break;
+        case 1:
+            fileName = 'Setup-2';
+            break;
+        case 12:
+            fileName = 'Setup-3';
+            break;
+        case 13:
+            fileName = 'Setup-4';
+            break;
     }
     if (fileName === '' || fileName === null || fileName === undefined) {
         console.log(fileName);
@@ -355,7 +374,7 @@ view.addEventFile = function(fileName, fileUrl) {
     var ref = view.dataRef.child('patients').child(patid).child('events');
     var subject = 'OrthoCure: file uploaded successfully';
     var email2 = 'info@orthocure.biz';
-    var content = 'A new file named ' + view.fileName + ' was upload to your account ' + view.currUserEmail + ' for patient: ' + view.currPatId;
+    var content = 'A new file named "' + view.fileName + '"" was upload to your account ' + view.currUserEmail + ' for patient: ' + view.currPatId + '\nwww.orthocure.biz';
     var eventID = ref.push({
         // 'ref.push' automatically creates an id that I store in pushId and is used to access the created date
         // this also saves the patId to Firebase/patients
@@ -488,7 +507,7 @@ view.savePatientInfov2 = function() {
 
     // create email response for the new patient event
     var subject = 'New OrthoCure patient submitted';
-    var content = 'Thank you! At ' + date + ' a new patient (' + view.currPatId + ') was submitted to your OrthoCure account: ' + view.currUserEmail + '. We look forward to working with you.';
+    var content = 'Thank you!\nDate/Time: ' + date + '\nNew patient ' + view.currPatId + ' was submitted to your OrthoCure account (' + view.currUserEmail + '). \nWe look forward to working with you.\nwww.orthocure.biz';
     var email2 = 'info@orthocure.biz';
     view.sendEmail(view.currUserEmail, email2, subject, content);
 
@@ -571,9 +590,11 @@ view.newUserFx = function() {
         } else {
             // create email response for the new patient event
             var subject = 'Welcome to OrthoCure!';
-            var content = 'Thank you for registering as an OrthoCure provider. We look forward to working with you. Your accoutn information: username = ' + view.currUserEmail + ' Password = ' + view.currUserPass;
+            var content = 'Thank you for registering as an OrthoCure provider.\nWe look forward to working with you.\nusername = ' + view.currUserEmail + '\nPassword = ' + view.currUserPass + '\nwww.orthocure.biz';
             view.sendEmail(userEmail, email2, subject, content);
             view.addInitialData(userData.uid);
+            view.hideAll();
+            $('.logInFormContain').show();
         }
     })
 }
@@ -626,12 +647,7 @@ view.addInitialData = function(uid) {
         officePhone: document.getElementById("phone").value,
         mobilePhone: document.getElementById("phone2").value,
         email: document.getElementById("nuemail").value,
-        password: document.getElementById("nupassword").value,
-        patList: {
-            Message: {
-                message: 'Doctor has zero patients'
-            }
-        }
+        password: document.getElementById("nupassword").value
     }, function(error) {
         if (error) {
             var ref = view.dataRef;
@@ -676,7 +692,7 @@ view.updateContact = function(item) {
             var email2 = 'info@orthocure.biz';
             var subject = 'OrthoCure: updated contact information';
             console.log(view.content);
-            var stuff = view.content;
+            var stuff = view.content + '\nwww.orthocure.biz';
             console.log(stuff);
             view.sendEmail(userEmail, email2, subject, stuff);
         }, 4000);
@@ -705,7 +721,7 @@ view.addupdatedData = function() {
             billAddress: ebillAdd
         }, function(error) {
             if (error) {
-                var item = '- billing address: update FAILED -';
+                var item = '\nbilling address: update FAILED';
                 view.updateContact(item);
 
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
@@ -713,9 +729,9 @@ view.addupdatedData = function() {
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - billing address: ' + ebillAdd;
+                var item = '\nbilling address: ' + ebillAdd;
                 view.updateContact(item);
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Billing address updated.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Billing address updated.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -733,15 +749,17 @@ view.addupdatedData = function() {
             billCity: ebillCity
         }, function(error) {
             if (error) {
+                var item = '\nbilling city: update FAILED';
+                view.updateContact(item);
 
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - billing city: ' + ebillCity;
+                var item = '\nbilling city: ' + ebillCity;
                 view.updateContact(item);
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -759,16 +777,18 @@ view.addupdatedData = function() {
             billState: ebillState
         }, function(error) {
             if (error) {
-                //content = content + '- billing state:  update FAILED';
+                var item = '\nbilling state: update FAILED';
+                view.updateContact(item);
+
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - billing state: ' + ebillState;
+                var item = '\nbilling state: ' + ebillState;
                 view.updateContact(item);
 
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -786,16 +806,18 @@ view.addupdatedData = function() {
             billZip: ebillZip
         }, function(error) {
             if (error) {
-                //content = content + '- billing zip:  update FAILED';
+                var item = '\nbilling zip: update FAILED';
+                view.updateContact(item);
+
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - billing zip: ' + ebillZip;
+                var item = '\nbilling zip: ' + ebillZip;
                 view.updateContact(item);
 
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -813,16 +835,18 @@ view.addupdatedData = function() {
             shipAddress: eshipAdd
         }, function(error) {
             if (error) {
-                //content = content + '- shipping address: update FAILED';
+                var item = '\nshipping address: update FAILED';
+                view.updateContact(item);
+
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - shipping address: ' + eshipAdd;
+                var item = '\nshipping address: ' + eshipAdd;
                 view.updateContact(item);
 
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -840,16 +864,17 @@ view.addupdatedData = function() {
             shipCity: eshipCity
         }, function(error) {
             if (error) {
-                //content = content + '- shipping city: update FAILED';
+                var item = '\nshipping city: update FAILED';
+                view.updateContact(item);
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - shipping city: ' + eshipCity;
+                var item = '\nshipping city: ' + eshipCity;
                 view.updateContact(item);
 
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -867,16 +892,18 @@ view.addupdatedData = function() {
             shipState: eshipState
         }, function(error) {
             if (error) {
-                //content = content + '- shipping state:  update FAILED';
+                var item = '\nshipping state: update FAILED';
+                view.updateContact(item);
+
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - shipping state: ' + eshipState;
+                var item = '\nshipping state: ' + eshipState;
                 view.updateContact(item);
 
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -894,16 +921,17 @@ view.addupdatedData = function() {
             shipZip: eshipZip
         }, function(error) {
             if (error) {
-                //content = content + '- shipping zip:  update FAILED';
+                var item = '\nshipping zip: update FAILED';
+                view.updateContact(item);
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - shipping zip: ' + eshipZip;
+                var item = '\nshipping zip: ' + eshipZip;
                 view.updateContact(item);
 
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -921,16 +949,17 @@ view.addupdatedData = function() {
             officePhone: ephone
         }, function(error) {
             if (error) {
-                //content = content + '- office phone:  update FAILED';
+                var item = '\noffice phone: update FAILED';
+                view.updateContact(item);
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - office phone: ' + ephone;
+                var item = '\noffice phone: ' + ephone;
                 view.updateContact(item);
 
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -948,16 +977,18 @@ view.addupdatedData = function() {
             mobilePhone: ephone2
         }, function(error) {
             if (error) {
-                //content = content + '- mobile phone:  update FAILED';
+                var item = '\nmobile phone: update FAILED';
+                view.updateContact(item);
+
                 $('.update-user-fail').append('<div class="update-fail" style="color: red">Error creating new user. Please try again.</div>');
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
                 }, 3000);
             } else {
-                var item = ' - mobile phone: ' + ephone2;
+                var item = '\nmobile phone: ' + ephone2;
                 view.updateContact(item);
 
-                $('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
+                //$('.update-user-fail').append('<div class="update-success" style="color: green">Success. Confirmation email sent.</div>');
                 // create email response for the new patient event
                 setTimeout(function() { // create a pause then erase success message
                     $('.update-user-fail').empty();
@@ -976,19 +1007,25 @@ view.logInUserFx = function(uid) {
     view.currUserId = null;
     view.currUserEmail = null;
     view.currUserPass = null;
+    $('.showHidden').hide();
 
 
-    //TODO  clear all inputs, hide button prn, reset pulldowns, reset header selectedPat and loggedInAs
     view.currUserPass = document.getElementById("loginPassword").value;
-    view.currUserEmail = 'breising1@mac.com'; //document.getElementById("loginEmail").value;
+    view.currUserEmail = document.getElementById("loginEmail").value;
 
     $('.patient').empty();
     $('.patient').append('<p class="patListItem"><a class="patListText0"> Your patients will appear here</a></p>');
 
+    if (view.isExample === true) {
+        view.currUserPass = '1234';
+        view.currUserEmail = 'jd@oc.com';
+    }
+
+
     var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
     ref.authWithPassword({
-        email: 'breising1@mac.com', //view.currUserEmail,
-        password: 'bcr0072' //view.currUserPass
+        email: view.currUserEmail,
+        password: view.currUserPass
     }, function(error, authData) {
         if (error) {
             $('.login-fail').text('Login attempt failed. Please try again.');
@@ -998,6 +1035,7 @@ view.logInUserFx = function(uid) {
             view.currUserEmail = null;
             view.currUserPass = null;
             view.currUserId = null;
+            $('.logInFormContain').show();
             setTimeout(function() { // create a pause then erase success message
                 $('.login-fail').text('');
             }, 4000);
@@ -1012,31 +1050,45 @@ view.logInUserFx = function(uid) {
             $('.logout').empty();
             $('.logout').text('Logout');
             $('.pat-list-contain').show();
-            $(window).scrollTop($(".pat-list-contain").offset().top - 100);
-            view.currUserId = authData.uid; //use this to have global access to the logged in user's id.
-            console.log(authData.uid);
-            view.authData = authData; // use this global to access email property for the $prepend "You are logged in as"
-            view.userMainFx(authData);
-            if (view.currUserId === '8dd3ae31-ba59-4423-a0e4-4e593df89482') {
-                view.doctorList(view.currUserId);
-            }
+
+
+            view.setCurrUser(authData.uid);
+
+            setTimeout(function() { // create a pause then erase success message
+                //console.log(view.isUserAdmin(view.currUserId));
+                if (view.isUserAdmin(authData.uid) === true) {
+                    view.doctorList(authData.uid);
+                }
+                view.userMainFx(authData);
+            }, 100);
         }
-        console.log(view.currUserId);
+
     });
 
     //$(window).scrollTop($(".pat-list-contain").offset().top - 90);
     $('.fp__btn').hide();
-
 }
 
-view.idArray = [];
+view.setCurrUser = function(id) {
+    view.currUserId = id;
+}
 
+view.isUserAdmin = function(id) {
+    if (id === '926f0819-2d69-4bef-a5b2-25a7c136abda') {
+        view.isAdmin = true;
+        return true;
+    } else {
+        view.isAdmin = false;
+        return false;
+    }
+}
 view.userMainFx = function(Data) {
+    console.log(view.currUserEmail + ', ' + view.currUserId);
     // Create the list of patients
     // read the Doctor's patient list and render to DOM
     $('.pat-list-item-box').empty(); // delete pre-existing data
     view.stopAnimate();
-    $('.pat-list-welcome').empty();
+    //$('.pat-list-welcome').empty();
     var uid = view.currUserId; // use this bc "." does not work inside the .child( ) method
     var ref = view.dataRef.child('users').child(uid).child('patList');
     var temp = '';
@@ -1044,25 +1096,25 @@ view.userMainFx = function(Data) {
             var patData = snapshot.val();
             console.log(patData);
             var counter = 0;
-            for (var w in patData) {
-                console.log(w);
-                counter = counter + 1;
-                console.log(counter);
+            if (patData === null) {
+                $('.pat-list-item-box').append('<li class="pat-list-item">You have zero patients</li>');
+            } else {
+                for (var w in patData) {
 
-                var ref = view.dataRef.child('users').child(uid).child('patList').child(w);
-                var temp = patData[w];
-                $('.pat-list-item-box').prepend('<li class="pat-list-item" onClick="view.selectFileNameFirst(this.id)" id="' + temp.patId + '">' + temp.patFirstName + ' ' + temp.patLastName + '</li>');
-                $('#' + temp.patId).append('<div class="pat-list-id">' + temp.patId + '</div>');
+                    counter = counter + 1;
+
+                    var ref = view.dataRef.child('users').child(uid).child('patList').child(w);
+                    var temp = patData[w];
+                    $('.pat-list-item-box').prepend('<li class="pat-list-item" onClick="view.selectFileNameFirst(this.id)" id="' + temp.patId + '">' + temp.patFirstName + ' ' + temp.patLastName + '</li>');
+                    $('#' + temp.patId).append('<div class="pat-list-id">' + temp.patId + '</div>');
+                }
             }
-            if (counter === 0) {
-                $('.pat-list-item-box').prepend('<li class="pat-list-item"><a class="pat-list-text">You have no patients</a></li>');
-            }
-            $('.pat-list-welcome').prepend('<p class="patUser">' + view.authData.password.email + '</p>');
         },
         function(errorObject) {
             console.log("The read failed: " + errorObject.code);
         }
     )
+    $('.showHidden').hide();
 };
 
 
@@ -1074,45 +1126,79 @@ view.createAdminInterface = function() {
 
 }
 
+view.currDocName = '';
+
 view.doctorList = function(uid) {
-    $(window).scrollTop($('.doc-list-title').offset().top - 80);
+
     var ref = view.dataRef.child('users');
     var read = ref.once("value", function(snapshot) {
         var docIds = snapshot.val();
+        $('.admin-contain').show();
         $('.doctor-list').empty();
         for (w in docIds) {
-            console.log(w);
-            console.log(docIds[w]);
+
 
             //create the doctor list
             $('.doctor-list').append('<div id="' + w + '" class="doc-list-item">Dr. ' + docIds[w].firstName + ' ' + docIds[w].lastName + ' ' + docIds[w].email + ' ' + 'mobile: ' + docIds[w].mobilePhone + ' ' + 'office: ' + docIds[w].officePhone + ' ' + docIds[w].address + ' ' + docIds[w].city + ' ' + docIds[w].state + ' ' + docIds[w].zip + '</div>');
             for (v in docIds[w].patList) {
-                console.log(v); // v is the pushId for the patient list
-                console.log(docIds[w].patList[v]);
                 $('#' + w).append('<div id="' + docIds[w].patList[v].patId + '" class="doc-pat-list-item" style="padding-left: 20px">' + docIds[w].patList[v].patFirstName + ' ' + docIds[w].patList[v].patLastName + ' ' + docIds[w].patList[v].patId + '</div>');
             }
         }
+
         $('.doc-pat-list-item').click(function() {
-            console.log(this);
-            view.selectFileNameFirst(this.id);
+            $(window).scrollTop($('.chart').offset().top - 0);
+            var id = this.id;
+            view.selectFileNameFirst(id);
+
+            //view.resetCurrUser(this.id);
+        })
+        $('.doc-list-item').click(function() {
+            var id = this.id;
+            var ref = view.dataRef.child('users');
+            var read = ref.once("value", function(snapshot) {
+                var docIds = snapshot.val();
+
+                for (var w in docIds) {
+                    if (w === id) {
+
+                        view.resetCurrUser(w, docIds[w].email, docIds[w].firstName, docIds[w].lastName);
+                    }
+                }
+            });
+
+
         })
     })
 }
 
+view.resetCurrUser = function(id, email, first, last) {
+    view.currUserId = id;
+    view.currUserEmail = email;
+    view.currDocName = first + ' ' + last + ': at ' + view.currUserEmail;
 
-view.currEvents = {};
+    $('.loggedInAs').remove();
+    $('.contain-half').css('padding-top', '0px');
+    $('.contain-half').prepend('<div class="loggedInAs">' + last + ' ' + first + ': ' + email + '</div>');
+
+    view.userMainFx();
+}
+
+view.currEvents = '';
 
 view.selectFileNameFirst = function(id) { //before uploading the pick button is hidden...it is turned on when the user selects a file name from the pulldown
     // this function gets patient info from the database for the Patient Chart view.
     // it also updates the seletedPatient field in the header
     //housekeeping
+    if (view.isAdmin === true) {
+        $('.showHidden').show();
+    } else {
+        $('.showHidden').hide();
+    }
     $('.pat-list-contain').hide(); // do not delete bc view.hideAll takes too long to work.
     view.hideAll();
     $('.chart').show();
     $('#d-contain').empty();
     $('#image-contain').empty();
-
-    view.currEvents = {};
 
     view.currPatId = id; // id really is the patient id
     var temp = id;
@@ -1136,7 +1222,11 @@ view.selectFileNameFirst = function(id) { //before uploading the pick button is 
 
                         view.currEvents[w] = eventIDs[w]; // create an object called view.currEvents containing all the patient's events accessed via using the eventID(w) as the key.
 
-                        $('.pat-events').append('<div id="' + w + '" class="event-box" onclick="view.evalEvent(this.id)"></div>');
+                        if (eventIDs[w].status === 'hidden') {
+                            $('.pat-events').append('<div id="' + w + '" class="event-box" style="display: none" onclick="view.evalEvent(this.id)"></div>');
+                        } else {
+                            $('.pat-events').append('<div id="' + w + '" class="event-box" onclick="view.evalEvent(this.id)"></div>');
+                        }
 
                         var dateFormatted = String(eventIDs[w].date).slice(0, 10);
 
@@ -1150,6 +1240,8 @@ view.selectFileNameFirst = function(id) { //before uploading the pick button is 
                             $('#' + w).append('<div style="color: hsl(1,100%,40%)" class="pat-event-status">' + eventIDs[w].status + '</div>');
                         } else if (eventIDs[w].status === 'Setup approved') {
                             $('#' + w).append('<div style="color: hsl(130,90%,40%)" class="pat-event-status">' + eventIDs[w].status + '</div>');
+                        } else if (eventIDs[w].status === 'hidden') {
+                            $('#' + w).append('<div style="color: hsl(130,90%,40%); display: none" class="pat-event-status">' + eventIDs[w].status + '</div>');
                         }
                         $('#' + w).append('<div class="pat-event-data">' + eventIDs[w].data + '</div>');
                     }
@@ -1164,6 +1256,7 @@ view.selectFileNameFirst = function(id) { //before uploading the pick button is 
             console.log("The read failed: " + errorObject.code);
         }
     )
+    view.eventFlag = 'hidden';
 }
 
 view.escScope = function(escapee1, escapee2, escapee3) {
@@ -1171,23 +1264,23 @@ view.escScope = function(escapee1, escapee2, escapee3) {
     //onsole.log(view.currEvents);
 }
 /*
-    view.openPatFile = function() {
-        var temp = '
-        ';
-        //$('.pat - dob ').append(' < div class = "pat-dob" > DOB: ' + view.temp.patDob);
-        var ref = view.dataRef.child('
-        patients ').child(id).child('
-        files ');
-      },
-      function(errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      }
+            view.openPatFile = function() {
+                var temp = '
+                ';
+                //$('.pat - dob ').append(' < div class = "pat-dob" > DOB: ' + view.temp.patDob);
+                var ref = view.dataRef.child('
+                patients ').child(id).child('
+                files ');
+              },
+              function(errorObject) {
+                console.log("The read failed: " + errorObject.code);
+              }
 
-    //$('.pat - info - name ').append(' < div class = "must-select" > Select a file name from to list below < /div>');
+            //$('.pat - info - name ').append(' < div class = "must-select" > Select a file name from to list below < /div>');
 
-    */
+            */
 
-view.currEventId = '';
+
 
 
 view.evalEvent = function(eventId, name) {
@@ -1204,7 +1297,7 @@ view.evalEvent = function(eventId, name) {
             name = myEvent.name;
             status = myEvent.status;
 
-            if (name === 'Upper-scan-1' || name === 'Upper-scan-2' || name === 'Lower-scan-1' || name === 'Lower-scan-2' || name === 'Panoramic-1' || name === 'Panoramic-2' || name === 'Ceph-1' || name === 'Ceph-2') {
+            if (name === 'Upper-scan-1' || name === 'Upper-scan-2' || name === 'Lower-scan-1' || name === 'Lower-scan-2' || name === 'Panoramic-1' || name === 'Panoramic-2' || name === 'Ceph-1' || name === 'Ceph-2' || name === 'Setup-1-upper' || name === 'Setup-1-lower') {
                 view.renderFile(name, id);
 
             } else {
@@ -1228,11 +1321,15 @@ view.evalEvent = function(eventId, name) {
 
 
 view.renderFile = function(fileName, eventId) {
+    var name = fileName;
     $('#d-contain').empty();
     $('.chart').hide();
-    $('.canvas-text').text(name + ': ' + status);
-    $('.toggle-status').show(); // for the admin
+    $('.canvas-text').text(name);
+    if (view.isAdmin === true) {
+        $('.toggle-status').show(); // for the admin
+    }
     $('.frame').show();
+    $(window).scrollTop($('.frame').offset().top - 100);
     view.init();
 
     var patId = view.currPatId; // confirmed that this is the string patId
@@ -1257,6 +1354,7 @@ view.downloadStl = function(patId, url) {
     view.stl = new THREE.Object3D();
     var oStlLoader = new THREE.STLLoader();
     oStlLoader.load(url, function(geometry) {
+        console.log(url);
         var material = new THREE.MeshPhongMaterial({
             transparent: true,
             opacity: 1,
@@ -1271,7 +1369,7 @@ view.downloadStl = function(patId, url) {
         view.stl.add(mesh);
         view.stl.rotation.x = -60 * Math.PI / 180;
         view.scene.add(view.stl);
-        console.log('downloadStl');
+        console.log('downloadStl' + url);
     });
 
     //document.getElementById('#select-file-name').value(null); // clear the name choice and reset to blank
@@ -1280,6 +1378,73 @@ view.downloadStl = function(patId, url) {
     //view.downloadPatFileName(patId);
     //view.scrollToUpload();
     view.startNewAnimate();
+}
+
+view.eventFlag = 'hidden'
+
+view.showHidden = function(patId) {
+    if (view.eventFlag === 'hidden') {
+        $('.pat-list-contain').hide(); // do not delete bc view.hideAll takes too long to work.
+        view.hideAll();
+        $('.chart').show();
+        $('#d-contain').empty();
+        $('#image-contain').empty();
+
+        view.currPatId = patId; // id really is the patient id
+        var temp = patId;
+        var temp2 = '';
+        var ref = view.dataRef.child('patients').child(patId);
+        var ref2 = view.dataRef.child('patients').child(patId).child('events');
+
+        ref.once('value', function(snapshot) {
+                temp2 = snapshot.val();
+                view.currPatName = temp2.patFirstName + ' ' + temp2.patLastName;
+                $('.selectedPat').remove();
+                $('.contain-half').css('display', 'block');
+                $('.contain-half').append('<div class="selectedPat">' + view.currPatName + '</div>');
+
+                $('.pat-events').empty();
+
+                ref2.once('value', function(snapshot) { // iterate through events and display each event
+                        var eventIDs = snapshot.val();
+
+                        for (w in eventIDs) {
+
+                            view.currEvents[w] = eventIDs[w]; // create an object called view.currEvents containing all the patient's events accessed via using the eventID(w) as the key.
+
+                            $('.pat-events').append('<div id="' + w + '" class="event-box" onclick="view.evalEvent(this.id)"></div>');
+
+                            var dateFormatted = String(eventIDs[w].date).slice(0, 10);
+
+                            $('#' + w).append('<div class="pat-event-date">' + dateFormatted + '</div>');
+
+                            $('#' + w).append('<div class="pat-event-name">' + eventIDs[w].name + '</div>');
+
+                            if (eventIDs[w].status === 'Waiting for setup') {
+                                $('#' + w).append('<div style="color: hsl(230, 100%, 30%)" class="pat-event-status">' + eventIDs[w].status + '</div>'); // style only the element with the correct event id as the id
+                            } else if (eventIDs[w].status === 'Needs your approval') {
+                                $('#' + w).append('<div style="color: hsl(1,100%,40%)" class="pat-event-status">' + eventIDs[w].status + '</div>');
+                            } else if (eventIDs[w].status === 'Setup approved') {
+                                $('#' + w).append('<div style="color: hsl(130,90%,40%)" class="pat-event-status">' + eventIDs[w].status + '</div>');
+                            }
+                            $('#' + w).append('<div class="pat-event-data">' + eventIDs[w].data + '</div>');
+                        }
+                        view.escScope(view.currEvents);
+                    },
+                    function(errorObject) {
+                        console.log("The read failed: " + errorObject.code);
+                    }
+                )
+            },
+            function(errorObject) {
+                console.log("The read failed: " + errorObject.code);
+            }
+        )
+        view.eventFlag = 'visible'
+    } else {
+        view.selectFileNameFirst(view.currPatId);
+        view.eventFlag = 'hidden';
+    }
 }
 
 view.toggleStatus = function() {
@@ -1318,6 +1483,18 @@ view.toggleStatus = function() {
 
             var ref4 = view.dataRef.child('patients').child(patId).child('events').child(eventId);
             ref4.update({
+                status: 'hidden',
+            }, function(error) {
+                if (error) {
+                    alert("Data synch failed" + error);
+                } else {
+                    //alert("Data saved successfully.");
+                }
+            })
+        } else if (status === 'hidden') {
+
+            var ref4 = view.dataRef.child('patients').child(patId).child('events').child(eventId);
+            ref4.update({
                 status: 'Waiting for setup',
             }, function(error) {
                 if (error) {
@@ -1349,33 +1526,39 @@ view.toggleStatus = function() {
 }
 
 view.approve = function() {
+    if (view.isExample === true) {
+        alert('Thanks for taking a test spin! This button is disabled for test spin users.');
+        return null;
+    }
+    if (confirm('Are you sure you want to approve this setup?') === true) {
 
-    confirm('Are you sure you want to approve this setup?');
+        var patId = view.currPatId;
+        var eventId = view.currEventId;
+        $('.canvas-text').hide(); // hide the text label on the 3D canvas
+        $('.canvas-text2').hide();
+        $('.approve-but').hide();
+        $('.toggle-status').hide(); // for the admin
 
-    var patId = view.currPatId;
-    var eventId = view.currEventId;
-    $('.canvas-text').hide(); // hide the text label on the 3D canvas
-    $('.canvas-text2').hide();
-    $('.approve-but').hide();
-    $('.toggle-status').hide(); // for the admin
+        var ref = view.dataRef.child('patients').child(patId).child('events').child(eventId);
+        ref.update({
+            status: 'Setup approved'
+        }, function(error) {
+            if (error) {
+                alert("Data could not be saved." + error);
+            } else {
+                //alert("Data saved successfully.");
+            }
+        });
 
-    var ref = view.dataRef.child('patients').child(patId).child('events').child(eventId);
-    ref.update({
-        status: 'Setup approved'
-    }, function(error) {
-        if (error) {
-            alert("Data could not be saved." + error);
-        } else {
-            //alert("Data saved successfully.");
-        }
-    });
+        setTimeout(function() { // create a pause to allow the database time to update or the fx will run before it is updated.
+            $('#d-contain').empty();
+        }, 500);
 
-    setTimeout(function() { // create a pause to allow the database time to update or the fx will run before it is updated.
-        $('#d-contain').empty();
-    }, 500);
-
-    view.addEventApprove(eventId); // this fx adds a new event to the patient's database called 'approve event'...
-    // below changes the existing status of the 'file event'
+        view.addEventApprove(eventId); // this fx adds a new event to the patient's database called 'approve event'...
+        // below changes the existing status of the 'file event'
+    } else {
+        return null;
+    }
 }
 
 
@@ -1415,7 +1598,7 @@ view.addEventApprove = function(currEventId) {
                 //alert("Data saved successfully.");
                 var email2 = 'info@orthocure.biz';
                 var subject = 'OrthoCure: setup approval notice';
-                var content = 'Confirmation: ' + date + ' received your setup approval for patient (' + view.currPatId + ') file: ' + view.name;
+                var content = 'Confirmation: ' + date + ' received your setup approval for patient (' + view.currPatId + ') file: ' + view.name + '\nwww.orthocure.biz';
                 view.sendEmail(view.currUserEmail, email2, subject, content);
             }
         })
@@ -1427,7 +1610,12 @@ view.addEventApprove = function(currEventId) {
 
 view.addEventNote = function() {
     //var uid = view.currUserId;
+    if (view.isExample === true) {
+        alert('Thanks for taking a test spin! This button is disabled for test spin users.');
+        return null;
+    }
     view.showNote();
+
     var patid = view.currPatId;
     var date = view.getTime();
     var currUserEmail = view.currUserEmail;
@@ -1457,6 +1645,44 @@ view.addEventNote = function() {
 
 }
 
+view.addEventEmailToDoc = function() {
+    //var uid = view.currUserId;
+    view.showNote();
+
+    var patid = view.currPatId;
+    var date = view.getTime();
+    var currUserEmail = view.currUserEmail;
+    var note = $('#tx-notes').val();
+
+    var ref = view.dataRef.child('patients').child(patid).child('events');
+    ref.push({
+        // 'ref.push' automatically creates an id that I store in pushId and is used to access the created date
+        // this also saves the patId to Firebase/patients
+        date: date,
+        name: "OC's note to Doctor",
+        data: 'Author: support@orthocure.biz: ___' + note,
+        status: ''
+    }, function(error) {
+        if (error) {
+            alert("Data could not be saved." + error);
+        } else {
+            alert("Data saved successfully.");
+        }
+    })
+
+    $('#tx-notes').val('');
+
+    var email2 = 'info@orthocure.biz';
+    var subject = 'OrthoCure: note';
+    var content = 'Email/Note sent to: ' + view.currDocName + '.\nDate: ' + date + '\nPatient: ' + view.currPatId + '. \nContents: ' + note + '\nwww.orthocure.biz';
+    view.sendEmail(view.currUserEmail, email2, subject, content);
+
+
+    setTimeout(function() { // create a pause to allow the database time to update or the fx will run before it is updated.
+        view.selectFileNameFirst(view.currPatId);
+    }, 500);
+
+}
 view.resetPassword = function(email) {
     var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
     ref.resetPassword({
@@ -1591,8 +1817,19 @@ view.startNewAnimate = function() {
 }
 
 view.showNote = function() {
+    if (view.isExample === true) {
+        alert('Thanks for taking a test spin! This button is disabled for test spin users.');
+        return null;
+    }
     if (view.currPatId === null || view.currPatId === undefined || view.currPatId === '') {
         return null;
+    }
+    if (view.isAdmin === true) {
+        $('.emailDocBut').show();
+        $('.tx-notes-but').hide();
+    } else {
+        $('.emailDocBut').hide();
+        $('.tx-notes-but').show();
     }
     if ($('.upload-here:visible').length > 0) {
         $('.upload-here').hide();
@@ -1605,6 +1842,10 @@ view.showNote = function() {
 }
 
 view.showUpload = function() {
+    if (view.isExample === true) {
+        alert('Thanks for taking a test spin! This button is disabled for test spin users.');
+        return null;
+    }
     if (view.currPatId === null || view.currPatId === undefined || view.currPatId === '') {
         return null;
     }
@@ -1616,6 +1857,7 @@ view.showUpload = function() {
     } else {
         $('.upload-here').show();
     }
+
     $('#select-file-name').change(function(id) {
         var fileIndex = document.getElementById('select-file-name').selectedIndex;
         if (fileIndex > 0) {
@@ -1759,6 +2001,7 @@ view.logout = function() {
             view.loadStlMounds();
             view.render();
         })
+
         view.hideAll();
         view.currPatId = null;
         view.currUserId = null;
@@ -1815,10 +2058,11 @@ view.logout = function() {
         $('#changeEmail').hide();
         $('.logout').empty();
         $('.logout').text('Login');
-
         $('.logInFormContain').show();
-        $(window).scrollTop($('.logInFormContain').offset().top - 100);
+        $(".admin-contain").hide();
 
+        view.isAdmin = false;
+        view.isExample = false;
         view.stopAnimate();
 
         var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
@@ -1847,6 +2091,8 @@ view.clearField = function() {
 
 $(document).ready(function() {
 
+    $('body').show();
+
     var i = document.getElementById('slider-1'),
         o = document.getElementById('zoomOutput');
     i.addEventListener('input', function() {
@@ -1869,6 +2115,7 @@ $(function() {
 
 });
 
+$('.logInFormContain').hide();
 
 $('.icon1Contain').click(function() {
 
@@ -1887,16 +2134,21 @@ $('.icon1Contain').click(function() {
 });
 
 $('.icon2Contain').click(function() {
+    view.stopAnimate();
+    view.hideAll();
+    //$('.pat-list-contain').show();
+
     if (view.currUserId !== null || view.currUserId !== '' || view.currUserId !== undefined) {
-        view.hideAll();
-        view.stopAnimate();
-        $('.pat-list-contain').show();
-    } else {
-        view.stopAnimate();
-        view.hideAll();
-        $('.logInFormContain').show();
-        //$(window).scrollTop($('.logInFormContain').offset().top - 100);
-    }
+        if (view.isAdmin === false) {
+            $('.pat-list-contain').show();
+        } else {
+            $('.pat-list-contain').show();
+        }
+        if (view.isAdmin === true) {
+            $('.admin-contain').show();
+            $(window).scrollTop($('.admin-contain').offset().top - 100);
+        }
+    } else {}
 
 });
 
@@ -1915,20 +2167,19 @@ $('.logout').click(function() {
 
 $('.logInButton').click(function() {
     $('.logInButton').css('background-color', 'hsl(200,90%,90%)');
-    view.hideAll();
     view.logInUserFx();
     setTimeout(function() { // create a pause then erase success message
-        $('.logInButton').css('background-color', 'hsl(200,100%,30%)');
+        $('.logInButton').css('background-color', 'hsl(200,100%,40%)');
     }, 100);
 })
 /*
-    $("canvas").on("touchclick", function() {
-        console.log("start touchclick");
-        setTimeout(function() {
-            view.render();
-        }, 1000);
-    })
-*/
+            $("canvas").on("touchclick", function() {
+                console.log("start touchclick");
+                setTimeout(function() {
+                    view.render();
+                }, 1000);
+            })
+        */
 
 $('#resetPasswordLink').click(function() {
     view.hideAll();
@@ -1977,6 +2228,10 @@ $('.nuButton').click(function() {
 });
 
 $('.updateAccount').click(function() {
+    if (view.isExample === true) {
+        alert('Thanks for taking a test spin! This button is disabled for test spin users.');
+        return null;
+    }
     $('.updateAccount').css('background-color', 'hsl(200,90%,80%)');
     view.addupdatedData();
     setTimeout(function() {
@@ -2000,6 +2255,10 @@ $('input').on('blur', function() {
 });
 
 $('.add-pat').click(function() {
+    if (view.isExample === true) {
+        alert('Thanks for taking a test spin! This button is disabled for test spin users.');
+        return null;
+    }
     if (view.currUserId === null || view.currUserId === '' || view.currUserId === undefined) {
         return null;
     } else {
@@ -2008,9 +2267,25 @@ $('.add-pat').click(function() {
         //$(window).scrollTop($('.np-head').offset().top - 80);
     }
 });
-setTimeout(function() {
-    $(window).scrollTop($(".mid-contain").offset().top - 100);
-}, 200);
+
+$('.contain-half').click(function() {
+    view.stopAnimate();
+    $('#d-contain').empty();
+    view.hideAll();
+    $('.main-contain').show();
+    $('#image-contain').empty();
+    $('#image-contain').show();
+    view.currPatId = null;
+    view.init();
+    view.loadStlTeeth();
+    view.loadStlMounds();
+    view.render();
+})
+
+$('#logNewAccount').click(function() {
+    view.hideAll();
+    $('.nuFormContain').show();
+})
 
 $('.toggle-status').click(function() {
     view.toggleStatus();
@@ -2020,8 +2295,22 @@ $('.approve-but').click(function() {
     view.approve();
 });
 $('.tx-notes-but').click(function() {
-    console.log('add note');
     view.addEventNote();
+});
+$('.emailDocBut').click(function() {
+    view.addEventEmailToDoc();
+});
+$('.showHidden').click(function() {
+    view.showHidden(view.currPatId);
+});
+
+$('.exampleBut').click(function() {
+    view.isExample = true;
+    $('.exampleBut').css('background-color', 'hsl(200,90%,90%)');
+    view.logInUserFx();
+    setTimeout(function() { // create a pause then erase success message
+        $('.exampleBut').css('background-color', 'hsl(220,50%,60%)');
+    }, 100);
 })
 
 //***** working animation on mousedown ****************************
