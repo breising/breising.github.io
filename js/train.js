@@ -1,22 +1,51 @@
+var view = {};
+
 $(document).ready(function() {
 
-    //google Translate KEY: AIzaSyA0eZGhm3kNABvmgr1D0LxIuw2wczS87PU
-    // enable speech on firefox: media.webspeech.synth.enabled about:config flag
+view.currUser = {};
+document.getElementById('userEmail').value = 'breising1@mac.com';
+document.getElementById('userPassword').value = '1234';
 
+view.currUser.email = $('.userEmail').val();
+view.currUser.password = $('.userPassword').val();
+
+console.log('stuff' + ' ' + view.currUser.email);
+
+    $('.submit').click(function() {
+
+        var ref = new Firebase("https://shining-inferno-9786.firebaseio.com");
+        ref.authWithPassword({
+            email: view.currUser.email,
+            password: view.currUser.password
+        }, function(error, authData) {
+            if (error) {
+                $('.login-fail').text('Login attempt failed. Please try again.');
+                //userEmail.value = userEmail.defaultValue;
+                //userPassword.value = userPassword.defaultValue;
+                view.currUserEmail = null;
+                view.currUserPassword = null;
+                view.currUserId = null;
+
+                $('.userEmail').val(null);
+                $('.userPassword').val(null);
+                setTimeout(function() { // create a pause then erase success message
+                    alert('Login attempt failed. Sorry.');
+                }, 100);
+
+            } else {
+                $('.loginContain').hide();
+                $('.row').show();
+
+                $('.userEmail').val(null);
+                $('.userPassword').val(null);
+
+                view.currUserId = (authData.uid);
+                console.log(view.currUserId);
+            }
+        })
+    });
     var slides = [{
-        head: 'The Manual',
-        image1: null,
-        slideNumber: 1,
-        width: 160,
-        margin: 50,
-        displayFlex: true,
-        height: null,
-        marginTop: 40,
-        voiceText: null,
-        audio: 'audio/test.ogg',
-        textImage: ''
-    }, {
-        head: 'Overview',
+        head: 'Overview Part 1',
         image1: 'images/appliance1.png',
         slideNumber: 2,
         width: 200,
@@ -25,11 +54,24 @@ $(document).ready(function() {
         displayFlex: null,
         height: null,
         marginTop: 40,
-        voiceText: 'Orthodontic patients have suffered for too long with the consequences of wearing braces that are, ugly, uncomfortable, and inefficient. Ortho cure provides a treatment system that does not compromise appearance or comfort, and, it actually improves the efficiency, the speed, and the quality of treatment. It is now possible to offer patients comprehensive orthodontic treatment that has absolute zero impact on their lifestyle. They can look normal, feel normal, speak normally, and eat normally. In addition, ortho cure provides doctors with many advantages as well. Doctors have been working too hard for too long at technical tasks that should be automated or delegated. With ortho cure, as you will see, most of the doctors technical work can in fact be automated or delegated, making the ortho cure system even easier to operate than regular braces.',
-        audio: '<source src="audio/transcript (2).wav" type="audio/wav">',
+        voiceText: "Orthodontic patients have suffered for too long with  braces that are ugly, uncomfortable, and inefficient. Now, Ortho cure offers a treatment system that is not only invisible but is also so comfortable that your patients will forget they're wearing braces. In addition, ortho cure actually improves the quality and speed of treatment. Thats right, it is now possible to offer patients comprehensive orthodontic treatment that has absolutely zero impact on their lifestyle. They can look normal, feel normal, speak normally, and eat normally. And the digital powers that make this possible also make ortho cure work better than any other solution.",
+        audio: '<source src="audio/overview1.wav" type="audio/wav">',
         textImage: ''
     }, {
-        head: 'Overview',
+        head: 'Overview Part 2',
+        image1: 'images/appliance1.png',
+        slideNumber: 2,
+        width: 200,
+        margin: 10,
+        text2: null,
+        displayFlex: null,
+        height: null,
+        marginTop: 40,
+        voiceText: "Ortho cure also provides doctors with many advantages as well. Doctors are working too hard and spending too much of their time doing arduous and mundane technical tasks like positioning brackets and wire bending. These tasks could be done far better and far more efficiently if they were automated. Ortho cure leverages digital technologies to accomplish these technically demanding tasks with ease and precision. In fact, as you will see, most of the doctors overall technical work can be automated so that technical task are performed with predictable and effortless precision. You will enjoy the confidence in knowing that what you see in the setup, is exactly what you will get as the result. As such, you will find that the ortho cure system is even easier and more fun to operate than regular braces.",
+        audio: '<source src="audio/overview2.wav" type="audio/wav">',
+        textImage: ''
+    },{
+        head: 'Invisible Alternatives Part 1',
         image1: 'images/clear-aligner.png',
         slideNumber: 3,
         width: 200,
@@ -42,7 +84,7 @@ $(document).ready(function() {
         audio: '<source src="audio/transcript (3).wav" type="audio/wav">',
         textImage: ''
     }, {
-        head: 'Overview',
+        head: 'Invisible Alternatives Part 2',
         image1: 'images/lingual-bracket.png',
         slideNumber: 4,
         width: 100,
@@ -63,8 +105,8 @@ $(document).ready(function() {
         displayFlex: null,
         height: 100,
         marginTop: 30,
-        voiceText: 'Upper fixed retainers have been done for many years by many doctors, but with varying degrees of success and confidence. The founder of Ortho cure discovered that, when installed correctly, upper fixed retainers can be very very durable and very very comfortable. In fact, their appeal is that they allow patients to live a completely normal life without esthetic compromises, without functional compromises, without having to remember to wear their retainers, and without the hassles of breakage. And, they can eat normally and speak normally. So, could it be possible to create an active appliance of identical size, smoothness, comfort, and durability ? ',
-        audio: '<source src="audio/fixed_ret.wav" type="audio/wav">'
+        voiceText: 'Upper fixed retainers have been done for many years by many doctors, but with varying degrees of success. But it has been discovered that, when installed correctly, upper fixed retainers are very very durable and very very comfortable. In fact, their primary appeal is that they allow patients to live a completely normal life without esthetic compromises and without functional compromises and without having to remember to wear their retainers and without the hassles of breakage. And, they can eat normally and speak normally. So, the question is, could it be possible to create an "active" appliance that is identical in size, shape, and smoothness to a fixed retainer ? ',
+        audio: '<source src="audio/upperfixed.wav" type="audio/wav">'
     }, {
         head: 'Tubes',
         image1: 'images/appliance1.png',
@@ -75,8 +117,8 @@ $(document).ready(function() {
         displayFlex: null,
         height: null,
         marginTop: 40,
-        voiceText: 'The solution is found by eliminating the bracket tie wings, and by eliminating the bracket base, and thereby reducing the structure of the bracket, to nothing more, than a simple, very low profile, square tube. The extremely small size of the bracket that results from this shrinkage, is key to makeing it comfortable. The tube is attached to the tooth, by fully encapsulating the tube, in a mound of composite. Thereby, the composite serves two functions. It bonds the tube to the tooth, and it also serves as the structural body of the bracket. The outer, tongue side surface of the bracket, is composed of a smooth, polishable, convex composite surface. You will see later, that the entire shape of this composite interface, is fully customizable. As such, during delivery of the appliance, both a customized base structure, and a customized outer surface, are created with very little effort. And, the result is a compact, robust, durable structure that is resistant to leverage from biting forces, since it has no extended features. And, perhaps coolest of all, the same appliance that aligns the teeth can remain indefinitely as a fixed retainer. No additional impressions needed. No additional appointments needed. Oh yeah thats it.',
-        audio: '<source src="audio/transcript (6).wav" type="audio/wav">'
+        voiceText: 'The solution is found by eliminating some structural features of the traditional bracket and reducing it to nothing more than a simple, low profile, square tube. So, we eliminate the bracket tie wings and the bracket base. The extremely small size of the new bracket that results from this shrinkage, is key to makeing it comfortable. But, since there is no base to offer a large surface area with retentive mesh, the tube must be attached differently. So, the tube is attached to the tooth, by fully encapsulating it in a mound of composite adhesive. Thereby, the composite serves two functions. It bonds the tube to the tooth, and it also serves as the structural body of the bracket. The outer, tongue side surface of the bracket body is thus composed of a smooth, polishable, convex composite surface. You will see later, that the entire shape of this composite interface, is fully customizable. As such, during delivery of the appliance, both a customized base structure, and a customized outer surface, are created with very little effort. And, the result is a compact, robust, durable structure that is resistant to leverage from biting forces, since it has no extended features. And, because it is so small, comfortable and durable, the same attachment that aligns the teeth can remain indefinitely as a fixed retainer. No additional impressions needed. No additional appointments needed.',
+        audio: '<source src="audio/tubes2.wav" type="audio/wav">'
     }, {
         head: '0.020"x 0.020"',
         image1: 'images/bracket2.png',
@@ -99,7 +141,7 @@ $(document).ready(function() {
         displayFlex: null,
         height: null,
         marginTop: 40,
-        voiceText: 'With traditional braces, the wire is inserted into the open face, of the bracket slot, and then the wire is ligated to hold it inside the slot. This presents an opportunity for error, when a ligature loosens, and allows for the relapse of a rotation. Or, when a ligature is not fully secured, as often happens, a rotation will not be fully corrected. Consider also, that ligatures add a tremendous amount of friction to the system, which we all know slows tooth movement dramatically. Consider also, that additional steps must be completed, to secure the wire of the traditional system, meaning that you must take the time to tie each bracket to the wire. In contrast, with a series of tubes, the wire is threaded through the tubes rather than inserted into the open face of the slot, and it does not require the additional steps of ligation. This is much faster than using open face slots. And, because there are no ties, this creates a super low friction system where teeth move with superior efficiency. And, since there are no ties, the system is not prone to all the errors that inevitably will result from the arduos, repetitive, manual task of tying brackets.',
+        voiceText: 'With traditional braces, the wire is inserted into the open face, of the bracket slot, and then the wire is ligated to hold it inside the slot. This presents an opportunity for error, when a ligature loosens, and allows for the relapse of a rotation. Or, when a ligature is not fully secured, as often happens, a rotation will not be fully corrected. Consider also, that ligatures add a tremendous amount of friction to the system, which we all know slows tooth movement dramatically. Consider also, that additional steps must be completed, to secure the wire of the traditional system, meaning that you must take the time to tie each bracket to the wire. In contrast, with a series of tubes, the wire is threaded through the tubes rather than inserted into the open face of the slot, and it does not require the additional steps of ligation. This is much faster than using open face slots. And, because there are no ties, this creates a super low friction system where teeth move with superior efficiency. And, since there are no ties, the system is not prone to all the errors that inevitably will result from the arduous, repetitive, manual task of tying brackets.',
         audio: '<source src="audio/ligature.wav" type="audio/wav">'
     }, {
         head: 'Threaded Wire',
@@ -147,7 +189,7 @@ $(document).ready(function() {
         voiceText: 'With a system of tubes, the bracket positioning must be absolutely perfect to get great results. So, how do we achieve this ? It is a combination of accurate bracket slot orientation, precise delivery, and appliance customization. Accurate slot orientation is accomplished by creating a digital 3 D setup to simulate the exact final positions of the teeth. Then, an indirect bonding tray is 3 D printed, and used to deliver the tubes precisely in the orientation set by the computer. Finally, customization is realized automatically as part of this process. We will cover this in more detail later. The important thing to understand here is that the combination of accuracy, precision, and customization is capable of producing a level of quality that we have never before experienced. You quickly discover that it is quite easy to produce astounding results much, much faster, without the need for wire bending, and therefore, with much less effort.',
         audio: '<source src="audio/tubes1.wav" type="audio/wav">'
     }, {
-        head: 'More Implications',
+        head: 'Coming Soon: Comp Treatment',
         image1: 'images/comp.png',
         slideNumber: 12.1,
         width: 220,
@@ -156,7 +198,7 @@ $(document).ready(function() {
         displayFlex: null,
         height: null,
         marginTop: 40,
-        voiceText: 'With a system of tubes, there is another issue we must address. Bent nickel titanium wires in small sizes can be threaded quite easily. However, the more bends added the more difficult it gets. So, we want to just avoid bending wires altogether. But this presents a problem when it comes to inserting a full arch wire during comprehensive treatment. With regular lingual appliances, the step between the canine and adjacent premolar requires a step bend in the wire. With regular labial braces, threading would have to start on the distal of the first or second molar and this would be unreasonably difficult. So, how can comprehensive treatment be done when we cannot thread a wire through the whole arch,? Ortho cure takes a new approach to comprehensive treatment mechanics. Rather than using one continuous wire through the whole arch, the ortho cure system breaks it up into three wire segments. First is the anterior segment canine to canine. Then, there are two posterior segments that include the canine back to the most posterior tooth. So, yes you heard correct, the canines have 2 tubes. And each tube accepts a different wire. This creates an overlap point. This overlap point allows 2 segments to influence the tooth so that it mimics the mechanical effect of a single continuous wire but with all the advantages of having multiple wire segments. Such a system is only possible when using the extraordinarily high precision and accuracy of slot positioning that ortho cure employs. In addition, we have found that it is much easier for doctors to work on the facial side and that there is no esthetic liability for patients who wear a posterior segment on the facial side. Therefore, we recommend placing anterior segments on the lingual to keep them hidden. And place the posterior segments on the facial to keep them accessible. As such, each canine tooth has a tube placed on both the lingual and facial surfaces. The tube on the facial of the canine can be offset to the far distal end of the tooth where it is well hidden from view. In addition, flowable composite is used to further blend the anatomy of these facial bracket mounds into the tooth surface to camoflage them.',
+        voiceText: 'With a system of tubes, there is another issue we must address. Consider the fact that step bends cannot be pulled through a series of tubes. And, the more bends added, the more difficult it gets. So, how do we make adjustments ?? The answer is two fold. First, bends simply are not needed when the tubes are so precisely positioned. Second, in reality, you can place bends in small diameter nickel titanium wires and pull them through the tubes. But, you really will not need to do this. We want to just avoid bending wires altogether. But this presents a problem when it comes to inserting a full arch wire during comprehensive treatment. With regular lingual appliances, the step between the canine and adjacent premolar requires a step bend in the wire. With regular labial braces, threading would have to start on the distal of the first or second molar and this would be unreasonably difficult. So, how can comprehensive treatment be done when we cannot thread a wire through the whole arch,? Ortho cure takes a new approach to comprehensive treatment mechanics. Rather than using one continuous wire through the whole arch, the ortho cure system breaks it up into three wire segments. First is the anterior segment canine to canine. Then, there are two posterior segments that include the canine back to the most posterior tooth. So, yes you heard correct, the canines have 2 tubes. And each tube accepts a different wire. This creates an overlap point. This overlap point allows 2 segments to influence the tooth so that it mimics the mechanical effect of a single continuous wire but with all the advantages of having multiple wire segments. Such a system is only possible when using the extraordinarily high precision and accuracy of slot positioning that ortho cure employs. In addition, we have found that it is much easier for doctors to work on the facial side and that there is no esthetic liability for patients who wear a posterior segment on the facial side. Therefore, we recommend placing anterior segments on the lingual to keep them hidden. And place the posterior segments on the facial to keep them accessible. As such, each canine tooth has a tube placed on both the lingual and facial surfaces. The tube on the facial of the canine can be offset to the far distal end of the tooth where it is well hidden from view. In addition, flowable composite is used to further blend the anatomy of these facial bracket mounds into the tooth surface to camoflage them.',
         audio: '<source src="audio/moreimp.wav" type="audio/wav">'
     }, {
         head: 'Coming Soon: Comp Tx',
@@ -855,7 +897,7 @@ $(document).ready(function() {
         voiceText: 'In some cases it might be very difficult to thread the wire through more than just 2 two teeth. And, that is just fine. If you start where the mal alignment is most severe, then you can just leave this small segment of wire for one appointment interval, allow the teeth to align, and then, it will be easier to thread the wire when the teeth are better aligned and somewhat mobile.',
         audio: '<source src="audio/transcript (62).wav" type="audio/wav">'
     }, {
-        head: 'Cinch 60-90 deg.',
+        head: 'Cinch 45-90 deg.',
         image1: 'images/cinch.png',
         slideNumber: 63,
         width: 150,
