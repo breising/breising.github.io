@@ -1,0 +1,1011 @@
+body {
+    font-family: helvetica;
+    margin: 0px;
+    background: hsl(1, 0%, 98%);
+}
+
+a {
+    text-decoration: none;
+    color: hsl(200, 100%, 45%);
+    cursor: pointer;
+}
+
+p {
+    line-height: 140%;
+}
+.rems {
+    width: 70%;
+    padding: 50px;
+}
+.appliance {
+    display: none;
+    width: 100%;
+    height: 1000px;
+    position: relative;
+    background: white;
+    /* For browsers that do not support gradients */
+    margin-top: 100px;
+}
+
+.appliance2 {
+    width: 100%;
+    position: relative;
+    background: white;
+    /* For browsers that do not support gradients */
+    margin-top: 100px;
+}
+
+.appl_title {
+    padding-top: 40px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.4em;
+    font-weight: 100;
+}
+
+.appl_title1 {
+    color: hsl(1, 0%, 10%);
+    text-align: center;
+    font-weight: 100;
+}
+
+.appl_title2 {
+    color: hsl(200, 100%, 45%);
+    text-align: center;
+    font-weight: 100;
+}
+
+.appl_contain {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 450px;
+    position: relative;
+    background: white;
+}
+
+.appl_contain2 {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    font-weight: 200;
+    background: white;
+}
+
+.appl_contain3 {
+    height: 600px;
+}
+
+.appl_pop {
+    width: 100%;
+    position: relative;
+    font-weight: 200;
+    margin-top: 30px;
+    margin-bottom: 150px;
+    background: hsl(1, 0%, 100%)
+}
+
+.appl_pop-precise {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 520px;
+    position: relative;
+    font-weight: 200;
+}
+
+.appliance_img {
+    position: absolute;
+    width: 300px;
+    top: -15px;
+    left: -25px;
+}
+
+.appliance_img2 {
+    position: absolute;
+    width: 200px;
+    top: 600px;
+    left: 95px;
+}
+
+.line1 {
+    width: 60%;
+    height: 1px;
+    background-color: hsl(200, 0%, 90%);
+    margin-left: 20%;
+    position: relative;
+    top: 420px;
+}
+
+.line2 {
+    width: 60%;
+    height: 1px;
+    background-color: hsl(200, 0%, 90%);
+    margin-left: 20%;
+    position: relative;
+    margin-bottom: 60px;
+    margin-top: 80px;
+}
+
+.line2-a {
+    position: relative;
+    top: 150px;
+}
+
+.subtext {
+    position: absolute;
+    left: 130px;
+    top: 210px;
+}
+
+.subtext2 {
+    position: absolute;
+    left: 30px;
+    top: 480px;
+}
+
+.item1 {
+    color: hsl(200, 0%, 35%);
+    font-size: 1em;
+    margin-top: 15px;
+    font-weight: 100;
+}
+
+.item2 {
+    color: hsl(200, 100%, 45%);
+    font-size: 0.8em;
+    font-weight: 100;
+    margin-top: 0px;
+}
+
+.intro {
+    margin-bottom: 40px;
+    color: hsl(200, 0%, 65%);
+    font-size: 0.9em;
+    font-weight: 200;
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.intro-beauty {
+    margin-bottom: 30px;
+    margin-top: 65px;
+    margin-top: 30px;
+    color: hsl(200, 0%, 65%);
+    font-size: 0.8em;
+    font-weight: 200;
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.pop-intro {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: hsl(200, 0%, 65%);
+    font-size: 0.8em;
+    font-weight: 200;
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.item-title {
+    color: black;
+    font-size: 1.4em;
+    font-weight: 100;
+    margin-bottom: 30px;
+    width: 90%;
+    margin-left: 4%;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.pop-title {
+    color: black;
+    font-size: 1.4em;
+    font-weight: 100;
+    margin-bottom: 20px;
+    width: 90%;
+    margin-left: 4%;
+    text-align: center;
+}
+
+.item_link {
+    color: hsl(200, 100%, 45%);
+    font-size: 1em;
+    margin-bottom: 30px;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+}
+
+.item-sub {
+    color: hsl(200, 100%, 45%);
+    font-size: 0.9em;
+    margin-bottom: 40px;
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.big {
+    font-size: 1em;
+    margin-top: 40px;
+}
+
+.big2 {
+    font-size: 1em;
+    margin-top: 40px;
+    margin-bottom: 70px;
+}
+
+.pop-item-sub {
+    color: hsl(200, 100%, 45%);
+    font-size: 0.9em;
+    margin-bottom: 30px;
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.item-desc {
+    color: hsl(1, 0%, 60%);
+    font-size: 1em;
+    font-weight: 100;
+    margin-bottom: 30px;
+    width: 80%;
+    margin-left: 7%;
+    text-align: center;
+}
+
+.item-desc-pop {
+    color: hsl(1, 0%, 50%);
+    font-size: 0.9em;
+    font-weight: 100;
+    width: 85%;
+    margin-left: 7.5%;
+    text-align: left;
+}
+
+.appliance_iwd2 {
+    max-width: 100%;
+}
+
+.appliance_iwd {
+    margin-top: 30px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.seat {
+    width: 60%;
+    margin-left: 17%;
+}
+
+.mirror {
+    width: 70%;
+    margin-left: 12%;
+}
+
+.redgirl {
+    width: 50%;
+    margin-left: 23%;
+}
+
+.size {
+    width: 65%;
+    margin-left: 19%;
+}
+
+.comfort {
+    width: 100%;
+}
+
+.tray-414 {
+    width: 80%;
+    margin-left: 8%;
+}
+
+.precise {
+    width: 65%;
+    margin-left: 21%;
+    margin-top: 20px;
+}
+
+.dart {
+    width: 65%;
+    margin-left: 10%;
+    margin-top: 20px;
+}
+
+.bobbing {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.setup {
+    width: 45%;
+    margin-left: 25%;
+    margin-top: 20px;
+}
+
+.space-hold {
+    height: 300px;
+    width: 60%;
+    margin-left: 18%;
+    text-align: center;
+}
+
+.beauty,
+.dialed,
+.autopilot,
+.digital,
+.retainer,
+.preinstalled {
+    cursor: pointer;
+}
+
+.xout {
+    font-size: 1em;
+    color: hsl(1, 0%, 40%);
+    position: relative;
+    width: 10px;
+    height: 10px;
+    top: 5px;
+    left: 94%;
+    cursor: pointer;
+}
+
+.inviscomfort {
+    width: 100%;
+    background: white;
+    position: relative;
+    top: 30px;
+}
+
+.inviscomfort-inside {
+    width: 100%;
+}
+
+.pop-overview {
+    height: 1550px;
+    width: 100%;
+    background: white;
+}
+
+.pop-install {
+    width: 100%;
+    background: white;
+}
+
+.pop-dialed {
+    width: 100%;
+    background: white;
+}
+
+.pop-retainer {
+    width: 100%;
+    background: white;
+}
+
+.pop-precise {
+    width: 100%;
+    position: relative;
+}
+
+.pop-overview-inside {
+    height: 1500px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: hsl(2, 0%, 80%);
+}
+
+.pop-overview-inside2 {
+    height: 1390px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: hsl(2, 0%, 80%);
+}
+
+.pop-precise-inside2 {
+    background: hsl(1, 0%, 100%);
+    width: 100%;
+    max-width: 412px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: hsl(1, 0%, 80%);
+    border-width: 1px;
+    top: 30px;
+}
+
+.pop-dialed-inside2 {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: hsl(2, 0%, 80%);
+}
+
+.pop-retainer-inside2 {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: hsl(2, 0%, 80%);
+}
+
+.pop-install-inside2 {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: hsl(2, 0%, 80%);
+}
+
+.logoContain1 {
+    width: 100vw;
+    position: relative;
+    height: 30px;
+    max-width: 414px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logoContain2 {
+    position: fixed;
+    background: hsl(1, 0%, 85%);
+    padding-bottom: 5px;
+    width: 100%;
+    height: 30px;
+    z-index: 2;
+    max-width: 414px;
+}
+
+.logo {
+    height: 30px;
+    padding-top: 8px;
+    padding-left: 5px;
+}
+
+.logo2 {
+    position: relative;
+    left: 10px;
+    height: 20px;
+    padding-top: 7px;
+}
+
+.orthocure2 {
+    position: relative;
+    font-size: 1.0em;
+    font-weight: 300;
+    color: hsl(1, 0%, 100%);
+    left: 13px;
+    top: 9px;
+}
+
+.scroll {
+    width: 100%;
+    margin-top: 60px;
+}
+
+.scroll2 {
+    position: relative;
+    width: 80px;
+    margin-left: 50%;
+    opacity: 0.2;
+}
+
+.scroll-down {
+    transform: translate( -50px, 0%);
+    width: 100%;
+}
+
+.lev {
+    width: 25%;
+    height: 25%;
+    padding-right: 20px;
+}
+
+.flex {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.align-contain {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    background: hsl(200, 0%, 100%);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+}
+
+.aligner {
+    width: 40%;
+    margin-left: 25%;
+    padding-top: 30px;
+}
+
+.-contain {
+    padding-top: 20px;
+    width: 100%;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    background: hsl(200, 0%, 100%);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+}
+
+.-text {
+    color: hsl(200, 30%, 10%);
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.align-text {
+    color: hsl(200, 100%, 45%);
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.attach-contain {
+    width: 100%;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    background: hsl(200, 0%, 100%);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+}
+
+.attach-image-contain {
+    background: hsl(200, 0%, 98%);
+    position: relative;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.attach {
+    width: 100%;
+    padding-top: 30px;
+}
+
+.attach-text {
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.spring3-contain {
+    width: 100%;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    background: hsl(200, 0%, 98%);
+    margin-bottom: 40px;
+}
+
+.spring3 {
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+
+.spring3-text {
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.space {
+    width: 15%;
+    background: hsl(200, 0%, 98%);
+}
+
+.many-steps {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 30px;
+}
+
+.lev1 {
+    width: 30%;
+    margin-left: 33%;
+    margin-top: 30px;
+}
+
+.lev1-contain {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    background: hsl(200, 0%, 98%);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+}
+
+.lev1-text {
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.leverage3,
+.leverage5 {
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 30px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: hsl(1, 0%, 90%);
+}
+
+.no-escape2 {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.no-escape2-contain {
+    position: relative;
+    padding: 10px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    background: hsl(200, 0%, 98%);
+    margin-bottom: 40px;
+}
+
+.no-escape-text {
+    text-align: center;
+    width: 70%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.steps {
+    text-align: center;
+    color: hsl(1, 0%, 30%);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.step-contain {
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    background: hsl(200, 0%, 97%);
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.wire-knot {
+    width: 80%;
+    margin-left: 7%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.wire-knot-contain {
+    width: 100%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    background: hsl(1, 0%, 97%);
+}
+
+.wire-knot-text {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 97%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lev {
+    width: 30%;
+    margin-left: 10%;
+}
+
+.lev-contain {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding: 10px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    margin-bottom: 40px;
+}
+
+.lev-text {
+    text-align: center;
+    width: 97%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.lev2 {
+    width: 30%;
+    margin-left: 34%;
+    padding-top: 40px;
+}
+
+.lev2-contain {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    background: hsl(200, 0%, 98%);
+    margin-bottom: 40px;
+}
+
+.lev2-text {
+    text-align: center;
+    width: 70%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.lev3 {
+    width: 30%;
+    margin-left: 34%;
+    padding-top: 40px;
+}
+
+.lev3-contain {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    background: hsl(200, 0%, 98%);
+    margin-bottom: 40px;
+}
+
+.lev3-text {
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.lev5 {
+    width: 30%;
+    margin-left: 34%;
+    padding-top: 40px;
+}
+
+.lev5-contain {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    background: hsl(200, 0%, 98%);
+    margin-bottom: 40px;
+}
+
+.lev5-text {
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.lev6 {
+    width: 30%;
+    margin-left: 30%;
+    margin-top: 30px;
+}
+
+.lev6-contain {
+    width: 100%;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    background: hsl(200, 0%, 98%);
+    margin-bottom: 40px;
+}
+
+.lev6-text {
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.calendar-contain {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+    background: hsl(200, 0%, 98%);
+    margin-bottom: 40px;
+}
+
+.calendar-text {
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.calendar {
+    margin-top: 30px;
+    width: 60%;
+    margin-left: 20%;
+}
+
+.oc-smile-contain {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    background: hsl(200, 0%, 100%);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: hsl(1, 0%, 90%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsl(1, 0%, 90%);
+}
+
+.oc-smile-image-contain {
+    width: 60%;
+    background: hsl(200, 0%, 98%);
+    position: relative;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.oc-smile {
+    width: 100%;
+    padding-top: 30px;
+}
+
+.oc-smile-text {
+    text-align: center;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}

@@ -1,6 +1,6 @@
 {
   "name": "orthocure-website",
-  "version": "1.0.0",
+  "version": "16.7.0",
   "description": "xxx",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,25 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "grunt": "^0.4.5"
-  }
+    "grunt": "^0.4.5",
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-imagemin": "^3.0.2",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-rename": "^1.2.2",
+    "uglify": "^0.1.5"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.2.45",
+    "smtp-connection": "^2.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breising/breising.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/breising/breising.github.io/issues"
+  },
+  "homepage": "https://github.com/breising/breising.github.io#readme"
 }

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <title>OrthoCure Main</title>
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+    <script async>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82053246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="banner">
+        <div class="logo-contain">
+            <img class="logo" src="images/logo_V2.svg"></div>
+            <div class="logout">Login</div>
+            <div class="border"></div>
+        </div>
+        <div class="loginContain">
+            <div class="loginTitle">Please use your registered OrthoCure account email and password for access.</div>
+            <input class="userEmail" id="userEmail" value="your@email.com" type="email" onfocus="view.onfocus(this)" onblur="view.onblur(this)">
+            <input class="userPassword" id="userPassword" value="password" type="password" onfocus="view.onfocus(this)" onblur="view.onblur(this)">
+            <button class="submit">Login</button>
+        </div>
+        <div style="display: none" class="row">
+            <div class="content">
+                <div class="text" data-bind="text: header"></div>
+                <div class="image-contain">
+                    <img class="image" data-bind="attr: {src: image}">
+                    <div class="textImage" data-bind="html: textImage"></div>
+                </div>
+                <audio class="audio" controls data-bind="html: speakFile">
+                </audio>
+                <div class="voiceText" data-bind="text: voiceText"></div>
+                <div class="text2" data-bind="html: obsText2"></div>
+                <img src="images/forward.svg" class="forward">
+                <img src="images/backward.svg" class="backward">
+                <img src="images/up.svg" class="up">
+                <img src="images/down.svg" class="down">
+            </div>
+            <div class="slideNumber"><span data-bind="text: slideNumber"></span> of <span data-bind="text: slideQuant"></span></div>
+        </div>
+    </div>
+    <script src="js/knockout-3.4.0.js" rel="script"></script>
+    <script src="js/train.js"></script>
+
+    <link rel="stylesheet " href="css/train.css ">
+</body>
