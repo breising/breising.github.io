@@ -13,6 +13,17 @@ body {
     margin-top: 100px;
 }
 
+.contact-fixed-butt {
+    position: fixed;
+    z-index: 1;
+    top: 95px;
+    right: -3px;
+    border-radius: 3px;
+    background: hsla(200, 100%, 45%, 0.7);
+    font-weight: 100;
+    padding: 10px;
+}
+
 .appliance2 {
     width: 100%;
     position: relative;

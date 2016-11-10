@@ -13,6 +13,27 @@ p {
     line-height: 140%;
 }
 
+.fixed-butt {
+    position: fixed;
+    z-index: 1;
+    top: 45px;
+    right: -3px;
+    border-radius: 3px;
+    background: hsla(200, 100%, 45%, 0.7);
+    font-weight: 100;
+    padding: 10px;
+}
+
+.contact-fixed-butt {
+    position: fixed;
+    z-index: 1;
+    top: 95px;
+    right: -3px;
+    border-radius: 3px;
+    background: hsla(200, 100%, 45%, 0.7);
+    font-weight: 100;
+    padding: 10px;
+}
 .appliance {
     display: none;
     width: 100%;
@@ -62,7 +83,7 @@ p {
 }
 
 .appl_contain2 {
-    width: 350px;
+    width: 300px;
     margin-left: auto;
     margin-right: auto;
     position: relative;

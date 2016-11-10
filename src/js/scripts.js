@@ -2039,6 +2039,7 @@ $(document).ready(function() {
                     $('.i2').text('Login');
                     //$('.logInFormContain').show();
                     $(".admin-contain").hide();
+                    $(".np-head").hide();
 
                     $('.displayUser').empty();
                     $('.displayUser').hide();

@@ -33,7 +33,9 @@ gulp.task('css', function() {
 
 gulp.task('html', function() {
     return gulp.src('src/*.html')
-        .pipe(htmlmin())
+        .pipe(htmlmin().on('error', function(e){
+            console.log(e);
+        }))
         .pipe(gulp.dest('dist/'));
 });
 
@@ -61,6 +63,7 @@ gulp.task('images', function() {
 //  gulp.watch(src + '*.html', ['html']);
 //});
 // Default Task
-gulp.task('default', ['js', 'images', 'css', 'html']);
+gulp.task('default',['js']);
 
 
+// ,'js','css','images'

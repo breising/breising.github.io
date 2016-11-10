@@ -1,210 +1,252 @@
-
-
 <!DOCTYPE HTML>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-        <meta charset="utf-8">
-        <title>
-            OrthoCure Main
-        </title>
-        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet" type="text/css">
-        <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js" type="text/javascript">
-</script>
-        <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js">
-</script>
-<script src="http://sdks.shopifycdn.com/js-buy-sdk/latest/shopify-buy.polyfilled.globals.min.js"></script>
-<script src="js/spin.js" type="text/javascript"></script>
-    </head>
-    <body style="display: none">
-        <div class="nav-menu">
-            <div class="dashBoardButton">
-                <p class="i1" style="color: white">
-                    Dashboard
-                </p>
-            </div>
-            <div class="loginTab">
-                <p class="i2" style="color: white">
-                    Login
-                </p>
-            </div>
-            <div class="patientButton">
-                <p class="i3" style="color: white">
-                    Chart
-                </p>
-            </div>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" description="OrthoCure is a better alternative to braces than clear aligners for straightening / align your teeth. It's completely invisible, far more comfortable, much more effective and faster.">
+    <meta charset="utf-8">
+    <!--  key words: braces, invisalign, teeth, straighten, align, clear aligner, tooth, straight teeth, straighten teeth, align teeth, smile, orthodontics, orthodontist -->
+
+    <title>
+        OrthoCure is a better alternative to braces than clear aligners for straightening your teeth. It's completely invisible, far more comfortable, much more effective and faster.</title>
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet" type="text/css">
+    <script async src="https://cdn.firebase.com/js/client/2.4.1/firebase.js" type="text/javascript">
+    </script>
+    <script async src="js/spin.js" type="text/javascript"></script>
+</head>
+
+<body style="display: none">
+    <div class="nav-menu">
+        <div style="display: none" class="dashBoardButton">
+            <p class="i1" style="color: white">
+                Dashboard
+            </p>
         </div>
-        <div class="nav_spacer"></div>
-        <div style="display: flex" class="contain-loggedIn">
-            <div style="display: flex" class="displayUser">
-                <div style="display: flex" class="logoContain">
-                    <img class="logo" src="images/orthocure_symbol.svg" alt="OrthoCure Logo"> <!--div class="ortho">ORTHO</div>
+        <div class="loginTab">
+            <p class="i2" style="color: white">
+                Login
+            </p>
+        </div>
+        <div style="display: none" class="patientButton">
+            <p class="i3" style="color: white">
+                Chart
+            </p>
+        </div>
+    </div>
+    <div class="nav_spacer"></div>
+    <div class="contain-loggedIn">
+        <!--  box contains either One(logo) or two(names) -->
+        <div class="logoContain">
+            <img class="logo" src="images/orthocure_symbol.svg" alt="OrthoCure Logo">
+            <!--div class="ortho">ORTHO</div>
                     <div class="cure">CURE</div-->
-                    <div class="orthocure">
-                        orthocure.biz
-                    </div>
-                </div>
-                <div class="displayUser2"></div>
+            <div class="orthocure">
+                orthocure.biz
             </div>
-            <div class="displayPat"></div>
         </div>
-        <div class="nav_spacer2"></div>
-        <div class="contain" id="contain">
-            <div id="mySpinner"></div>
-            <!--*************** View: Land ************************ -->
-            <div class="spacer3"></div>
-            <div class="main-contain">
-                <div class="mid-contain">
-                    <div class="mid-text">
-                        <h1 class="mid-main">The Secret</h1>
-                        <h1 class="mid-main2">Behind the Smile</h1>
-                    </div>
-                    <div class="main-email2">
-                    <input class="main-email" value="Enter your email address" onfocus="view.onfocus(this)" onblur="view.onblur(this)" type="text">
-                    </div>
-                    <div class="main-butt">Get started</div>
-                </div><!--div id="image-contain"></div-->
-            </div><!--*************** View: New User Form ************************ -->
-            <div class="nuFormContain">
-                <div class="nuForm">
-                    <div class="nu-title">
-                        Doctor's account
-                    </div>
-                    <form>
+        <div class="displayUser"></div>
+        <div class="displayPat"></div>
+    </div>
+    <div class="nav_spacer2"></div>
+    <div class="contain" id="contain">
+        <div id="mySpinner"></div>
+        <!--*************** View: Land ************************ -->
+        <div class="spacer3"></div>
+        <div class="main-contain">
+            <div class="mid-contain" title="image of smiling, confident, school girl in classroom.">
+                <div class="mid-text">
+                    <h1 class="mid-main">The Secret</h1>
+                    <h1 class="mid-main2">Behind the Smile</h1>
+                </div>
+                <div class="main-email2">
+                    <!--input class="main-email" value="Enter your email address" onfocus="view.onfocus(this)" onblur="view.onblur(this)" type="text"-->
+                </div>
+                <div class="main-butt"><a class="a-white" href="/orthocure-learn-more.html">Learn more ></a></div>
+            </div>
+            <!--div id="image-contain"></div-->
+        </div>
+        <!--*************** View: New User Form ************************ -->
+        <div class="nuFormContain">
+            <div class="nuForm">
+                <div class="nu-title">
+                    Doctor's account
+                </div>
+                <form>
                     <div class="nu-box-contain">
                         <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box userEmail" value="your@email.com" required="" id="nuemail" type="email">
-                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box userPassword" value="create password" required="" id="nupassword" type="text">
-                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box firstName" value="first name" required="" type="text" id="firstName"> <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box lastName" value="last name" required="" id="lastName" type="text">
-                        <div class="spacer1"></div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box billAddress" value="billing address" required="" id="billAddress" type="text">
-                        <div class="spacer1"></div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box billCity" value="City" required="" id="billCity" type="text"> <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box billState" value="State" required="" id="billState" type="text">
-                        <div class="spacer1"></div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box billZip" value="Zip" required="" id="billZip" type="text">
-                        <div class="spacer1"></div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box mobilePhone" id="phone" value="office phone" required="" type="text"> <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box officePhone" id="phone2" value="mobile phone" required="" type="text">
-                        <div class="spacer1"></div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" type="checkbox" id="shipAddressCheck" value="false" unchecked="">
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box firstName" value="first name" required="" type="text" id="firstName">
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box lastName" value="last name" required="" id="lastName" type="text">
+                        <div class="spacer1"></div>
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box billAddress" value="billing address" required="" id="billAddress" type="text">
+                        <div class="spacer1"></div>
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box billCity" value="City" required="" id="billCity" type="text">
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box billState" value="State" required="" id="billState" type="text">
+                        <div class="spacer1"></div>
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box billZip" value="Zip" required="" id="billZip" type="text">
+                        <div class="spacer1"></div>
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box mobilePhone" id="phone" value="office phone" required="" type="text">
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box officePhone" id="phone2" value="mobile phone" required="" type="text">
+                        <div class="spacer1"></div>
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" type="checkbox" id="shipAddressCheck" value="false" unchecked="">
                         <div class="shipText">
                             shipping address is the same
                         </div>
-                        <div class="spacer1"></div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box shipAddress" value="shipping address" required="" id="shipAddress" type="text">
-                        <div class="spacer1"></div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box shipCity" value="City" required="" id="shipCity" type="text"> <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box shipState" value="State" required="" id="shipState" type="text">
-                        <div class="spacer1"></div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box shipZip" value="Zip" required="" id="shipZip" type="text">
+                        <div class="spacer1"></div>
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box shipAddress" value="shipping address" required="" id="shipAddress" type="text">
+                        <div class="spacer1"></div>
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box shipCity" value="City" required="" id="shipCity" type="text">
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box shipState" value="State" required="" id="shipState" type="text">
+                        <div class="spacer1"></div>
+                        <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" class="nu-text-box shipZip" value="Zip" required="" id="shipZip" type="text">
                         <div class="spacer2"></div>
                         <div class="spacer2"></div>
                         <div class="spacer2"></div>
                         <div class="spacer2"></div>
                         <div class="spacer2"></div>
-                        <button class="nuButton" type="button">Create my account</button><br>
+                        <button class="nuButton" type="button">Create my account</button>
+                        <br>
                         <div class="new-user-fail"></div>
                     </div>
-                    </form>
-                </div>
-            </div><!--*************** View: Edit User Form ************************ -->
-            <div class="editAccount">
-                <form name="nudrform" id="nu-form" accept-charset="UTF-8" autocomplete="off">
-                    <div class="nu-form-box">
-                        <div class="containUpdateButton">
-                            <button class="updateAccount" type="button">Update Account</button>
-                        </div>
-                    </div>
-                    <div class="nu-box-contain">
-                        <input class="nu-text-box" value="billing address" required="" id="ebillAddress" type="text">
-                        <div class="spacer1"></div><input class="nu-text-box" value="City" required="" id="ebillCity" type="text"> <input class="nu-text-box" value="State" required="" id="ebillState" type="text"> <input class="nu-text-box" value="Zip" required="" id="ebillZip" type="text">
-                        <div class="spacer1"></div><input class="nu-text-box" id="ephone" value="office phone" required="" type="text"> <input class="nu-text-box" id="ephone2" value="mobile phone" required="" type="text">
-                        <div class="spacer1"></div><input type="checkbox" id="eshipAddressCheck" value="false" unchecked="">
-                        <div class="shipText">
-                            shipping address is same
-                        </div>
-                        <div class="spacer1"></div><input class="nu-text-box" value="shipping address" id="eshipAddress" type="text">
-                        <div class="spacer1"></div><input class="nu-text-box" value="City" required="" id="eshipCity" type="text"> <input class="nu-text-box" value="State" required="" id="eshipState" type="text"> <input class="nu-text-box" value="Zip" required="" id="eshipZip" type="text">
-                        <div class="spacer1"></div>
-                        <div class="update-user-fail"></div>
-                    </div>
                 </form>
-            </div><!--*************** View: Login Form ************************ -->
-
-
-            <div class="logInFormContain" id="login">
-                <div class="log-form-head">
-                        <div class="login">
-                            <div class="legend-log"></div>
-                            <div class="login-fail"></div>
-                            <div>
-                                <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="loginEmail" value="email" type="text">
-                            </div>
-                            <div class="spacer"></div>
-                            <div>
-                                <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" value="password" id="loginPassword" type="text">
-                            </div>
-                            <div class="spacer"></div>
-                            <div class="logInBut" id="logInBut">Login</div>
-                            <div class="spacer"></div>
-                            <div class="logNewAccount" id="logNewAccount">New Account</div>
-                            <div class="spacer"></div>
-                            <div class="exampleBut" id="exampleBut">Test Spin</div>
-                            <div class="spacer"></div>
-                            <div class="spacer"></div>
-                            <div class="legend-log-sub">
-                                <div id="resetPasswordLink">
-                                    Forgot password
-                                </div>
-                            </div>
-                            <div class="legend-log-sub">
-                                <div id="changePassLink">
-                                    Change password
-                                </div>
-                            </div>
-                            <div class="legend-log-sub">
-                                <div id="changeEmailLink">
-                                    Change email address
-                                </div>
-                            </div>
+            </div>
+        </div>
+        <!--*************** View: Edit User Form ************************ -->
+        <div class="editAccount">
+            <form name="nudrform" id="nu-form" accept-charset="UTF-8" autocomplete="on">
+                <div class="nu-form-box">
+                    <div class="containUpdateButton">
+                        <button class="updateAccount" type="button">Update Account</button>
+                    </div>
+                </div>
+                <div class="nu-box-contain">
+                    <input class="nu-text-box" value="billing address" required="" id="ebillAddress" type="text">
+                    <div class="spacer1"></div>
+                    <input class="nu-text-box" value="City" required="" id="ebillCity" type="text">
+                    <input class="nu-text-box" value="State" required="" id="ebillState" type="text">
+                    <input class="nu-text-box" value="Zip" required="" id="ebillZip" type="text">
+                    <div class="spacer1"></div>
+                    <input class="nu-text-box" id="ephone" value="office phone" required="" type="text">
+                    <input class="nu-text-box" id="ephone2" value="mobile phone" required="" type="text">
+                    <div class="spacer1"></div>
+                    <input type="checkbox" id="eshipAddressCheck" value="false" unchecked="">
+                    <div class="shipText">
+                        shipping address is same
+                    </div>
+                    <div class="spacer1"></div>
+                    <input class="nu-text-box" value="shipping address" id="eshipAddress" type="text">
+                    <div class="spacer1"></div>
+                    <input class="nu-text-box" value="City" required="" id="eshipCity" type="text">
+                    <input class="nu-text-box" value="State" required="" id="eshipState" type="text">
+                    <input class="nu-text-box" value="Zip" required="" id="eshipZip" type="text">
+                    <div class="spacer1"></div>
+                    <div class="update-user-fail"></div>
+                </div>
+            </form>
+        </div>
+        <!--*************** View: Login Form ************************ -->
+        <div class="logInFormContain" id="login">
+            <div class="log-form-head">
+                <div class="login">
+                    <div class="legend-log"></div>
+                    <div class="login-fail"></div>
+                    <div>
+                        <input autocomplete="on" onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="loginEmail" value="email" type="email">
+                    </div>
+                    <div class="spacer"></div>
+                    <div>
+                        <input autocomplete="on" onfocus="view.onfocus(this)" onblur="view.onblur(this)" value="password" id="loginPassword" type="text">
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="logInBut" id="logInBut">Login</div>
+                    <div class="spacer"></div>
+                    <div class="logNewAccount" id="logNewAccount">New Account</div>
+                    <div class="spacer"></div>
+                    <div class="exampleBut" id="exampleBut">Test Spin</div>
+                    <div class="spacer"></div>
+                    <div class="spacer"></div>
+                    <div class="legend-log-sub">
+                        <div id="resetPasswordLink">
+                            Forgot password
                         </div>
+                    </div>
+                    <div class="legend-log-sub">
+                        <div id="changePassLink">
+                            Change password
+                        </div>
+                    </div>
+                    <div class="legend-log-sub">
+                        <div id="changeEmailLink">
+                            Change email address
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!--*************** View: Reset Password Form ***************** -->
-            <div id="resetPassword">
-                <div id="resetPasswordTitle">
-                    Please enter your current email address and an email will be sent to you containing a link to reset your password.
-                </div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="resetPasswordEmail" value="account email" required=""><br>
-                <button id="resetPassBut" type="button">Reset Password</button>
-                <div id="#resetPassSuccess"></div>
-            </div><!--*************** View: Change Password Form ***************** -->
-            <div id="changePass">
-                <div id="changePassTitle">
-                    Please enter your current or temporary password followed by your NEW password.
-                </div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changePassEmail" value="account email" required=""> <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changePassOldPass" value="temp/old password" required="" type="text"> <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changePassNewPass" value="new password" required="" type="text"><br>
-                <button class="but-style" id="changePassBut" type="button">Change Password</button>
-            </div><!--*************** View: Change Email Form ***************** -->
-            <div id="changeEmail">
-                <div id="changeEmailTitle">
-                    Please enter your current email followed by your NEW email.
-                </div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changeEmailEmailOld" value="current email" required=""> <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changeEmailPassword" value="password" required="" type="text"> <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changeEmailEmailNew" value="NEW email" required=""><br>
-                <button class="but-style" id="changeEmailBut" type="button">Change Email</button>
-            </div><!--*************** View: New Patient Form ***************** -->
-            <div class="np-head">
-                <form class="np-form" name="nuPat" autocomplete="on">
-                    <div class="np-title">
-                        New Patient
-                    </div><input onfocus="view.onfocus(this)" onblur="view.onblur(this)" required="" value="firstName" id="patFirstName" class="patFirstName" type="text"><br>
-                    <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" required="" value="lastName" id="patLastName" class="patLastName" type="text"><br>
-                    <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" required="" id="patDob" class="patDob" value="DOB" type="text"><br>
-                    <button class="nuPatInfo" id="np-but" type="button" onclick="view.savePatientInfov2()">Create patient</button>
-                    <div class="np-success"></div>
-                </form>
-            </div><!--*************** View: Patient Chart ***************** -->
-            <div class="chart" id="patient-chart">
-                <div class="chart-head">
-                    <div class="pat-info-title">
-                        Patient Chart
-                    </div>
-                    <div class="pat-chart-subtitle">
-                        Please login and select a patient to view their chart
-                    </div>
+        </div>
+        <!--*************** View: Reset Password Form ***************** -->
+        <div id="resetPassword">
+            <div id="resetPasswordTitle">
+                Please enter your current email address and an email will be sent to you containing a link to reset your password.
+            </div>
+            <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="resetPasswordEmail" value="account email" required="">
+            <br>
+            <button id="resetPassBut" type="button">Reset Password</button>
+            <div id="#resetPassSuccess"></div>
+        </div>
+        <!--*************** View: Change Password Form ***************** -->
+        <div id="changePass">
+            <div id="changePassTitle">
+                Please enter your current or temporary password followed by your NEW password.
+            </div>
+            <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changePassEmail" value="account email" required="">
+            <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changePassOldPass" value="temp/old password" required="" type="text">
+            <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changePassNewPass" value="new password" required="" type="text">
+            <br>
+            <button class="but-style" id="changePassBut" type="button">Change Password</button>
+        </div>
+        <!--*************** View: Change Email Form ***************** -->
+        <div id="changeEmail">
+            <div id="changeEmailTitle">
+                Please enter your current email followed by your NEW email.
+            </div>
+            <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changeEmailEmailOld" value="current email" required="">
+            <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changeEmailPassword" value="password" required="" type="text">
+            <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" id="changeEmailEmailNew" value="NEW email" required="">
+            <br>
+            <button class="but-style" id="changeEmailBut" type="button">Change Email</button>
+        </div>
+        <!--*************** View: New Patient Form ***************** -->
+        <div class="np-head">
+            <form class="np-form" name="nuPat" autocomplete="on">
+                <div class="np-title">
+                    New Patient
                 </div>
-                <div style="display: block" class="pat-item-contain"></div>
-                <div class="chart-buts">
-                    <div class="showUpload" id="upload-scroll" onclick="view.showUpload()">Upload file</div>
-                        <div class="upload-here" id="upload">
+                <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" required="" value="firstName" id="patFirstName" class="patFirstName" type="text">
+                <br>
+                <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" required="" value="lastName" id="patLastName" class="patLastName" type="text">
+                <br>
+                <input onfocus="view.onfocus(this)" onblur="view.onblur(this)" required="" id="patDob" class="patDob" value="DOB" type="text">
+                <br>
+                <button class="nuPatInfo" id="np-but" type="button" onclick="view.s
+avePatientInfov2()">Create patient</button>
+                <div class="np-success"></div>
+            </form>
+        </div>
+        <!--*************** View: Patient Chart ***************** -->
+        <div class="chart" id="patient-chart">
+            <div class="chart-head">
+                <div class="pat-info-title">
+                    Patient Chart
+                </div>
+                <div class="pat-chart-subtitle">
+                    Please login and select a patient to view their chart
+                </div>
+            </div>
+            <div style="display: block" class="pat-item-contain"></div>
+            <div class="chart-buts">
+                <div class="showUpload" id="upload-scroll" onclick="view.showUpload()">Upload file</div>
+                <div class="upload-here" id="upload">
                     Upload File:
-                    <div id="no-pat-sel"></div><select id="select-file-name" required="">
+                    <div id="no-pat-sel"></div>
+                    <select id="select-file-name" required="">
                         <option id="option" value="none" selected="selected">
                             Choose a name
                         </option>
@@ -247,111 +289,124 @@
                         <option id="option14" value="setup-4">
                             setup-4
                         </option>
-                    </select><br>
-                    
+                    </select>
+                    <br>
                     <input style="margin-left: 10px" type="filepicker" data-fp-apikey="AhTgLagciQByzXpFGRI0Az" data-fp-mimetypes="*/*" data-fp-container="modal" data-fp-multiple="true" onchange="out='';for(var i=0;i<event.fpfiles.length;i++){out+=event.fpfiles[i].url;out+=' '};alert(out); view.evalUpload(out)">
                     <div class="upload-success"></div>
-                    </div>
-                    <div class="tx-note-show-but" onclick="view.showNote()">Add note</div>
-                        <div class="note-contain">
-                            <div class="tx-notes">
+                </div>
+                <div class="tx-note-show-but" onclick="view.showNote()">Add note</div>
+                <div class="note-contain">
+                    <div class="tx-notes">
                         Add prescription or notes:
                         <textarea id="tx-notes" name="tx-notes" rows="3"></textarea>
                         <br>
                         <div class="warn-note">
                             After you click 'Save note' you may NOT edit notes
-                        </div><button class="tx-notes-but" type="button">Save note</button>
+                        </div>
+                        <button class="tx-notes-but" type="button">Save note</button>
                         <button class="emailDocBut" type="button">EmailToDoc</button>
                     </div>
                 </div>
-                    <div class="buy">Buy now</div>
-                        <div class="product" id="product-1">
-                        </div>
-                    <div style="display: block" class="showHidden">Show/Hide</div>
+                <div class="buy">Buy now</div>
+                <div class="product" id="product-1">
                 </div>
-                <div class="pat-events-title">
-                    Click on an event below to view a file
-                </div>
-                <div class="pat-events"></div>
-            </div><!--*************** View: 3D canvas ***************** -->
-            <div class="frame">
-                <div class="textContain">
-                    <div class="canvas-text"></div>
-                </div>
-                <form class="zoom">
-                    zoom <input type="range" id="slider-1" value="1" min="0" max="5" step="0.05" data-highlight="true"> <!--output id="zoomOutput"></output-->
-                </form>
-                <div class="canvas-text2">
-                    Pan : Right click or Three-touch
-                </div>
-                <div id="d-contain"></div><button class="approve-but" type="button">Approve</button>
+                <div style="display: block" class="showHidden">Show/Hide</div>
             </div>
-            <button style="display: none" class="toggle-status" type="button">Status toggle</button> <!-- ******************  view xrays  *************-->
-            <div class="xray"></div><!--*************** View: Admin's Interface ***************** -->
-            <div class="adminView">
-                <div class="admin-contain">
-                    <div class="doc-list-title">
-                        Admin: Doctor List
-                    </div>
-                    <div class="doctor-list">
-                        Doctor List
-                    </div>
-                </div>
-            </div><!--*************** View: Not Sure what this is ***************** -->
-            <div class="user-acct-contain">
-                <div class="user-acct-title">
-                    Edit Doctor Account
-                </div>
+            <div class="pat-events-title">
+                Click on an event below to view a file
+            </div>
+            <div class="pat-events"></div>
+        </div>
+        <!--*************** View: 3D canvas ***************** -->
+        <div class="frame">
+            <div class="textContain">
+                <div class="canvas-text"></div>
+            </div>
+            <form class="zoom">
+                zoom
+                <input type="range" id="slider-1" value="1" min="0" max="5" step="0.05" data-highlight="true">
+                <!--output id="zoomOutput"></output-->
+            </form>
+            <div class="canvas-text2">
+                Pan : Right click or Three-touch
+            </div>
+            <div id="d-contain"></div>
+            <button class="approve-but" type="button">Approve</button>
+        </div>
+        <button style="display: none" class="toggle-status" type="button">Status toggle</button>
+        <!-- ******************  view xrays  *************-->
+        <div class="xray"></div>
+        <!--*************** View: Admin's Interface ***************** -->
+        <div class="adminView">
+            <div class="admin-contain">
                 <div class="doc-list-title">
                     Admin: Doctor List
-                </div><button style="margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-edit-contact" type="button">Edit Contact Info</button> <button style="margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-change-email" type="button">Change Email</button> <button style="margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-change-password" type="button">Change Password</button> <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-confirm-contact" type="button">Confirm Contact Info</button> <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-confirm-email" type="button">Confirm Email</button>
-            </div><!--*************** View: Dashboard***************** -->
-            <div class="docDash">
-                <div class="showEditAccount">
-                    <p>
-                        Account
-                    </p>
                 </div>
-                <div class="showLearn">
-                    <p>
-                        Learn
-                    </p>
+                <div class="doctor-list">
+                    Doctor List
                 </div>
-                <div class="add-pat" id="add-pat">
-                    <p class="add-patp">
-                        Add Patient
-                    </p>
-                </div><!--*************** View: Patient List ***************** -->
-                <div class="pat-list-contain" id="patient-list">
-                    <div class="pat-list-head">
-                        <div class="pat-list-title">
-                            Patient List
+            </div>
+        </div>
+        <!--*************** View: Not Sure what this is ***************** -->
+        <div class="user-acct-contain">
+            <div class="user-acct-title">
+                Edit Doctor Account
+            </div>
+            <div class="doc-list-title">
+                Admin: Doctor List
+            </div>
+            <button style="margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-edit-contact" type="button">Edit Contact Info</button>
+            <button style="margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-change-email" type="button">Change Email</button>
+            <button style="margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-change-password" type="button">Change Password</button>
+            <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-confirm-contact" type="button">Confirm Contact Info</button>
+            <button style="display: none; margin-left: 15px; margin-top: 8px; font-size: 0.8em; border-radius: 10px; background: hsl(200, 30%, 50%)" class="user-acct-confirm-email" type="button">Confirm Email</button>
+        </div>
+        <!--*************** View: Dashboard***************** -->
+        <div class="docDash">
+            <div class="showEditAccount">
+                <p>
+                    Account
+                </p>
+            </div>
+            <div class="showLearn">
+                <p>
+                    Learn
+                </p>
+            </div>
+            <div class="add-pat" id="add-pat">
+                <p class="add-patp">
+                    Add Patient
+                </p>
+            </div>
+            <div class="changePass">
+                <p>
+                    Password
+                </p>
+            </div>
+            <!--*************** View: Patient List ***************** -->
+            <div class="pat-list-contain" id="patient-list">
+                <div class="pat-list-head">
+                    <div class="pat-list-title">
+                        Patient List
+                    </div>
+                </div>
+                <ul class="pat-list-item-box">
+                    <li class="pat-list-item">
+                        <div class="pat-list-text">
+                            Please login to see patients.
                         </div>
-                    </div>
-                    <ul class="pat-list-item-box">
-                        <li class="pat-list-item">
-                            <div class="pat-list-text">
-                                Please login to see patients.
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div><!-- ************************************  -->
-            <div class="contain_part2">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- ************************************  -->
+        <div class="contain_part2">
             <div class="appliance">
-            <div class="intro">Introducing</div>
-            <div class="item-title">A new generation of braces</div>
-            <div class="item-sub">Available now ></div>
-                <!--div class="appl_title">
-                    <div class="appl_title1">
-                        Out of Sight.
-                    </div>
-                    <div class="appl_title2">
-                        Out of Mind.
-                    </div>
-                </div-->
+                <div class="intro">Introducing</div>
+                <div class="item-title">A new generation of braces</div>
+                <div class="item-sub big"><a href="/orthocure-learn-more.html">Learn more ></a></div>
                 <div class="appl_contain">
-                    <img class="appliance_img" src="images/appliance-main-400.png">
+                    <img class="appliance_img" src="images/appliance-main-400.png" alt="Image of the orthocure appliance upper">
                     <div class="subtext">
                         <div class="item1 indent1">
                             Invisible
@@ -393,233 +448,69 @@
                             The celebrities' choice
                         </div>
                     </div>
-                    <img class="appliance_img2" src="images/appliance-lower-400.png">
-                </div><!-- appl_contain -->
-            </div><!-- appliance -->
+                    <img class="appliance_img2" src="images/appliance-lower-400.png" alt="image of the orthocure appliance lower">
+                </div>
+                <!-- appl_contain -->
+            </div>
+            <!-- appliance -->
+            <div class="item-sub big2"><a href="/orthocure-learn-more.html">Learn more ></a></div>
             <div style="display: flex" class="logoContain2">
-                        <img class="logo2" src="/images/orthocure_symbol.svg" alt="OrthoCure Logo"> <!--div class="ortho">ORTHO</div>
+                <img class="logo2" src="/images/orthocure_symbol.svg" alt="OrthoCure Logo">
+                <!--div class="ortho">ORTHO</div>
                     <div class="cure">CURE</div-->
-                        <div class="orthocure2">
-                            orthocure.biz
-                        </div>
-                    </div>
-            <div class="appliance2">
-                <div class="appl_contain2">
-                    <div class="intro">Introducing</div>
-                    <div class="item-title">Pre-installed wire</div>
-                    <div class="item-sub">Coming soon</div>
-                    <div class="item-desc">It's a first in the world of orthodontics. Braces and wire delivered together inside an indirect bonding tray.</div>
-                    <div class="item_link preinstalled">Learn more ></div>
-                    <div class="appliance_iwd"> <img class="appliance_iwd" src="images/blue-wire.png">
-                    </div>
+                <div class="orthocure2">
+                    orthocure.biz
                 </div>
-                <div style="display: none" class="pop-install">
-                <div class="pop-install-inside2">
-                    <div class="xout">X</div> 
-                    <div class="appl_pop">
-                        <div class="pop-intro"></div>
-                        <div class="pop-title">Coming soon</div>
-                        <div class="title"></div>
-                        <div class="sub"></div>
-                        <div class="desc"></div>
-                        <!--img class="dart" src="images/dart5-414.png"-->
-                </div>
-                </div>
-                </div>
-                <div class="line2"></div>
-                <div class="appl_contain2">
-                    <div class="intro"></div>
-                    <div class="item-title">Auto-pilot for teeth</div>
-                    <div class="item-sub"></div>
-                    <div class="item-desc">Our indirect bonding trays are made via 3D printing. So they fit perfectly - everytime. And, brackets are pre-installed so all you need to do is add adhesive. Delivery is blazing fast and simple.</div>
-                    <div class="item_link autopilot">Learn more ></div>
-                    <img class="seat" src="images/seat-tray5.png">
-                </div>
-                </div>
-                <div style="display: none" class="pop-precise">
-                  <div class="pop-precise-inside2">
-                    <div class="xout">X</div> 
-                    <div class="appl_pop">
-                        <div class="pop-intro">Accuracy & Precision</div>
-                        <div class="pop-title">No guesswork.</div>
-                        <div class="item-title"></div>
-                        <div class="pop-item-sub">Bulls-eye everytime ></div>
-                        <div class="item-desc-pop">Install the wire and let it fly. Finish in a straight wire every time. Spare everyone the discomfort and hassle of 'adjustments'.</div>
-                        <img class="dart" src="images/dart5-414.png">
-                    </div>
-                    <div class="appl_pop">
-                        <div class="pop-intro"></div>
-                        <div class="pop-title">Accuracy.</div>
-                        <div class="item-title"></div>
-                        <div class="pop-item-sub">It's all about the setup. ></div>
-                        <div class="item-desc-pop">Computerized setup and positioning of braces. See your results before you start treatment. Put it up on the big HD screen and see what you've been missing.</div>
-                        <img class="setup" src="images/setup5.png">
-                    </div>
-                    <div class="appl_pop-precise">
-                        <div class="pop-intro"></div>
-                        <div class="pop-title">Precision.</div>
-                        <div class="item-title"></div>
-                        <div class="pop-item-sub">The delivery process. ></div>
-                        <div class="item-desc-pop">A 3D printed indirect bonding tray delivers the braces to the teeth with unrivaled high precision. The virtual setup becomes a physical reality. </div>
-                        <img class="precise" src="images/tray-414.png">
-                        <img class="precise" src="images/tray2-414.png">
-                    </div>
-                   </div> 
-                </div>
+            </div>
+            <!-- End of main page -->
+        </div>
+    </div>
+    <!-- *********** contain_part2 ************* -->
+    
+    <!--contain -->
+    <!--script src="js/knockout-3.4.0.js" rel="script" type="text/javascript"></script-->
+    <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js">
+    </script>
+    <script src="http://sdks.shopifycdn.com/js-buy-sdk/latest/shopify-buy.polyfilled.globals.min.js"></script>
+    <script src="js/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.min.js" type="text/javascript">
+    </script>
+    <script src="js/bootstrap.js" type="text/javascript">
+    </script>
+    <script src="js/three.min.js" type="text/javascript">
+    </script>
+    <script src="js/STLLoader.js" type="text/javascript">
+    </script>
+    
+    <script src="js/OrbitControls.js" type="text/javascript">
+    </script>
+    <script src="js/stats.min.js" type="text/javascript">
+    </script>
+    <script src="js/touchclick.js" type="text/javascript">
+    </script>
+    <script src="js/scripts.js" type="text/javascript">
+    </script>
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-                <div class="line2"></div>
-                <div class="appl_contain2">
-                    <div class="intro"></div>
-                    <div class="item-title">Dialed in.</div>
-                    <div class="item-sub"></div>
-                    <div class="item-desc">WYSIWYG. No adjustments needed. Tight tolerances and subtle over-corrections ensure that your case finishes in a straight wire - everytime.</div>
-                    <div class="item_link dialed">Learn more ></div>
-                    <img class="setup" src="images/setup5.png">
-                </div>
-                <div style="display: none" class="pop-dialed">
-                <div class="pop-dialed-inside2">
-                    <div class="xout">X</div> 
-                    <div class="appl_pop">
-                        <div class="pop-intro"></div>
-                        <div class="pop-title">Coming soon</div>
-                        <div class="title"></div>
-                        <div class="sub"></div>
-                        <div class="desc"></div>
-                        <!--img class="dart" src="images/dart5-414.png"-->
-                </div>
-                </div>
-                </div>
-                <div class="line2"></div>
-                <div class="appl_contain2 appl_contain3">
-                    <div class="intro"></div>
-                    <div class="item-title">It's a retainer too.</div>
-                    <div class="item-sub"></div>
-                    <div class="item-desc">Say goodbye to retainer impression appointments, to retainer delivery appointments, to retainer lab fees and to all the waiting. We'll miss you.</div>
-                    <div class="item_link retainer">Learn more ></div>
-                    <img class="mirror" src="images/mirror-retainer-414.png">
-                </div>
-                <div style="display: none" class="pop-retainer">
-                <div class="pop-retainer-inside2">
-                    <div class="xout">X</div> 
-                    <div class="appl_pop">
-                        <div class="pop-intro"></div>
-                        <div class="pop-title">Coming soon</div>
-                        <div class="title"></div>
-                        <div class="sub"></div>
-                        <div class="desc"></div>
-                        <!--img class="dart" src="images/dart5-414.png"-->
-                </div>
-                </div>
-                </div>
-                <div class="line2"></div>
-                <div class="appl_contain2">
-                    <div class="intro"></div>
-                    <div class="item-title">All digital</div>
-                    <div class="item-sub"></div>
-                    <div class="item-desc">Every case starts with a digital 3D model of teeth. Direct scans are best but alginate impressions can be scanned by our lab as well.</div>
-                    <div class="item_link digital">Learn more ></div>
-                    <img class="mirror" src="images/scan-teeth.png">
-                </div>
-                <div style="display: none" class="pop-overview">
-                  <div class="pop-overview-inside2">
-                    <div class="xout">X</div> 
-                    <div class="appl_pop">
-                        <div class="pop-intro">Process overview</div>
-                        <div class="pop-title">One.</div>
-                        <div class="item-title"></div>
-                        <div class="pop-item-sub">Scan / impression ></div>
-                        <div class="item-desc-pop">3D Scan (preferred) or physical impression. Alginate or PVS impressions can be submitted for scannine.</div>
-                        <img class="comfort" src="images/scan-patient.png">
-                    </div>
-                    <div class="appl_pop">
-                        <div class="pop-intro"></div>
-                        <div class="pop-title">Two.</div>
-                        <div class="item-title"></div>
-                        <div class="pop-item-sub">Setup ></div>
-                        <div class="item-desc-pop">Computer simulated outcome (aka setup) is created to position brackets accurately. Brackets are positioned for straight wire mechanics.</div>
-                        <img class="setup" src="images/setup5.png">
-                    </div>
-                    <div class="appl_pop">
-                        <div class="pop-intro"></div>
-                        <div class="pop-title">Three.</div>
-                        <div class="item-title"></div>
-                        <div class="pop-item-sub">3D print ></div>
-                        <div class="item-desc-pop">3D printed indirect bonding tray(s). Brackets are pre-loaded. Just apply adhesive and deliver.</div>
-                        <img class="tray-414" src="images/tray-414.png">
-                    </div>
-                   </div> 
-                </div>
-                <div class="line2"></div>
-                <div class="appl_contain2">
-                    <div class="intro"></div>
-                    <div class="item-title">Beauty & comfort.</div>
-                    <div class="item-sub"></div>
-                    <div class="item-desc">Uncomfortable? Annoying? Ugly? Our celebrity patients won’t tolerate it. They don’t have to and neither do you. Looking and feeling completely normal is priority one. </div>
-                    <div class="item_link beauty">Learn more ></div>
-                    <img class="redgirl" src="images/Redgirl.png">
-                </div>
-                <div style="display: none" class="inviscomfort">
-                  <div class="inviscomfort-inside">
-                    <div class="xout">X</div> 
-                    <div class="appl_pop">
-                        <div class="intro-beauty">Beauty and comfort</div>
-                        <div class="pop-title">Out of Sight.</div>
-                        <div class="item-title"></div>
-                        <div class="item-sub">Not really invisible ></div>
-                        <div class="item-desc-pop">It’s hidden on the back side of the front teeth so that no one can see you have braces.</div>
-                        <img class="comfort" src="images/comfort.png">
-                    </div>
-                    <div class="appl_pop">
-                        <div class="intro"></div>
-                        <div class="pop-title">Small and smooth.</div>
-                        <div class="item-title"></div>
-                        <div class="item-sub">Not edgy ></div>
-                        <div class="item-desc-pop">3x smaller than a regular braces with polishable, convex surface. It’s the most comfortable appliance available. Period.</div>
-                        <img class="size" src="images/app-size.png">
-                    </div>
-                    <div class="appl_pop">
-                        <div class="intro"></div>
-                        <div class="pop-title">Speak naturally.</div>
-                        <div class="item-title"></div>
-                        <div class="item-sub">Be gabby ></div>
-                        <div class="item-desc-pop">The choice of celebrities and media personalities - because there's a lot riding on these braces.</div>
-                        <img class="comfort" src="images/speak.png">
-                    </div>
-                    <div class="appl_pop">
-                        <div class="intro"></div>
-                        <div class="pop-title">Eat well.</div>
-                        <div class="item-title"></div>
-                        <div class="item-sub">Spinach please ></div>
-                        <div class="item-desc-pop">Enjoy your meal. Life's too short to worry about your braces.</div>
-                        <img class="comfort" src="images/eat.png">
-                    </div>
-                   </div> 
-                </div>
-             </div>
-            </div> <!-- *********** contain_part2 ************* -->
-        <!--contain -->
-<script src="js/knockout-3.4.0.js" rel="script" type="text/javascript"></script>
-<script src="js/jquery-2.2.0.min.js" type="text/javascript"></script>
-<script src="js/jquery-ui.min.js" type="text/javascript">
-</script><script src="js/bootstrap.js" type="text/javascript">
-</script><script src="js/three.min.js" type="text/javascript">
-</script><script src="js/STLLoader.js" type="text/javascript">
-</script>
-<script src="js/OrbitControls.js" type="text/javascript">
-</script><script src="js/stats.min.js" type="text/javascript">
-</script><script src="js/touchclick.js" type="text/javascript">
-</script><script src="js/scripts.js" type="text/javascript">
-</script>
-<script async>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-82053246-1', 'auto', {
+        'allowLinker': true
+    });
+    ga('require', 'linker');
+    ga('linker:autoLink', ['orthocure.myshopify.com']);
+    ga('send', 'pageview');
+    </script>
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+</body>
 
-  ga('create', 'UA-82053246-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<link rel="stylesheet" href="css/main.css" type="text/css">
-    </body>
 </html>

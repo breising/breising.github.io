@@ -14,6 +14,27 @@ p {
     line-height: 140%;
 }
 
+.fixed-butt {
+    position: fixed;
+    z-index: 1;
+    top: 45px;
+    right: -3px;
+    border-radius: 3px;
+    background: hsla(200, 100%, 45%, 0.7);
+    font-weight: 100;
+    padding: 10px;
+}
+
+.contact-fixed-butt {
+    position: fixed;
+    z-index: 1;
+    top: 95px;
+    right: -3px;
+    border-radius: 3px;
+    background: hsla(200, 100%, 45%, 0.7);
+    font-weight: 100;
+    padding: 10px;
+}
 .appliance {
     display: none;
     width: 100%;
@@ -79,7 +100,7 @@ p {
     width: 100%;
     position: relative;
     font-weight: 200;
-    margin-top: 30px;
+    margin-top: 90px;
     background: hsl(1, 0%, 100%)
 }
 

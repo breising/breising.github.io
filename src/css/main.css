@@ -31,6 +31,17 @@ a {
     cursor: pointer;
 }
 
+.contact-fixed-butt {
+    position: fixed;
+    z-index: 1;
+    top: 95px;
+    right: -3px;
+    border-radius: 3px;
+    background: hsla(200, 100%, 45%, 0.7);
+    font-weight: 100;
+    padding: 10px;
+}
+
 .a-white {
     color: white;
 }
@@ -410,15 +421,16 @@ input[type="text"] {
 .item-sub {
     color: hsl(200, 100%, 45%);
     font-size: 0.9em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 90%;
     margin-left: 5%;
     text-align: center;
+    display: block;
 }
 
 .big {
     font-size: 1em;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .big2 {
@@ -1466,17 +1478,24 @@ legend {}
     position: relative;
     border-radius: 3px;
     font-size: 1em;
-    background: hsla(200, 100%, 45%, 1);
+    background: hsla(200, 100%, 45%, 0.7);
     color: hsl(200, 100%, 45%);
-    width: 110px;
+    width: 210px;
     padding-top: 7px;
-    height: 30px;
-    top: -100px;
-    left: 70px;
+    height: 25px;
+    top: -30px;
+    left: 40px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 10px;
-    padding-top: 12px;
+    padding-left: 5px;
+    padding-top: 10px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.link1 {
+    width: 100%;
+    text-align: center;
 }
 
 .logNewAccount {
@@ -2428,13 +2447,13 @@ img {
     }
     .main-email2,
     .main-butt {
-        margin-left: 46%;
+        margin-left: 35%;
     }
     .main-email2 {
         top: 10px;
     }
     .main-butt {
-        top: 30px;
+        top: 0px;
     }
 }
 
@@ -2494,6 +2513,9 @@ img {
         font-weight: 100;
         font-size: 2em;
     }
+    .main-butt {
+        margin-left: 40%;
+    }
 }
 
 @media screen and (min-width: 1100px) {
@@ -2517,6 +2539,3 @@ img {
     }
 }
 
-var email=$('#changePassEmail').val();
-var oldPass=$('#changePassOldPass').val();
-var newPass=$('#changePassNewPass').val();
