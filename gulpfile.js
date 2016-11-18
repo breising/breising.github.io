@@ -63,7 +63,7 @@ gulp.task('images', function() {
 //  gulp.watch(src + '*.html', ['html']);
 //});
 // Default Task
-gulp.task('default',['html']);
+gulp.task('default',['html','js','css']);
 
 
 // ,'js','css','images'
