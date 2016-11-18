@@ -299,10 +299,8 @@ p {
 }
 
 .appliance_iwd {
-    margin-top: 30px;
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 90%;
+    margin-left: 10%;
 }
 
 .seat {

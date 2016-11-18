@@ -15,6 +15,8 @@ $(document).ready(function() {
         $('.pop-retainer').hide();
     }
 
+    $('.show').show()
+
     $('.preinstalled').click(function(e) {
         /*e.preventDefault();
         view.hidePops();

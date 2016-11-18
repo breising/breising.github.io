@@ -13,6 +13,11 @@ body {
     font-weight: 100;
     padding: 10px;
 }
+.appliance_iwd {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .appliance {
     display: none;
@@ -272,10 +277,8 @@ body {
 }
 
 .appliance_iwd {
-    margin-top: 30px;
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 80%;
+    margin-left: 10%; 
 }
 
 .seat {

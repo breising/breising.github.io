@@ -608,7 +608,7 @@ p {
 .attach-image-contain {
     background: hsl(200, 0%, 98%);
     position: relative;
-    width: 50%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;

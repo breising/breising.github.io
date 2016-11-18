@@ -12,6 +12,9 @@ a {
 p {
     line-height: 140%;
 }
+.show {
+    display: none;
+}
 
 .fixed-butt {
     position: fixed;
